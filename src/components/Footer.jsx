@@ -4,16 +4,25 @@ import { CATEGORIES } from '../data/products';
 import { Sparkles, Heart, Mail, ShieldCheck, Truck, Check, Headphones, Clock, MapPin, ArrowRight, MessageSquare } from 'lucide-react';
 
 export const Footer = () => {
-  const { setSelectedCategory, showToast, setIsContactOpen, navigateTo } = useStore();
+  const { setSelectedCategory, showToast, setIsContactOpen, navigateTo, subscribeNewsletter } = useStore();
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault();
     if (!newsletterEmail.trim()) return;
+    const emailToSubmit = newsletterEmail.trim();
     setSubscribed(true);
-    showToast('Subscribed to KidzGem Family! 20% coupon code KIDZ20 active 🎉');
     setNewsletterEmail('');
+    showToast('Subscribed to KidzGem Family! 20% coupon code KIDZ20 active 🎉');
+
+    try {
+      if (subscribeNewsletter) {
+        await subscribeNewsletter(emailToSubmit);
+      }
+    } catch (err) {
+      console.warn('Newsletter submission fallback:', err);
+    }
   };
 
   return (

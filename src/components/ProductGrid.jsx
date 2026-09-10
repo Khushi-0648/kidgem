@@ -223,13 +223,15 @@ export const ProductGrid = () => {
     setPriceRange,
     formatPrice,
     navigateTo,
-    currentPage
+    currentPage,
+    products
   } = useStore();
 
   const isShopPage = currentPage === 'shop';
+  const allProducts = products && products.length > 0 ? products : PRODUCTS;
 
   const filteredProducts = useMemo(() => {
-    let list = [...PRODUCTS];
+    let list = [...allProducts];
 
     // Filter by Category (only when not on shop page)
     if (!isShopPage && selectedCategory && selectedCategory !== 'all') {
@@ -263,7 +265,7 @@ export const ProductGrid = () => {
     }
 
     return list;
-  }, [selectedCategory, searchQuery, priceRange, sortBy]);
+  }, [allProducts, isShopPage, selectedCategory, searchQuery, priceRange, sortBy]);
 
   // Determine products to display:
   // On Home page: showcase 9 diverse flagship products (1 from each of the 9 categories)
@@ -282,13 +284,13 @@ export const ProductGrid = () => {
         'indoor-games'
       ];
       const featured = categoryOrder
-        .map((catId) => PRODUCTS.find((p) => p.category === catId))
+        .map((catId) => allProducts.find((p) => p.category === catId))
         .filter(Boolean);
 
-      return featured.length === 9 ? featured : PRODUCTS.slice(0, 9);
+      return featured.length === 9 ? featured : allProducts.slice(0, 9);
     }
     return filteredProducts;
-  }, [isShopPage, filteredProducts]);
+  }, [allProducts, isShopPage, filteredProducts]);
 
   const activeCategoryObj = CATEGORIES.find((c) => c.id === selectedCategory) || CATEGORIES[0];
   const spotlight = CATEGORY_SPOTLIGHTS[selectedCategory] || CATEGORY_SPOTLIGHTS.all;
@@ -408,7 +410,7 @@ export const ProductGrid = () => {
               <ArrowRight className="w-5 h-5 text-white group-hover:translate-x-1.5 transition-transform" />
             </button>
             <p className="text-xs text-slate-500 font-medium mt-3">
-              Explore all {PRODUCTS.length} certified child-safe toys & play universes in our full shop
+              Explore all {allProducts.length} certified child-safe toys & play universes in our full shop
             </p>
           </div>
         )}

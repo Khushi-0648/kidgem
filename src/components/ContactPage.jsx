@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 
 export const ContactPage = () => {
-  const { showToast } = useStore();
+  const { showToast, submitContact } = useStore();
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -24,12 +24,13 @@ export const ContactPage = () => {
     message: ''
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
       showToast('Please fill in all required fields.', 'error');
       return;
     }
+    const dataToSend = { ...formData };
     setSubmitted(true);
     showToast('Message sent successfully! Our team will reply shortly. 💌');
     setFormData({
@@ -39,6 +40,14 @@ export const ContactPage = () => {
       subject: 'Order Inquiry',
       message: ''
     });
+
+    try {
+      if (submitContact) {
+        await submitContact(dataToSend);
+      }
+    } catch (err) {
+      console.warn('Contact form sync fallback:', err);
+    }
     setTimeout(() => setSubmitted(false), 5000);
   };
 

@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/wp-json/:match*",
+      "destination": "https://kidzgem.com/wp-json/:match*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

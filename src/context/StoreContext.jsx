@@ -1,5 +1,10 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { parseUrlRoute, getPathForRoute } from '../utils/routes';
+import { PRODUCTS as initialProducts, CATEGORIES as initialCategories } from '../data/products';
+import { wpProductService } from '../services/wordpress/productService';
+import { wpOrderService } from '../services/wordpress/orderService';
+import { wpFormService } from '../services/wordpress/formService';
+import { wpCartService } from '../services/wordpress/cartService';
 
 const StoreContext = createContext();
 
@@ -12,6 +17,63 @@ export const useStore = () => {
 };
 
 export const StoreProvider = ({ children }) => {
+  // Live Products & Categories hydrated from WordPress backend
+  const [products, setProducts] = useState(initialProducts);
+  const [categories, setCategories] = useState(initialCategories);
+  const [backendStatus, setBackendStatus] = useState({
+    connected: false,
+    loading: true,
+    siteName: 'KidzGem',
+    liveProductCount: 0,
+    source: 'local'
+  });
+
+  // Hydrate from WordPress WooCommerce backend on mount
+  useEffect(() => {
+    let isMounted = true;
+    async function initWordPressBackend() {
+      try {
+        const conn = await wpProductService.checkConnection();
+        if (conn.connected && isMounted) {
+          const liveWcProducts = await wpProductService.fetchLiveProducts(50);
+          if (isMounted) {
+            const merged = wpProductService.mergeCatalog(initialProducts, liveWcProducts);
+            setProducts(merged);
+            setBackendStatus({
+              connected: true,
+              loading: false,
+              siteName: conn.siteName || 'KidzGem',
+              liveProductCount: liveWcProducts.length,
+              source: 'wordpress_woocommerce'
+            });
+            console.log('Connected to WordPress Backend (' + (conn.siteName || 'kidzgem.com') + ') with ' + liveWcProducts.length + ' live products.');
+          }
+        } else if (isMounted) {
+          setBackendStatus({
+            connected: false,
+            loading: false,
+            siteName: 'KidzGem',
+            liveProductCount: 0,
+            source: 'local_resilient'
+          });
+        }
+      } catch (err) {
+        console.warn('WordPress backend offline or unreachable, running in resilient mode:', err.message);
+        if (isMounted) {
+          setBackendStatus({
+            connected: false,
+            loading: false,
+            siteName: 'KidzGem',
+            liveProductCount: 0,
+            source: 'local_resilient'
+          });
+        }
+      }
+    }
+
+    initWordPressBackend();
+    return () => { isMounted = false; };
+  }, []);
   // Currency state: 'INR' (default as per kidzgem.com) or 'USD'
   const [currency, setCurrency] = useState(() => {
     try {
@@ -245,9 +307,37 @@ export const StoreProvider = ({ children }) => {
   const totalAmount = Math.max(0, subtotal - discountAmount + shippingCost);
   const totalCartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
+  // Backend Action: Place Order directly to WooCommerce
+  const placeOrder = async (orderData) => {
+    const activeOrderItems = orderData.items || (directCheckoutItem ? [directCheckoutItem] : cart);
+    const result = await wpOrderService.placeOrder({
+      ...orderData,
+      items: activeOrderItems,
+      total: orderData.total || totalAmount
+    });
+    return result;
+  };
+
+  // Backend Action: Subscribe Newsletter via WordPress
+  const subscribeNewsletter = async (email) => {
+    return await wpFormService.subscribeNewsletter(email);
+  };
+
+  // Backend Action: Submit Contact Form via WordPress
+  const submitContact = async (formData) => {
+    return await wpFormService.submitContact(formData);
+  };
+
   return (
     <StoreContext.Provider
       value={{
+        products,
+        setProducts,
+        categories,
+        backendStatus,
+        placeOrder,
+        subscribeNewsletter,
+        submitContact,
         cart,
         addToCart,
         removeFromCart,
