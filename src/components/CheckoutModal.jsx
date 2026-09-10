@@ -56,24 +56,28 @@ export const CheckoutModal = () => {
   const itemShipping = itemSubtotal >= freeShippingThreshold || couponCode === 'FREESHIP' ? 0 : (currency === 'USD' ? 4.99 * 80 : 99);
   const finalTotal = Math.max(0, itemSubtotal - itemDiscount + itemShipping);
 
-  // Form states matching Indian & Global address formats
+  // Form states matching Indian & Global address formats - starts empty so
+  // the real guest customer's own details are what get submitted with the
+  // order (this used to be pre-filled with a fake "Aarav Sharma" identity,
+  // which looked like leaked account data and could get submitted by
+  // mistake if someone didn't notice and edit it).
   const [formData, setFormData] = useState({
-    name: 'Aarav Sharma',
-    email: 'aarav.sharma@example.com',
-    phone: '+91 99996 59104',
-    address: 'Flat 402, Lotus Residency, MG Road',
-    city: 'Mumbai',
-    state: 'Maharashtra',
-    zip: '400001'
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+    city: '',
+    state: '',
+    zip: ''
   });
 
   // Payment states
   const [paymentMethod, setPaymentMethod] = useState('upi'); // 'upi' | 'card' | 'netbanking' | 'cod'
   const [cardData, setCardData] = useState({
-    number: '4532 •••• •••• 8892',
-    name: 'AARAV SHARMA',
-    expiry: '08/28',
-    cvv: '849'
+    number: '',
+    name: '',
+    expiry: '',
+    cvv: ''
   });
 
   // Processing & Success states
@@ -502,28 +506,45 @@ export const CheckoutModal = () => {
                       </div>
                     </div>
 
-                    <div>
-                      <label className="block text-slate-600 font-bold mb-1">City</label>
-                      <input
-                        type="text"
-                        required
-                        name="city"
-                        value={formData.city}
-                        onChange={handleInputChange}
-                        className="w-full px-3 py-2.5 bg-rose-50/40 border border-rose-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-rose-400 focus:outline-hidden font-medium"
-                      />
-                    </div>
+                    <div className="sm:col-span-2 grid grid-cols-2 sm:grid-cols-3 gap-3">
+                      <div>
+                        <label className="block text-slate-600 font-bold mb-1">City</label>
+                        <input
+                          type="text"
+                          required
+                          name="city"
+                          value={formData.city}
+                          onChange={handleInputChange}
+                          placeholder="e.g. Mumbai"
+                          className="w-full px-3 py-2.5 bg-rose-50/40 border border-rose-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-rose-400 focus:outline-hidden font-medium"
+                        />
+                      </div>
 
-                    <div>
-                      <label className="block text-slate-600 font-bold mb-1">PIN / Postal Code</label>
-                      <input
-                        type="text"
-                        required
-                        name="zip"
-                        value={formData.zip}
-                        onChange={handleInputChange}
-                        className="w-full px-3 py-2.5 bg-rose-50/40 border border-rose-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-rose-400 focus:outline-hidden font-medium"
-                      />
+                      <div>
+                        <label className="block text-slate-600 font-bold mb-1">State</label>
+                        <input
+                          type="text"
+                          required
+                          name="state"
+                          value={formData.state}
+                          onChange={handleInputChange}
+                          placeholder="e.g. Maharashtra"
+                          className="w-full px-3 py-2.5 bg-rose-50/40 border border-rose-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-rose-400 focus:outline-hidden font-medium"
+                        />
+                      </div>
+
+                      <div className="col-span-2 sm:col-span-1">
+                        <label className="block text-slate-600 font-bold mb-1">PIN / Postal Code</label>
+                        <input
+                          type="text"
+                          required
+                          name="zip"
+                          value={formData.zip}
+                          onChange={handleInputChange}
+                          placeholder="e.g. 400001"
+                          className="w-full px-3 py-2.5 bg-rose-50/40 border border-rose-200 rounded-xl focus:bg-white focus:ring-2 focus:ring-rose-400 focus:outline-hidden font-medium"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -630,7 +651,8 @@ export const CheckoutModal = () => {
                             type="text"
                             value={cardData.number}
                             onChange={(e) => setCardData({ ...cardData, number: e.target.value })}
-                            className="bg-white/10 border border-white/20 rounded-lg px-3 py-1.5 w-full text-white font-mono tracking-widest text-sm focus:outline-hidden focus:bg-white/20"
+                            placeholder="1234 5678 9012 3456"
+                            className="bg-white/10 border border-white/20 rounded-lg px-3 py-1.5 w-full text-white font-mono tracking-widest text-sm placeholder-white/40 focus:outline-hidden focus:bg-white/20"
                           />
                         </div>
 
@@ -641,7 +663,8 @@ export const CheckoutModal = () => {
                               type="text"
                               value={cardData.expiry}
                               onChange={(e) => setCardData({ ...cardData, expiry: e.target.value })}
-                              className="bg-white/10 border border-white/20 rounded-lg px-3 py-1.5 w-full text-white font-mono text-xs focus:outline-hidden"
+                              placeholder="MM/YY"
+                              className="bg-white/10 border border-white/20 rounded-lg px-3 py-1.5 w-full text-white font-mono text-xs placeholder-white/40 focus:outline-hidden"
                             />
                           </div>
                           <div>
@@ -651,7 +674,8 @@ export const CheckoutModal = () => {
                               maxLength="4"
                               value={cardData.cvv}
                               onChange={(e) => setCardData({ ...cardData, cvv: e.target.value })}
-                              className="bg-white/10 border border-white/20 rounded-lg px-3 py-1.5 w-full text-white font-mono text-xs focus:outline-hidden"
+                              placeholder="•••"
+                              className="bg-white/10 border border-white/20 rounded-lg px-3 py-1.5 w-full text-white font-mono text-xs placeholder-white/40 focus:outline-hidden"
                             />
                           </div>
                         </div>
