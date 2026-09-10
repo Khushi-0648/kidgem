@@ -3,8 +3,11 @@
  * RESEND_API_KEY stays server-side only - never exposed to the browser.
  */
 import { Resend } from 'resend';
+import { supabaseConfigured, supabaseInsert, supabaseCountRecentByIp, getClientIp } from './_lib/supabase.js';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MINUTES = 15;
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -28,6 +31,21 @@ export default async function handler(req, res) {
     return res.status(500).json({ success: false, message: 'Newsletter service is not configured.' });
   }
 
+  const clientIp = getClientIp(req);
+
+  // Rate-limit per IP so this endpoint can't be scripted to burn through
+  // the Resend quota by mass-"subscribing" arbitrary email addresses.
+  if (supabaseConfigured()) {
+    try {
+      const recentCount = await supabaseCountRecentByIp('newsletter_subscribers', clientIp, RATE_LIMIT_WINDOW_MINUTES);
+      if (recentCount >= RATE_LIMIT_MAX) {
+        return res.status(429).json({ success: false, message: 'Too many attempts. Please try again in a little while.' });
+      }
+    } catch (rateLimitErr) {
+      console.error('Rate limit check failed, continuing:', rateLimitErr);
+    }
+  }
+
   const resend = new Resend(process.env.RESEND_API_KEY);
   const fromAddress = process.env.RESEND_FROM_EMAIL || 'KidzGem <onboarding@resend.dev>';
   const notifyEmail = process.env.STORE_NOTIFY_EMAIL;
@@ -47,6 +65,20 @@ export default async function handler(req, res) {
         subject: 'New KidzGem Newsletter Signup',
         text: `New subscriber: ${clean}\nSubmitted: ${new Date().toISOString()}`
       });
+    }
+
+    // Persist to Supabase best-effort, upserting on email so re-subscribing
+    // doesn't error out on the unique constraint.
+    if (supabaseConfigured()) {
+      try {
+        await supabaseInsert(
+          'newsletter_subscribers',
+          { email: clean, source: 'KidzGem Store', ip: clientIp },
+          { onConflict: 'email' }
+        );
+      } catch (dbErr) {
+        console.error('Supabase newsletter_subscribers insert failed:', dbErr);
+      }
     }
 
     return res.status(200).json({ success: true, message: 'Successfully joined KidzGem VIP Family!' });

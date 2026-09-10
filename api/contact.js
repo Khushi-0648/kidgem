@@ -3,8 +3,11 @@
  * RESEND_API_KEY stays server-side only - never exposed to the browser.
  */
 import { Resend } from 'resend';
+import { supabaseConfigured, supabaseInsert, supabaseCountRecentByIp, getClientIp } from './_lib/supabase.js';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MINUTES = 15;
 
 function escapeHtml(str = '') {
   return str.replace(/[&<>"']/g, (c) => ({
@@ -39,6 +42,23 @@ export default async function handler(req, res) {
     return res.status(500).json({ success: false, message: 'Contact service is not configured.' });
   }
 
+  const clientIp = getClientIp(req);
+
+  // Rate-limit per IP so this endpoint can't be scripted to burn through
+  // the Resend quota or mass-email arbitrary "cleanEmail" addresses using
+  // the store's sender identity. Fails open (skips the check) if Supabase
+  // isn't configured, since RESEND_API_KEY alone is still a real cost gate.
+  if (supabaseConfigured()) {
+    try {
+      const recentCount = await supabaseCountRecentByIp('contact_messages', clientIp, RATE_LIMIT_WINDOW_MINUTES);
+      if (recentCount >= RATE_LIMIT_MAX) {
+        return res.status(429).json({ success: false, message: 'Too many messages sent recently. Please try again in a little while.' });
+      }
+    } catch (rateLimitErr) {
+      console.error('Rate limit check failed, continuing:', rateLimitErr);
+    }
+  }
+
   const resend = new Resend(process.env.RESEND_API_KEY);
   const fromAddress = process.env.RESEND_FROM_EMAIL || 'KidzGem <onboarding@resend.dev>';
 
@@ -58,6 +78,24 @@ export default async function handler(req, res) {
       subject: 'We received your message - KidzGem Support',
       text: `Hi ${cleanName || 'there'},\n\nThanks for reaching out to KidzGem! Our support team will get back to you within 24 hours.\n\nYour message:\n${cleanMessage}\n\nWith love,\nThe KidzGem Team`
     });
+
+    // Persist to Supabase best-effort - the email above is the critical
+    // path (that's what actually notifies the store), so a DB hiccup here
+    // shouldn't turn a successfully-sent message into a failure response.
+    if (supabaseConfigured()) {
+      try {
+        await supabaseInsert('contact_messages', {
+          name: cleanName,
+          email: cleanEmail,
+          phone: cleanPhone,
+          subject: cleanSubject,
+          message: cleanMessage,
+          ip: clientIp
+        });
+      } catch (dbErr) {
+        console.error('Supabase contact_messages insert failed:', dbErr);
+      }
+    }
 
     return res.status(200).json({ success: true, message: 'Your message has been received! Our support team will reply within 24 hours.' });
   } catch (err) {

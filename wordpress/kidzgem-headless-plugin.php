@@ -64,6 +64,17 @@ function kidzgem_handle_order($request) {
         return new WP_Error('woocommerce_inactive', 'WooCommerce is not active on this site.', array('status' => 503));
     }
 
+    // Rate-limit per IP: this endpoint is intentionally unauthenticated
+    // (guest checkout needs no login), so without a limit it could be
+    // scripted to flood the store with junk orders.
+    $client_ip = isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field($_SERVER['REMOTE_ADDR']) : 'unknown';
+    $rate_key = 'kidzgem_order_rl_' . md5($client_ip);
+    $attempts = (int) get_transient($rate_key);
+    if ($attempts >= 5) {
+        return new WP_Error('rate_limited', 'Too many orders placed recently. Please try again in a few minutes.', array('status' => 429));
+    }
+    set_transient($rate_key, $attempts + 1, 10 * MINUTE_IN_SECONDS);
+
     $line_items = $params['line_items'] ?? array();
     if (empty($line_items) || !is_array($line_items)) {
         return new WP_Error('missing_line_items', 'At least one line item is required.', array('status' => 400));
