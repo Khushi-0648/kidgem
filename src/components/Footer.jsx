@@ -6,23 +6,28 @@ import { Sparkles, Heart, Mail, ShieldCheck, Truck, Check, Headphones, Clock, Ma
 export const Footer = () => {
   const { setSelectedCategory, showToast, setIsContactOpen, navigateTo, subscribeNewsletter } = useStore();
   const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterCompany, setNewsletterCompany] = useState(''); // honeypot
   const [subscribed, setSubscribed] = useState(false);
+  const [isSubscribing, setIsSubscribing] = useState(false);
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
-    if (!newsletterEmail.trim()) return;
+    if (!newsletterEmail.trim() || isSubscribing) return;
     const emailToSubmit = newsletterEmail.trim();
+    setIsSubscribing(true);
+
+    const result = await subscribeNewsletter(emailToSubmit, newsletterCompany);
+
+    setIsSubscribing(false);
+
+    if (!result?.success) {
+      showToast(result?.message || 'Could not subscribe right now. Please try again.', 'error');
+      return;
+    }
+
     setSubscribed(true);
     setNewsletterEmail('');
     showToast('Subscribed to KidzGem Family! 20% coupon code KIDZ20 active 🎉');
-
-    try {
-      if (subscribeNewsletter) {
-        await subscribeNewsletter(emailToSubmit);
-      }
-    } catch (err) {
-      console.warn('Newsletter submission fallback:', err);
-    }
   };
 
   return (
@@ -65,6 +70,17 @@ export const Footer = () => {
 
               <div className="lg:col-span-5">
                 <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2">
+                  {/* Honeypot field - hidden from real users, catches bots */}
+                  <input
+                    type="text"
+                    name="company"
+                    value={newsletterCompany}
+                    onChange={(e) => setNewsletterCompany(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    className="absolute -left-[9999px] w-px h-px opacity-0"
+                    aria-hidden="true"
+                  />
                   <div className="relative flex-1">
                     <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                     <input
@@ -78,10 +94,11 @@ export const Footer = () => {
                   </div>
                   <button
                     type="submit"
-                    className="px-6 py-3.5 bg-slate-900 hover:bg-black text-white font-black text-xs rounded-2xl shadow-lg transition-all active:scale-95 flex items-center justify-center gap-1.5 flex-shrink-0 cursor-pointer"
+                    disabled={isSubscribing}
+                    className="px-6 py-3.5 bg-slate-900 hover:bg-black text-white font-black text-xs rounded-2xl shadow-lg transition-all active:scale-95 flex items-center justify-center gap-1.5 flex-shrink-0 cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    {subscribed ? <Check className="w-4 h-4 text-emerald-400" /> : <Sparkles className="w-4 h-4 text-amber-300" />}
-                    <span>{subscribed ? 'Joined!' : 'Subscribe'}</span>
+                    {subscribed ? <Check className="w-4 h-4 text-emerald-400" /> : <Sparkles className={`w-4 h-4 text-amber-300 ${isSubscribing ? 'animate-pulse' : ''}`} />}
+                    <span>{isSubscribing ? 'Joining...' : subscribed ? 'Joined!' : 'Subscribe'}</span>
                   </button>
                 </form>
                 <span className="text-[11px] text-rose-100 mt-2 block font-medium">
@@ -235,8 +252,27 @@ export const Footer = () => {
 
         </div>
 
-        {/* 3. BOTTOM BAR */}
-        <div className="mt-14 pt-6 border-t border-rose-100 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
+        {/* 3. LEGAL LINKS ROW */}
+        <div className="mt-10 pt-6 border-t border-rose-100 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-[11px] font-bold text-slate-500">
+          <button onClick={() => navigateTo('privacy-policy')} className="hover:text-rose-600 hover:underline cursor-pointer">
+            Privacy Policy
+          </button>
+          <span className="text-rose-200">•</span>
+          <button onClick={() => navigateTo('terms-conditions')} className="hover:text-rose-600 hover:underline cursor-pointer">
+            Terms &amp; Conditions
+          </button>
+          <span className="text-rose-200">•</span>
+          <button onClick={() => navigateTo('shipping-policy')} className="hover:text-rose-600 hover:underline cursor-pointer">
+            Shipping Policy
+          </button>
+          <span className="text-rose-200">•</span>
+          <button onClick={() => navigateTo('refund-policy')} className="hover:text-rose-600 hover:underline cursor-pointer">
+            Refund &amp; Cancellation
+          </button>
+        </div>
+
+        {/* 4. BOTTOM BAR */}
+        <div className="mt-5 pt-5 border-t border-rose-100 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-3">
           <p>&copy; 2026 <a href="https://kidzgem.com" target="_blank" rel="noreferrer" className="text-rose-600 font-bold hover:underline">KidzGem</a>. All rights reserved.</p>
           <div className="flex items-center gap-2 text-slate-500">
             <span>Direct Add to Cart to Payment</span>

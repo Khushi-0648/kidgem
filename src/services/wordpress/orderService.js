@@ -59,11 +59,7 @@ export const wpOrderService = {
 
       // 2. Try custom KidzGem helper endpoint if installed
       try {
-        const helperRes = await wpClient.post('/wp-json/kidzgem/v1/order', {
-          ...payload,
-          total: orderData.total,
-          fallbackId: fallbackOrderId
-        });
+        const helperRes = await wpClient.post(WP_CONFIG.endpoints.kidzgemOrder, payload);
         return {
           success: true,
           orderId: helperRes.order_id || fallbackOrderId,
@@ -72,14 +68,14 @@ export const wpOrderService = {
           data: helperRes
         };
       } catch (helperErr) {
-        // Graceful simulated success with guaranteed local tracking ID
-        console.log('Backend synced locally with guest receipt ID:', fallbackOrderId);
+        // Both real order paths failed - do NOT fabricate a fake confirmation.
+        // The caller must show a real error so the customer isn't told a
+        // never-placed order succeeded.
+        console.error('Order placement failed on both WordPress endpoints:', helperErr.message);
         return {
-          success: true,
-          orderId: fallbackOrderId,
-          status: 'confirmed',
-          source: 'local_resilient_queue',
-          message: 'Order confirmed! Order receipt generated and synced.'
+          success: false,
+          error: 'We could not reach the KidzGem order system. Please try again in a moment, or contact support.',
+          source: 'order_failed'
         };
       }
     }

@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { useStore } from '../context/StoreContext';
 import { PRODUCTS, CATEGORIES } from '../data/products';
 import { ProductCard } from './ProductCard';
@@ -211,6 +211,8 @@ const CATEGORY_SPOTLIGHTS = {
   }
 };
 
+const PRODUCTS_PER_PAGE = 20;
+
 export const ProductGrid = () => {
   const {
     selectedCategory,
@@ -267,9 +269,27 @@ export const ProductGrid = () => {
     return list;
   }, [allProducts, isShopPage, selectedCategory, searchQuery, priceRange, sortBy]);
 
+  // Shop page pagination - keeps the grid to a manageable page instead of
+  // one endless scroll that only gets longer as the catalog grows.
+  const [pageNum, setPageNum] = useState(1);
+  const totalPages = Math.max(1, Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE));
+  // Clamp during render (not in an effect) so a filter change that shrinks
+  // the result set never leaves pageNum pointing past the last page.
+  const safePageNum = Math.min(pageNum, totalPages);
+
+  useEffect(() => {
+    setPageNum(1);
+  }, [isShopPage, selectedCategory, searchQuery, priceRange, sortBy]);
+
+  const goToPage = (n) => {
+    setPageNum(n);
+    const catalogEl = document.getElementById('product-catalog');
+    if (catalogEl) catalogEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   // Determine products to display:
   // On Home page: showcase 9 diverse flagship products (1 from each of the 9 categories)
-  // On Shop page: show all products matching search/filters
+  // On Shop page: show the current page of products matching search/filters
   const displayedProducts = useMemo(() => {
     if (!isShopPage) {
       const categoryOrder = [
@@ -289,8 +309,9 @@ export const ProductGrid = () => {
 
       return featured.length === 9 ? featured : allProducts.slice(0, 9);
     }
-    return filteredProducts;
-  }, [allProducts, isShopPage, filteredProducts]);
+    const start = (safePageNum - 1) * PRODUCTS_PER_PAGE;
+    return filteredProducts.slice(start, start + PRODUCTS_PER_PAGE);
+  }, [allProducts, isShopPage, filteredProducts, safePageNum]);
 
   const activeCategoryObj = CATEGORIES.find((c) => c.id === selectedCategory) || CATEGORIES[0];
   const spotlight = CATEGORY_SPOTLIGHTS[selectedCategory] || CATEGORY_SPOTLIGHTS.all;
@@ -317,7 +338,7 @@ export const ProductGrid = () => {
           <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12 space-y-3">
             <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-md border border-rose-200/90 text-rose-700 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider shadow-sm shadow-rose-950/5">
               <Sparkles className="w-3.5 h-3.5 text-rose-600 fill-rose-500" />
-              <span>All {PRODUCTS.length} Products Available • Direct Zero-Login Checkout</span>
+              <span>{allProducts.length} Products Available • Direct Zero-Login Checkout</span>
             </div>
 
             <h2
@@ -328,7 +349,12 @@ export const ProductGrid = () => {
             </h2>
 
             <p className="text-sm sm:text-base text-slate-600 leading-relaxed max-w-2xl mx-auto font-medium">
-              Browse our complete catalog of all {PRODUCTS.length} certified child-safe toys, STEM science sets, and vehicles.
+              Browse our complete catalog of {allProducts.length} certified child-safe toys, STEM science sets, and vehicles.
+              {filteredProducts.length > 0 && (
+                <span className="block text-xs text-slate-500 mt-1">
+                  Showing {Math.min((safePageNum - 1) * PRODUCTS_PER_PAGE + 1, filteredProducts.length)}–{Math.min(safePageNum * PRODUCTS_PER_PAGE, filteredProducts.length)} of {filteredProducts.length} results
+                </span>
+              )}
             </p>
           </div>
         ) : (
@@ -391,6 +417,56 @@ export const ProductGrid = () => {
             >
               <RotateCcw className="w-4 h-4" />
               <span>Reset All Filters</span>
+            </button>
+          </div>
+        )}
+
+        {/* SHOP PAGE PAGINATION */}
+        {isShopPage && totalPages > 1 && (
+          <div className="mt-12 sm:mt-16 flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap">
+            <button
+              onClick={() => goToPage(safePageNum - 1)}
+              disabled={safePageNum === 1}
+              className="w-10 h-10 rounded-xl bg-white border border-rose-200 text-slate-700 flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 transition-colors cursor-pointer"
+              aria-label="Previous page"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+
+            {Array.from({ length: totalPages }, (_, i) => i + 1)
+              .filter((n) => n === 1 || n === totalPages || Math.abs(n - safePageNum) <= 1)
+              .reduce((acc, n, idx, arr) => {
+                if (idx > 0 && n - arr[idx - 1] > 1) acc.push('…');
+                acc.push(n);
+                return acc;
+              }, [])
+              .map((n, idx) =>
+                n === '…' ? (
+                  <span key={`gap-${idx}`} className="w-10 h-10 flex items-center justify-center text-slate-400 text-xs font-bold">
+                    …
+                  </span>
+                ) : (
+                  <button
+                    key={n}
+                    onClick={() => goToPage(n)}
+                    className={`w-10 h-10 rounded-xl text-xs font-black flex items-center justify-center transition-colors cursor-pointer ${
+                      n === safePageNum
+                        ? 'bg-rose-600 text-white shadow-md shadow-rose-600/25'
+                        : 'bg-white border border-rose-200 text-slate-700 hover:bg-rose-50'
+                    }`}
+                  >
+                    {n}
+                  </button>
+                )
+              )}
+
+            <button
+              onClick={() => goToPage(safePageNum + 1)}
+              disabled={safePageNum === totalPages}
+              className="w-10 h-10 rounded-xl bg-white border border-rose-200 text-slate-700 flex items-center justify-center disabled:opacity-40 disabled:cursor-not-allowed hover:bg-rose-50 transition-colors cursor-pointer"
+              aria-label="Next page"
+            >
+              <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         )}

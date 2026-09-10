@@ -318,14 +318,14 @@ export const StoreProvider = ({ children }) => {
     return result;
   };
 
-  // Backend Action: Subscribe Newsletter via WordPress
-  const subscribeNewsletter = async (email) => {
-    return await wpFormService.subscribeNewsletter(email);
+  // Backend Action: Subscribe Newsletter via Resend
+  const subscribeNewsletter = async (email, honeypot = '') => {
+    return await wpFormService.subscribeNewsletter(email, honeypot);
   };
 
-  // Backend Action: Submit Contact Form via WordPress
-  const submitContact = async (formData) => {
-    return await wpFormService.submitContact(formData);
+  // Backend Action: Submit Contact Form via Resend
+  const submitContact = async (formData, honeypot = '') => {
+    return await wpFormService.submitContact(formData, honeypot);
   };
 
   return (

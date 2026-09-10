@@ -118,4 +118,39 @@ html, body {
   box-shadow: 0 0 30px rgba(244, 63, 94, 0.25);
 }
 
+/* Safe-area padding for the fixed mobile bottom nav bar, so its buttons
+   aren't obscured by the home-indicator / gesture bar on notched phones.
+   Requires viewport-fit=cover in index.html for env() to report a real value. */
+.safe-area-pb {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Reserves space above the fixed mobile bottom nav bar (its own height plus
+   the safe-area inset) so page content is never hidden underneath it. */
+.pb-mobile-nav {
+  padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* Printable Invoice: hide the entire app (navbar, page content, modal chrome)
+   and show only the #kidzgem-print-invoice block, so "Print Invoice Receipt"
+   produces a single clean page instead of printing the whole site. */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #kidzgem-print-invoice,
+  #kidzgem-print-invoice * {
+    visibility: visible;
+  }
+
+  #kidzgem-print-invoice {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 24px;
+  }
+}
+
 

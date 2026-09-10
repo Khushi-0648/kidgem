@@ -30,8 +30,7 @@ export const Navbar = () => {
     subtotal,
     currency,
     setCurrency,
-    formatPrice,
-    backendStatus
+    formatPrice
   } = useStore();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -53,13 +52,7 @@ export const Navbar = () => {
           </div>
 
           {/* Quick contact & Currency toggle */}
-          <div className="flex items-center gap-3 text-rose-100 text-xs">
-            {backendStatus?.connected && (
-              <span className="inline-flex items-center gap-1 bg-emerald-500/20 text-emerald-200 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-emerald-400/30">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse"></span>
-                <span>WP Backend Live</span>
-              </span>
-            )}
+          <div className="flex items-center flex-wrap justify-center gap-2 sm:gap-3 text-rose-100 text-xs">
             <a href="tel:+919999659104" className="hover:text-white flex items-center gap-1 font-bold transition-colors">
               <Phone className="w-3 h-3 text-amber-300" />
               <span>+91 99996 59104</span>

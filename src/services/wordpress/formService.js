@@ -1,51 +1,52 @@
 /**
- * WordPress Newsletter & Contact Form Service
- * Dispatches subscriber emails and customer queries directly to WordPress REST endpoints.
+ * Newsletter & Contact Form Service
+ * Dispatches subscriber emails and customer queries via Resend
+ * (see /api/subscribe.js and /api/contact.js).
  */
 
-import { wpClient } from './apiClient.js';
-import { WP_CONFIG } from '../../config/wordpress.js';
+async function postJson(endpoint, payload) {
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok || data.success === false) {
+    throw new Error(data.message || 'Request failed');
+  }
+  return data;
+}
 
 export const wpFormService = {
   /**
-   * Submit newsletter email to WordPress
+   * Submit newsletter email via Resend
    */
-  async subscribeNewsletter(email) {
-    const payload = {
-      email: email.trim().toLowerCase(),
-      timestamp: new Date().toISOString(),
-      source: 'KidzGem Store VIP Banner'
-    };
-
+  async subscribeNewsletter(email, honeypot = '') {
     try {
-      const response = await wpClient.post(WP_CONFIG.endpoints.kidzgemSubscribe, payload);
-      return { success: true, data: response, synced: true };
+      const data = await postJson('/api/subscribe', { email: (email || '').trim().toLowerCase(), company: honeypot });
+      return { success: true, message: data.message };
     } catch (err) {
-      // Graceful fallback if custom plugin endpoint is pending activation
-      console.log('Newsletter subscription recorded locally:', email);
-      return { success: true, email: email, synced: false, note: 'Saved in visitor session' };
+      return { success: false, message: err.message || 'Could not subscribe right now. Please try again.' };
     }
   },
 
   /**
-   * Submit contact form to WordPress
+   * Submit contact form via Resend
    */
-  async submitContact(formData) {
-    const payload = {
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone || '',
-      subject: formData.subject || 'KidzGem Customer Query',
-      message: formData.message,
-      submitted_at: new Date().toISOString()
-    };
-
+  async submitContact(formData, honeypot = '') {
     try {
-      const response = await wpClient.post(WP_CONFIG.endpoints.kidzgemContact, payload);
-      return { success: true, data: response, synced: true };
+      const data = await postJson('/api/contact', {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone || '',
+        subject: formData.subject || 'KidzGem Customer Query',
+        message: formData.message,
+        company: honeypot
+      });
+      return { success: true, message: data.message };
     } catch (err) {
-      console.log('Contact message recorded locally:', formData);
-      return { success: true, synced: false, note: 'Recorded and acknowledged' };
+      return { success: false, message: err.message || 'Could not send your message right now. Please try again.' };
     }
   }
 };

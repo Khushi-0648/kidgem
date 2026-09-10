@@ -20,6 +20,11 @@ import { CartDrawer } from './components/CartDrawer';
 import { ProductModal } from './components/ProductModal';
 import { CheckoutModal } from './components/CheckoutModal';
 import { ContactModal } from './components/ContactModal';
+import { BackendDataPage } from './components/BackendDataPage';
+import { LegalPage } from './components/LegalPage';
+import { NotFoundPage } from './components/NotFoundPage';
+import { SEO } from './components/SEO';
+import { LEGAL_PAGES } from './utils/routes';
 import { Toast } from './components/Toast';
 import './App.css';
 
@@ -27,7 +32,9 @@ function MainApp() {
   const { currentPage } = useStore();
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FDFCFD] text-slate-900 font-sans selection:bg-rose-500 selection:text-white pb-20 md:pb-0 w-full overflow-x-hidden">
+    <div className="min-h-screen flex flex-col bg-[#FDFCFD] text-slate-900 font-sans selection:bg-rose-500 selection:text-white pb-mobile-nav md:pb-0 w-full overflow-x-hidden">
+      <SEO />
+
       {/* Navbar with official kidzgem.com phone, email, currency switcher, clean Home/Shop/About/Contact links, and NO login/logout */}
       <Navbar />
 
@@ -167,6 +174,24 @@ function MainApp() {
             <ContactPage />
             <SafetyQualitySection />
             <Perks />
+          </div>
+        )}
+
+        {currentPage === 'backend' && import.meta.env.DEV && (
+          <div className="animate-fadeIn">
+            <BackendDataPage />
+          </div>
+        )}
+
+        {LEGAL_PAGES.includes(currentPage) && (
+          <div className="animate-fadeIn">
+            <LegalPage docKey={currentPage} />
+          </div>
+        )}
+
+        {currentPage === 'not-found' && (
+          <div className="animate-fadeIn">
+            <NotFoundPage />
           </div>
         )}
       </main>

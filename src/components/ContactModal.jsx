@@ -3,7 +3,7 @@ import { useStore } from '../context/StoreContext';
 import { X, Phone, Mail, MapPin, Clock, Send, CheckCircle2, Sparkles } from 'lucide-react';
 
 export const ContactModal = () => {
-  const { isContactOpen, setIsContactOpen, showToast } = useStore();
+  const { isContactOpen, setIsContactOpen, showToast, submitContact } = useStore();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -11,12 +11,32 @@ export const ContactModal = () => {
     subject: '',
     message: ''
   });
+  const [company, setCompany] = useState(''); // honeypot, must stay empty
   const [submitted, setSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [sendError, setSendError] = useState('');
 
   if (!isContactOpen) return null;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSending(true);
+    setSendError('');
+
+    const result = await submitContact({
+      name: `${formData.firstName} ${formData.lastName}`.trim(),
+      email: formData.email,
+      subject: formData.subject,
+      message: formData.message
+    }, company);
+
+    setIsSending(false);
+
+    if (!result?.success) {
+      setSendError(result?.message || 'Could not send your message right now. Please try again.');
+      return;
+    }
+
     setSubmitted(true);
     showToast('Message sent successfully! We will get back to you ASAP.');
     setTimeout(() => {
@@ -120,6 +140,24 @@ export const ContactModal = () => {
                 </p>
               </div>
 
+              {/* Honeypot field - hidden from real users, catches bots */}
+              <input
+                type="text"
+                name="company"
+                value={company}
+                onChange={(e) => setCompany(e.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+                className="absolute -left-[9999px] w-px h-px opacity-0"
+                aria-hidden="true"
+              />
+
+              {sendError && (
+                <div className="bg-rose-50 border border-rose-200 text-rose-700 rounded-xl px-3.5 py-2.5 font-semibold">
+                  {sendError}
+                </div>
+              )}
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="font-bold text-slate-700 block mb-1">First Name *</label>
@@ -182,10 +220,11 @@ export const ContactModal = () => {
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="w-full py-3.5 bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-700 hover:to-rose-800 text-white font-bold text-sm rounded-2xl shadow-md shadow-rose-600/25 transition-all flex items-center justify-center gap-2 active:scale-95"
+                  disabled={isSending}
+                  className="w-full py-3.5 bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-700 hover:to-rose-800 text-white font-bold text-sm rounded-2xl shadow-md shadow-rose-600/25 transition-all flex items-center justify-center gap-2 active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  <Send className="w-4 h-4" />
-                  <span>Submit Message</span>
+                  <Send className={`w-4 h-4 ${isSending ? 'animate-pulse' : ''}`} />
+                  <span>{isSending ? 'Sending...' : 'Submit Message'}</span>
                 </button>
               </div>
             </form>

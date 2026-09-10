@@ -95,10 +95,13 @@ export const ProductCategorySlider = () => {
   }, [isPaused]);
 
   const handleManualScroll = (direction) => {
-    if (sliderRef.current) {
-      const offset = direction === 'left' ? -320 : 320;
-      sliderRef.current.scrollBy({ left: offset, behavior: 'smooth' });
-    }
+    if (!sliderRef.current) return;
+    // Pause the continuous auto-scroll so it doesn't fight the manual
+    // smooth-scroll animation (which made the arrows look unresponsive).
+    setIsPaused(true);
+    const offset = direction === 'left' ? -320 : 320;
+    sliderRef.current.scrollBy({ left: offset, behavior: 'smooth' });
+    setTimeout(() => setIsPaused(false), 900);
   };
 
   const handleCategoryClick = (categoryId) => {

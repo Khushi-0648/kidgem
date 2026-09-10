@@ -81,6 +81,7 @@ export const CheckoutModal = () => {
   const [processingStage, setProcessingStage] = useState('');
   const [orderConfirmed, setOrderConfirmed] = useState(false);
   const [orderId, setOrderId] = useState('');
+  const [orderError, setOrderError] = useState('');
 
   if (!isCheckoutOpen) return null;
 
@@ -120,6 +121,7 @@ export const CheckoutModal = () => {
   const handlePayNow = async (e) => {
     e.preventDefault();
     setIsProcessing(true);
+    setOrderError('');
     setProcessingStage('Connecting to KidzGem Secure Gateway (256-bit SSL)...');
 
     setTimeout(() => {
@@ -145,18 +147,20 @@ export const CheckoutModal = () => {
       });
 
       setIsProcessing(false);
-      setOrderId(result?.orderId || ('KG-' + Math.floor(100000 + Math.random() * 900000)));
+
+      if (!result?.success) {
+        setOrderError(result?.error || 'We could not place your order right now. Please try again.');
+        return;
+      }
+
+      setOrderId(result.orderId);
       setOrderConfirmed(true);
       triggerConfetti();
       clearCart();
     } catch (err) {
-      console.warn('Fallback order processing:', err);
+      console.error('Order placement threw unexpectedly:', err);
       setIsProcessing(false);
-      const randomOrderId = 'KG-' + Math.floor(100000 + Math.random() * 900000);
-      setOrderId(randomOrderId);
-      setOrderConfirmed(true);
-      triggerConfetti();
-      clearCart();
+      setOrderError('Something went wrong while placing your order. Please try again.');
     }
   };
 
@@ -164,6 +168,7 @@ export const CheckoutModal = () => {
     setIsCheckoutOpen(false);
     setDirectCheckoutItem(null);
     setOrderConfirmed(false);
+    setOrderError('');
   };
 
   return (
@@ -219,6 +224,29 @@ export const CheckoutModal = () => {
           </div>
         )}
 
+        {/* ORDER FAILED SCREEN */}
+        {orderError && !isProcessing && !orderConfirmed && (
+          <div className="py-16 px-6 text-center bg-white flex flex-col items-center justify-center space-y-4 animate-fadeIn">
+            <div className="w-16 h-16 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center border-4 border-rose-100">
+              <X className="w-8 h-8" />
+            </div>
+            <div className="space-y-1.5 max-w-sm">
+              <h4 className="text-lg font-black text-slate-900" style={{ fontFamily: 'Fredoka, sans-serif' }}>
+                Order Could Not Be Placed
+              </h4>
+              <p className="text-sm text-slate-600">
+                {orderError}
+              </p>
+            </div>
+            <button
+              onClick={() => setOrderError('')}
+              className="px-6 py-3 bg-rose-600 hover:bg-rose-700 text-white font-black text-xs rounded-2xl shadow-md transition-all active:scale-95 cursor-pointer"
+            >
+              Try Again
+            </button>
+          </div>
+        )}
+
         {/* ORDER SUCCESS SCREEN */}
         {orderConfirmed && !isProcessing && (
           <div className="p-6 sm:p-10 space-y-8 animate-fadeIn">
@@ -241,8 +269,75 @@ export const CheckoutModal = () => {
               </div>
             </div>
 
+            {/* PRINTABLE INVOICE (screen: hidden, print: the only thing that prints) */}
+            <div id="kidzgem-print-invoice" className="hidden print:block text-slate-900">
+              <div className="flex items-center justify-between border-b-2 border-slate-900 pb-4 mb-4">
+                <div>
+                  <h1 className="text-2xl font-black">KidzGem</h1>
+                  <p className="text-xs text-slate-600">kidzgem.com &bull; welcome@kidzgem.com &bull; +91 99996 59104</p>
+                </div>
+                <div className="text-right text-xs">
+                  <p className="font-black text-base">INVOICE</p>
+                  <p>Order #{orderId}</p>
+                  <p>{new Date().toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-6 text-xs mb-6">
+                <div>
+                  <p className="font-black uppercase text-slate-500 mb-1">Billed &amp; Shipped To</p>
+                  <p className="font-bold">{formData.name}</p>
+                  <p>{formData.address}</p>
+                  <p>{formData.city}, {formData.state} - {formData.zip}</p>
+                  <p>{formData.phone}</p>
+                  <p>{formData.email}</p>
+                </div>
+                <div className="text-right">
+                  <p className="font-black uppercase text-slate-500 mb-1">Payment</p>
+                  <p>Method: {paymentMethod.toUpperCase()}</p>
+                  <p>Status: Paid</p>
+                </div>
+              </div>
+
+              <table className="w-full text-xs border-collapse mb-6">
+                <thead>
+                  <tr className="border-b-2 border-slate-900 text-left">
+                    <th className="py-2">Item</th>
+                    <th className="py-2 text-center">Qty</th>
+                    <th className="py-2 text-right">Unit Price</th>
+                    <th className="py-2 text-right">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {items.map((item) => (
+                    <tr key={item.id} className="border-b border-slate-200">
+                      <td className="py-2">{item.name}</td>
+                      <td className="py-2 text-center">{item.quantity}</td>
+                      <td className="py-2 text-right">{formatPrice(item.price)}</td>
+                      <td className="py-2 text-right">{formatPrice(item.price * item.quantity)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+
+              <div className="flex justify-end mb-8">
+                <div className="w-56 text-xs space-y-1">
+                  <div className="flex justify-between"><span>Subtotal</span><span>{formatPrice(itemSubtotal)}</span></div>
+                  {itemDiscount > 0 && (
+                    <div className="flex justify-between text-emerald-700"><span>Discount {couponCode && `(${couponCode})`}</span><span>-{formatPrice(itemDiscount)}</span></div>
+                  )}
+                  <div className="flex justify-between"><span>Shipping</span><span>{itemShipping === 0 ? 'FREE' : formatPrice(itemShipping)}</span></div>
+                  <div className="flex justify-between font-black text-sm border-t-2 border-slate-900 pt-1.5 mt-1.5"><span>Total</span><span>{formatPrice(finalTotal)}</span></div>
+                </div>
+              </div>
+
+              <p className="text-[11px] text-slate-500 border-t border-slate-200 pt-3">
+                Thank you for shopping with KidzGem! This is a computer-generated receipt for your order.
+              </p>
+            </div>
+
             {/* Order Details Card */}
-            <div className="bg-rose-50/40 rounded-3xl p-6 border border-rose-100 grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
+            <div className="print:hidden bg-rose-50/40 rounded-3xl p-6 border border-rose-100 grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
               <div>
                 <span className="text-slate-400 font-bold uppercase block mb-1">Order ID</span>
                 <span className="text-sm font-black text-rose-600 block">{orderId}</span>
@@ -321,7 +416,7 @@ export const CheckoutModal = () => {
         )}
 
         {/* CHECKOUT & PAYMENT FORM */}
-        {!isProcessing && !orderConfirmed && (
+        {!isProcessing && !orderConfirmed && !orderError && (
           <form onSubmit={handlePayNow} className="p-5 sm:p-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
               

@@ -40,22 +40,14 @@ add_action('init', function() {
 
 /**
  * 2. Register Custom REST API Endpoints
+ *
+ * Newsletter signups and contact inquiries are now handled by the React app's
+ * own /api/subscribe and /api/contact serverless functions via Resend, so
+ * this plugin no longer needs (and no longer exposes) endpoints for them -
+ * that removes an unauthenticated, unbounded wp_options write and an open
+ * wp_mail() spam vector.
  */
 add_action('rest_api_init', function() {
-    // Newsletter Subscription Endpoint
-    register_rest_route('kidzgem/v1', '/subscribe', array(
-        'methods'  => 'POST',
-        'callback' => 'kidzgem_handle_subscribe',
-        'permission_callback' => '__return_true'
-    ));
-
-    // Contact Inquiries Endpoint
-    register_rest_route('kidzgem/v1', '/contact', array(
-        'methods'  => 'POST',
-        'callback' => 'kidzgem_handle_contact',
-        'permission_callback' => '__return_true'
-    ));
-
     // Direct Headless Order Endpoint
     register_rest_route('kidzgem/v1', '/order', array(
         'methods'  => 'POST',
@@ -64,76 +56,56 @@ add_action('rest_api_init', function() {
     ));
 });
 
-function kidzgem_handle_subscribe($request) {
-    $params = $request->get_json_params();
-    $email = sanitize_email($params['email'] ?? '');
-
-    if (empty($email) || !is_email($email)) {
-        return new WP_Error('invalid_email', 'Please provide a valid email address.', array('status' => 400));
-    }
-
-    // Save as WordPress comment, option, or integrate with Mailchimp/FluentForm
-    $subscribers = get_option('kidzgem_subscribers', array());
-    $subscribers[] = array(
-        'email' => $email,
-        'date'  => current_time('mysql'),
-        'ip'    => $_SERVER['REMOTE_ADDR'] ?? ''
-    );
-    update_option('kidzgem_subscribers', $subscribers);
-
-    return rest_ensure_response(array(
-        'success' => true,
-        'message' => 'Successfully joined KidzGem VIP Family!',
-        'email'   => $email
-    ));
-}
-
-function kidzgem_handle_contact($request) {
-    $params = $request->get_json_params();
-    $name    = sanitize_text_field($params['name'] ?? '');
-    $email   = sanitize_email($params['email'] ?? '');
-    $phone   = sanitize_text_field($params['phone'] ?? '');
-    $subject = sanitize_text_field($params['subject'] ?? 'KidzGem Query');
-    $message = sanitize_textarea_field($params['message'] ?? '');
-
-    if (empty($email) || empty($message)) {
-        return new WP_Error('missing_fields', 'Email and message are required.', array('status' => 400));
-    }
-
-    // Save as inquiry post or admin email
-    $admin_email = get_option('admin_email');
-    $mail_subject = "[KidzGem Store] New Message from " . $name;
-    $body = "Name: $name\nEmail: $email\nPhone: $phone\n\nMessage:\n$message";
-    wp_mail($admin_email, $mail_subject, $body);
-
-    return rest_ensure_response(array(
-        'success' => true,
-        'message' => 'Your message has been received! Our support team will reply within 24 hours.'
-    ));
-}
-
 function kidzgem_handle_order($request) {
     $params = $request->get_json_params();
     $order_id = 'KG-' . wp_rand(100000, 999999);
 
-    // If WooCommerce is active, create an actual WC Order
-    if (class_exists('WC_Order')) {
-        $order = wc_create_order();
-        
-        $billing = $params['billing_address'] ?? array();
-        $order->set_address($billing, 'billing');
-        $order->set_address($billing, 'shipping');
-        $order->set_payment_method($params['payment_method'] ?? 'cod');
-        $order->set_customer_note($params['customer_note'] ?? 'Headless React Order');
-        
-        $order->calculate_totals();
-        $order->update_status('processing', 'Placed via KidzGem Headless App');
-        $order_id = $order->get_id();
+    if (!class_exists('WC_Order')) {
+        return new WP_Error('woocommerce_inactive', 'WooCommerce is not active on this site.', array('status' => 503));
     }
+
+    $line_items = $params['line_items'] ?? array();
+    if (empty($line_items) || !is_array($line_items)) {
+        return new WP_Error('missing_line_items', 'At least one line item is required.', array('status' => 400));
+    }
+
+    $order = wc_create_order();
+
+    // Add real products by ID so pricing is authoritative from WooCommerce,
+    // never trusted from the client. Only items without a matching WC product
+    // (e.g. local-catalog-only demo items) fall back to a client-supplied price.
+    foreach ($line_items as $item) {
+        $quantity = max(1, intval($item['quantity'] ?? 1));
+        $product_id = intval($item['product_id'] ?? 0);
+        $product = $product_id ? wc_get_product($product_id) : false;
+
+        if ($product) {
+            $order->add_product($product, $quantity);
+        } else {
+            $name = sanitize_text_field($item['name'] ?? 'KidzGem Item');
+            $price = floatval($item['price'] ?? 0);
+            $fee = new WC_Order_Item_Fee();
+            $fee->set_name($name . ' x' . $quantity);
+            $fee->set_amount($price * $quantity);
+            $fee->set_total($price * $quantity);
+            $order->add_item($fee);
+        }
+    }
+
+    $billing = $params['billing_address'] ?? array();
+    $order->set_address($billing, 'billing');
+    $order->set_address($params['shipping_address'] ?? $billing, 'shipping');
+    $order->set_payment_method(sanitize_text_field($params['payment_method'] ?? 'cod'));
+    $order->set_customer_note(sanitize_textarea_field($params['customer_note'] ?? 'Headless React Order'));
+
+    $order->calculate_totals();
+    $order->update_status('processing', 'Placed via KidzGem Headless App');
+    $order_id = $order->get_id();
 
     return rest_ensure_response(array(
         'success'  => true,
         'order_id' => $order_id,
+        'total'    => $order->get_total(),
         'message'  => 'Order placed successfully in WooCommerce!'
     ));
 }

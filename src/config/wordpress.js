@@ -16,12 +16,6 @@ export const WP_CONFIG = {
     storeCartAddItem: '/wp-json/wc/store/v1/cart/add-item',
     storeCartCoupon: '/wp-json/wc/store/v1/cart/apply-coupon',
     storeCheckout: '/wp-json/wc/store/v1/checkout',
-    wcV3Orders: '/wp-json/wc/v3/orders',
-    kidzgemSubscribe: '/wp-json/kidzgem/v1/subscribe',
-    kidzgemContact: '/wp-json/kidzgem/v1/contact',
-  },
-  credentials: {
-    consumerKey: import.meta.env?.VITE_WC_CONSUMER_KEY || '',
-    consumerSecret: import.meta.env?.VITE_WC_CONSUMER_SECRET || '',
+    kidzgemOrder: '/wp-json/kidzgem/v1/order',
   }
 };
