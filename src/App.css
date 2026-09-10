@@ -1,0 +1,25 @@
+/* KidzGem Custom Styles & Animations */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.gem-shadow {
+  box-shadow: 0 10px 25px -5px rgba(225, 29, 72, 0.12), 0 8px 10px -6px rgba(225, 29, 72, 0.08);
+}
+
+.gem-shadow-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gem-shadow-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 30px -10px rgba(225, 29, 72, 0.2), 0 10px 12px -5px rgba(225, 29, 72, 0.1);
+}
+
+.subtle-grid {
+  background-image: radial-gradient(#ffe4e6 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+
