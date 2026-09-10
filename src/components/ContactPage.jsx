@@ -43,74 +43,68 @@ export const ContactPage = () => {
   };
 
   return (
-    <div className="bg-[#FDFCFD] min-h-screen py-8 sm:py-12 animate-fadeIn">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        
-        {/* HERO BANNER WITH BACKGROUND IMAGE */}
-        <div className="relative rounded-3xl overflow-hidden min-h-[360px] sm:min-h-[420px] flex items-center p-8 sm:p-12 lg:p-16 shadow-2xl shadow-rose-950/20">
-          
-          {/* Background Image: Friendly Customer Care & Happy Family Setting */}
-          <img
-            src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=1920&q=85"
-            alt="KidzGem Customer Care and Family Support"
-            className="absolute inset-0 w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-1000"
-          />
+    <div className="bg-[#FDFCFD] min-h-screen animate-fadeIn">
+      
+      {/* FULL-SCREEN HERO BANNER */}
+      <div className="relative w-full min-h-[72vh] sm:min-h-[82vh] flex items-center justify-center overflow-hidden mb-12 sm:mb-16">
+        {/* Background Image: Friendly Customer Care & Happy Family Setting */}
+        <img
+          src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=1920&q=85"
+          alt="KidzGem Customer Care and Family Support"
+          className="absolute inset-0 w-full h-full object-cover object-center scale-105 filter brightness-95"
+        />
 
-          {/* Aesthetic Gradient Scrim (Red & Rose to Translucent) */}
-          <div className="absolute inset-0 bg-gradient-to-r from-red-950/90 via-rose-900/80 via-60% to-rose-950/40"></div>
+        {/* Multi-Layered Cinematic Scrim */}
+        <div className="absolute inset-0 bg-gradient-to-r from-red-950/95 via-rose-950/85 to-red-950/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-black/40"></div>
 
-          {/* Ambient Light Accent */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+        {/* Ambient Depth Glows */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-rose-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl pointer-events-none"></div>
 
-          {/* Banner Content */}
-          <div className="relative z-10 max-w-2xl space-y-4 text-left text-white">
-            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md text-white text-xs font-black uppercase tracking-wider px-3.5 py-1.5 rounded-full shadow-xs border border-white/25">
-              <Sparkles className="w-3.5 h-3.5 text-amber-300 fill-amber-300" />
-              <span>We Are Here For You 24/7</span>
-            </div>
+        {/* Banner Content */}
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 py-16">
+          <div className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-xl border border-white/20 px-5 py-2 rounded-full text-xs font-black tracking-wider uppercase text-white shadow-2xl">
+            <Sparkles className="w-4 h-4 text-amber-300" />
+            <span className="bg-gradient-to-r from-white via-rose-100 to-amber-200 bg-clip-text text-transparent">
+              24/7 Dedicated Support • Response Under 2 Hours
+            </span>
+          </div>
 
-            <h1
-              className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] drop-shadow-md"
-              style={{ fontFamily: 'Fredoka, sans-serif' }}
+          <h1
+            className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-[1.06] drop-shadow-2xl break-words"
+            style={{ fontFamily: 'Fredoka, sans-serif' }}
+          >
+            Get in Touch with <br />
+            <span className="bg-gradient-to-r from-amber-300 via-rose-200 to-amber-200 bg-clip-text text-transparent">
+              KidzGem Family Care
+            </span>
+          </h1>
+
+          <p className="text-sm sm:text-lg md:text-xl text-rose-100/90 max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-md">
+            Have a question about order dispatch, toy safety, or birthday hampers? Our team is always ready to assist your family with joy and warmth.
+          </p>
+
+          <div className="pt-3 flex flex-wrap items-center justify-center gap-4 text-xs font-black text-white">
+            <a
+              href="tel:+919999659104"
+              className="flex items-center gap-2.5 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 px-6 py-3.5 rounded-2xl shadow-xl shadow-rose-600/30 hover:shadow-2xl transition-all duration-200 transform hover:-translate-y-0.5 active:scale-95"
             >
-              Get in Touch with <br />
-              <span className="text-amber-300 underline decoration-wavy decoration-white/40">KidzGem Family Care</span>
-            </h1>
-
-            <p className="text-sm sm:text-base lg:text-lg text-rose-100 font-semibold leading-relaxed drop-shadow-xs">
-              Have a question about order dispatch, toy safety, or birthday hampers? Our team is always ready to assist your family with joy and warmth.
-            </p>
-
-            <div className="pt-2 flex flex-wrap items-center gap-3 text-xs font-bold text-rose-100">
-              <a
-                href="tel:+919999659104"
-                className="flex items-center gap-2 bg-white/15 hover:bg-white/25 backdrop-blur-md px-4 py-2 rounded-xl border border-white/20 transition-colors"
-              >
-                <Phone className="w-4 h-4 text-amber-300" />
-                <span>+91 99996 59104 (Call / WhatsApp)</span>
-              </a>
-              <a
-                href="mailto:welcome@kidzgem.com"
-                className="flex items-center gap-2 bg-white/15 hover:bg-white/25 backdrop-blur-md px-4 py-2 rounded-xl border border-white/20 transition-colors"
-              >
-                <Mail className="w-4 h-4 text-amber-300" />
-                <span>welcome@kidzgem.com</span>
-              </a>
-            </div>
+              <Phone className="w-4 h-4 text-amber-300" />
+              <span>Call / WhatsApp: +91 99996 59104</span>
+            </a>
+            <a
+              href="mailto:welcome@kidzgem.com"
+              className="flex items-center gap-2.5 bg-white/15 hover:bg-white/25 border border-white/30 backdrop-blur-md px-6 py-3.5 rounded-2xl transition-all duration-200 active:scale-95 shadow-lg"
+            >
+              <Mail className="w-4 h-4 text-amber-300" />
+              <span>welcome@kidzgem.com</span>
+            </a>
           </div>
-
-          {/* Floating Aesthetic Response Badge on Right Side */}
-          <div className="hidden lg:flex absolute bottom-8 right-8 z-10 items-center gap-3 bg-white/90 backdrop-blur-md px-4 py-3 rounded-2xl border border-white/80 shadow-xl pointer-events-none">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white flex items-center justify-center font-black text-lg shadow-xs">
-              💬
-            </div>
-            <div className="text-left">
-              <p className="text-[10px] font-black uppercase tracking-wider text-emerald-600">Quick Response</p>
-              <p className="text-xs font-black text-slate-800">Under 2 Hours Reply</p>
-            </div>
-          </div>
-
         </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 pb-16">
 
         {/* 4 CONTACT CHANNELS */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

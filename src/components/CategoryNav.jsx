@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStore } from '../context/StoreContext';
-import { CATEGORIES } from '../data/products';
+import { CATEGORIES, PRODUCTS } from '../data/products';
 import {
   Smile,
   Car,
@@ -12,11 +12,13 @@ import {
   Gamepad2,
   Sparkles,
   ArrowRight,
-  Layers
+  Layers,
+  Shirt
 } from 'lucide-react';
 
 const ICON_MAP = {
   Sparkles: Sparkles,
+  Shirt: Shirt,
   Smile: Smile,
   Car: Car,
   PenTool: PenTool,
@@ -111,7 +113,7 @@ export const CategoryNav = ({ title = 'Shop by Category', subtitle = 'Click any 
               onClick={() => setSelectedCategory('all')}
               className="inline-flex items-center gap-2 text-xs font-black text-rose-600 hover:text-white bg-rose-50 hover:bg-rose-600 px-5 py-2 rounded-full border border-rose-200 shadow-xs transition-all"
             >
-              <span>Showing "{CATEGORIES.find(c => c.id === selectedCategory)?.name}" — Reset to Show All (24 Products)</span>
+              <span>Showing "{CATEGORIES.find(c => c.id === selectedCategory)?.name}" — Reset to Show All ({PRODUCTS.length} Products)</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>

@@ -57,6 +57,7 @@ export const GiftFinderWizard = () => {
   ];
 
   // Dynamically find top matches based on persona category + budget
+  // Dynamically find top matches based on persona category + budget (6 curated picks)
   const recommendations = useMemo(() => {
     const personaObj = personas.find((p) => p.id === selectedPersona) || personas[0];
     const budgetObj = budgets.find((b) => b.id === selectedBudget) || budgets[1];
@@ -64,9 +65,9 @@ export const GiftFinderWizard = () => {
     let matches = PRODUCTS.filter((p) => {
       const matchCat =
         selectedPersona === 'toddler'
-          ? p.category === 'toys' || p.category === 'accessories'
+          ? p.category === 'toys' || p.category === 'clothing' || p.category === 'accessories'
           : selectedPersona === 'creator'
-          ? p.category === 'toys' || p.category === 'stationery'
+          ? p.category === 'toys' || p.category === 'stationery' || p.category === 'gift-items'
           : selectedPersona === 'stem'
           ? p.category === 'learning-sets' || p.category === 'building-blocks'
           : p.category === 'remote-car' || p.category === 'indoor-games';
@@ -75,20 +76,29 @@ export const GiftFinderWizard = () => {
       return matchCat && matchPrice;
     });
 
-    // Fallback if none in exact price range
-    if (matches.length === 0) {
-      matches = PRODUCTS.filter((p) =>
-        selectedPersona === 'toddler'
-          ? p.category === 'toys'
-          : selectedPersona === 'creator'
-          ? p.category === 'toys' || p.category === 'stationery'
-          : selectedPersona === 'stem'
-          ? p.category === 'learning-sets'
-          : p.category === 'remote-car'
-      );
+    // Expand if fewer than 6 in exact price range
+    if (matches.length < 6) {
+      const categoryMatches = PRODUCTS.filter((p) => {
+        const matchCat =
+          selectedPersona === 'toddler'
+            ? p.category === 'toys' || p.category === 'clothing' || p.category === 'accessories' || p.category === 'indoor-games'
+            : selectedPersona === 'creator'
+            ? p.category === 'toys' || p.category === 'stationery' || p.category === 'gift-items'
+            : selectedPersona === 'stem'
+            ? p.category === 'learning-sets' || p.category === 'building-blocks'
+            : p.category === 'remote-car' || p.category === 'indoor-games';
+        return matchCat && !matches.some((m) => m.id === p.id);
+      });
+      matches = [...matches, ...categoryMatches];
     }
 
-    return matches.slice(0, 3);
+    // Ensure at least 6 recommendations from catalog
+    if (matches.length < 6) {
+      const remaining = PRODUCTS.filter((p) => !matches.some((m) => m.id === p.id));
+      matches = [...matches, ...remaining];
+    }
+
+    return matches.slice(0, 6);
   }, [selectedPersona, selectedBudget]);
 
   return (

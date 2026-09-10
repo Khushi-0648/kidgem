@@ -14,7 +14,8 @@ import {
   Mail,
   HelpCircle,
   ArrowRight,
-  ShieldCheck
+  ShieldCheck,
+  Layers
 } from 'lucide-react';
 
 export const Navbar = () => {
@@ -105,10 +106,9 @@ export const Navbar = () => {
             </div>
             <div className="flex flex-col">
               <div className="flex items-center gap-1">
-                <span className="text-2xl sm:text-3xl font-black tracking-tight text-rose-600" style={{ fontFamily: 'Fredoka, sans-serif' }}>
+                <span className="text-xl sm:text-2xl lg:text-3xl font-black tracking-tight text-rose-600" style={{ fontFamily: 'Fredoka, sans-serif' }}>
                   Kidz<span className="text-slate-900">Gem</span>
                 </span>
-                <span className="w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
               </div>
               <span className="text-[10px] tracking-widest uppercase font-bold text-rose-500 -mt-1">
                 Certified Kids Boutique
@@ -128,6 +128,18 @@ export const Navbar = () => {
             >
               <Home className="w-3.5 h-3.5" />
               <span>Home</span>
+            </button>
+
+            <button
+              onClick={() => navigateTo('categories')}
+              className={`px-4 py-2 rounded-full text-xs font-black transition-all flex items-center gap-1.5 ${
+                currentPage === 'categories' || currentPage === 'category-detail'
+                  ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-md scale-105'
+                  : 'text-slate-700 hover:text-rose-600 hover:bg-white/80'
+              }`}
+            >
+              <Layers className="w-3.5 h-3.5" />
+              <span>Categories</span>
             </button>
 
             <button
@@ -274,6 +286,21 @@ export const Navbar = () => {
               >
                 <Home className="w-4 h-4" />
                 <span>Home</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  navigateTo('categories');
+                  setMobileMenuOpen(false);
+                }}
+                className={`flex items-center gap-2 p-3 rounded-2xl font-bold text-xs text-left transition-all ${
+                  currentPage === 'categories' || currentPage === 'category-detail'
+                    ? 'bg-rose-600 text-white shadow-xs font-black'
+                    : 'bg-rose-50/70 text-slate-800'
+                }`}
+              >
+                <Layers className="w-4 h-4" />
+                <span>Categories</span>
               </button>
 
               <button

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { parseUrlRoute, getPathForRoute } from '../utils/routes';
 
 const StoreContext = createContext();
 
@@ -40,19 +41,45 @@ export const StoreProvider = ({ children }) => {
     }
   });
 
-  // Active page & navigation: 'home' | 'shop' | 'about' | 'contact'
-  const [currentPage, setCurrentPage] = useState('home');
+  // Active page & navigation initialized from browser URL
+  const initialRoute = parseUrlRoute();
+  const [currentPage, setCurrentPage] = useState(initialRoute.page);
+  const [selectedCategory, setSelectedCategory] = useState(initialRoute.category);
 
-  const navigateTo = (page, category = null) => {
+  // Sync browser back/forward buttons (popstate)
+  useEffect(() => {
+    const handlePopState = () => {
+      const { page, category } = parseUrlRoute();
+      setCurrentPage(page);
+      if (category) {
+        setSelectedCategory(category);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const navigateTo = (page, category = null, replace = false) => {
+    const targetCat = category || (page === 'category-detail' ? selectedCategory : 'all');
     setCurrentPage(page);
-    if (category) {
+    if (page === 'shop' && !category) {
+      setSelectedCategory('all');
+    } else if (category) {
       setSelectedCategory(category);
+    }
+    const targetPath = getPathForRoute(page, targetCat);
+    if (typeof window !== 'undefined' && (window.location.pathname + window.location.search) !== targetPath) {
+      if (replace) {
+        window.history.replaceState(null, '', targetPath);
+      } else {
+        window.history.pushState(null, '', targetPath);
+      }
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // Active navigation & filters
-  const [selectedCategory, setSelectedCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('featured');
   const [priceRange, setPriceRange] = useState(2500);
@@ -231,6 +258,7 @@ export const StoreProvider = ({ children }) => {
         currentPage,
         setCurrentPage,
         navigateTo,
+        getPathForRoute,
         toggleWishlist,
         selectedCategory,
         setSelectedCategory,

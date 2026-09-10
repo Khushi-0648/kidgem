@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useStore } from '../context/StoreContext';
 import {
   X,
@@ -50,10 +50,10 @@ export const ProductModal = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 sm:p-6 animate-fadeIn">
+    <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6 animate-fadeIn">
       {/* Modal Container */}
       <div 
-        className="relative bg-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl border border-rose-100 animate-scaleUp"
+        className="relative bg-white rounded-3xl max-w-3xl w-full max-h-[92vh] overflow-y-auto my-auto shadow-2xl border border-rose-100 animate-scaleUp"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}

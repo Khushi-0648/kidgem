@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useStore } from '../context/StoreContext';
 import {
   X,
@@ -63,7 +63,7 @@ export const CartDrawer = () => {
         className="absolute inset-0 bg-slate-900/50 backdrop-blur-xs transition-opacity duration-300"
       ></div>
 
-      <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
+      <div className="fixed inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10">
         <div className="w-screen max-w-md bg-white shadow-2xl flex flex-col border-l border-rose-100 animate-slideLeft">
           
           {/* Header */}

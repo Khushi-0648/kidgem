@@ -121,10 +121,10 @@ export const Footer = () => {
               Categories
             </h4>
             <ul className="space-y-2 text-xs">
-              {CATEGORIES.map((c) => (
+              {CATEGORIES.filter((c) => c.id !== 'all').map((c) => (
                 <li key={c.id}>
                   <button
-                    onClick={() => navigateTo('shop', c.id)}
+                    onClick={() => navigateTo('category-detail', c.id)}
                     className="text-slate-600 hover:text-rose-600 font-medium transition-colors text-left cursor-pointer"
                   >
                     {c.name}
@@ -142,27 +142,27 @@ export const Footer = () => {
             <ul className="space-y-2.5 text-xs text-slate-600 font-medium">
               <li>
                 <button onClick={() => navigateTo('home')} className="hover:text-rose-600 text-left transition-colors cursor-pointer">
-                  Home Page
+                  Home
+                </button>
+              </li>
+              <li>
+                <button onClick={() => navigateTo('categories')} className="hover:text-rose-600 text-left transition-colors cursor-pointer">
+                  Category
                 </button>
               </li>
               <li>
                 <button onClick={() => navigateTo('shop')} className="hover:text-rose-600 text-left transition-colors cursor-pointer">
-                  Shop All Categories
+                  Shop
                 </button>
               </li>
               <li>
                 <button onClick={() => navigateTo('about')} className="hover:text-rose-600 text-left transition-colors cursor-pointer">
-                  About KidzGem Story
+                  About KidzGem
                 </button>
               </li>
               <li>
                 <button onClick={() => navigateTo('contact')} className="hover:text-rose-600 text-left transition-colors cursor-pointer">
-                  Contact Support
-                </button>
-              </li>
-              <li>
-                <button onClick={() => setIsContactOpen(true)} className="hover:text-rose-600 text-left transition-colors cursor-pointer">
-                  Send Us a Message
+                  Contact Us
                 </button>
               </li>
             </ul>

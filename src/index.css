@@ -16,12 +16,15 @@
   color-scheme: light;
 }
 
-body {
+html, body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  max-width: 100%;
   background-color: #fdfcfc;
   color: #0f172a;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Custom scrollbar */
