@@ -64,25 +64,25 @@ export const CATEGORIES = [
 export const PRODUCTS = [
   {
     "id": "toy-1",
-    "name": "Automatic Multi-Hole Bubble Gun & Blower",
+    "name": "Vintage Clockwork Marching Tin Robot",
     "category": "toys",
     "categoryLabel": "Toys",
-    "price": 379,
-    "originalPrice": 499,
-    "rating": 4.9,
-    "reviewsCount": 184,
+    "price": 549,
+    "originalPrice": 799,
+    "rating": 4.8,
+    "reviewsCount": 142,
     "tag": "Official KidzGem",
-    "ageGroup": "2+ yrs",
-    "image": "https://kidzgem.com/wp-content/uploads/2025/11/bubble-gun.webp",
+    "ageGroup": "5+ yrs",
+    "image": "https://images.unsplash.com/photo-1546776310-eef45dd6d63c?auto=format&fit=crop&w=800&q=85",
     "gallery": [
-      "https://kidzgem.com/wp-content/uploads/2025/11/bubble-gun.webp"
+      "https://images.unsplash.com/photo-1546776310-eef45dd6d63c?auto=format&fit=crop&w=800&q=85"
     ],
-    "description": "The viral official KidzGem Bubble Gun that shoots out thousands of magical bubbles per minute with cheerful LED illumination.",
+    "description": "A nostalgic wind-up clockwork tin robot that marches forward with a satisfying whir of retro gears - no batteries, no charging, just wind the key and watch decades of sci-fi charm come alive.",
     "features": [
       "Official KidzGem Store Product",
-      "High Output Bubble Chamber",
-      "Leak-Proof Safe Ergonomic Handle",
-      "Safe & Non-Toxic Bubble Solution Included"
+      "100% Mechanical Wind-Up - No Batteries Needed",
+      "Lead-Free Certified Tin-Alloy Body",
+      "Collectible Retro Sci-Fi Design"
     ],
     "inStock": true
   },

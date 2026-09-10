@@ -8,72 +8,75 @@ import {
   Star,
   ShieldCheck,
   BatteryCharging,
-  CheckCircle2,
   ArrowRight,
   Flame,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Key,
+  Footprints,
+  Gauge,
+  Radio,
+  Wrench,
+  Blocks,
+  Magnet,
+  Microscope,
+  Orbit,
+  Globe,
+  Telescope,
+  Mic
 } from 'lucide-react';
 
 const SPOTLIGHT_PRODUCTS = [
   {
     id: 'toy-1',
-    navLabel: 'Bubble Cannon',
-    navEmoji: '🫧',
-    badge: '37% OFF • FLASH DEAL',
-    tag: 'Viral Sensation',
-    headline: '69-Hole Starlight Bubble Cannon',
-    story: 'Engineered with 69 precision airflow nozzles, this viral bubble gun launches an immersive cloud of over 10,000 rainbow bubbles every minute. Equipped with bright LED night lights for magical evening garden playtime.',
+    badge: '31% OFF • COLLECTOR FAVORITE',
+    tag: 'Nostalgic Bestseller',
+    headline: 'Vintage Clockwork Marching Tin Robot',
+    story: 'A nostalgic wind-up tin robot that marches forward with a satisfying whir of clockwork gears - no batteries, no charging, just wind the key and watch decades of retro sci-fi charm come alive in your child\'s hands.',
     specs: [
-      { icon: '🫧', title: '69 Airflow Ports', desc: '10,000+ bubbles/min' },
-      { icon: '⚡', title: 'USB Rechargeable', desc: '45+ mins play battery' },
-      { icon: '🌟', title: 'LED Starlight', desc: 'Glows in dark gardens' },
-      { icon: '🛡️', title: '100% Non-Toxic', desc: 'BPA-Free safe fluid' }
+      { icon: Key, title: 'Wind-Up Clockwork', desc: 'Zero batteries needed' },
+      { icon: Footprints, title: 'Marching Motion', desc: 'Authentic retro gear-walk' },
+      { icon: ShieldCheck, title: 'Lead-Free Tin Alloy', desc: 'Certified child-safe' },
+      { icon: Sparkles, title: 'Collectible Design', desc: 'Loved by kids & parents' }
     ]
   },
   {
     id: 'rc-1',
-    navLabel: 'TurboDrift Buggy',
-    navEmoji: '🏎️',
     badge: '24% OFF • TOP SPEED',
     tag: '25 km/h Monster 4WD',
     headline: 'TurboDrift 4WD All-Terrain Monster Buggy',
     story: 'Tear through gravel, grass, and mud at blistering 25 km/h speeds. Features 4-wheel independent spring shocks, anti-collision rubber bumpers, and 2.4GHz long-range zero-lag remote control.',
     specs: [
-      { icon: '🏎️', title: '25 km/h High Speed', desc: 'Dual high-torque motors' },
-      { icon: '📡', title: '2.4GHz Anti-Lag', desc: '50m control radius' },
-      { icon: '🛞', title: 'Heavy Shock Absorbers', desc: 'Conquers all terrains' },
-      { icon: '🔋', title: 'Dual Batteries', desc: '2 rechargeable packs' }
+      { icon: Gauge, title: '25 km/h High Speed', desc: 'Dual high-torque motors' },
+      { icon: Radio, title: '2.4GHz Anti-Lag', desc: '50m control radius' },
+      { icon: Wrench, title: 'Heavy Shock Absorbers', desc: 'Conquers all terrains' },
+      { icon: BatteryCharging, title: 'Dual Batteries', desc: '2 rechargeable packs' }
     ]
   },
   {
     id: 'block-1',
-    navLabel: 'MagnaTiles Castle',
-    navEmoji: '🧱',
     badge: '25% OFF • BEST CREATIVE',
     tag: '3D Magna Architecture',
     headline: '100-Piece 3D MagnaTiles Architecture Castle',
     story: 'Build towering fairy castles, geometric pyramids, and futuristic rocket ships. Features ultra-strong neodymium rare-earth magnets with ultrasonic welded seams that withstand active play.',
     specs: [
-      { icon: '🧱', title: '100 Magna Tiles', desc: 'Prisms, squares & gates' },
-      { icon: '🧲', title: 'Rare-Earth Magnets', desc: 'Ultrasonic secure weld' },
-      { icon: '🔬', title: 'STEM Certified', desc: 'Spatial & logic growth' },
-      { icon: '✨', title: 'Food-Grade ABS', desc: 'Smooth rounded bevels' }
+      { icon: Blocks, title: '100 Magna Tiles', desc: 'Prisms, squares & gates' },
+      { icon: Magnet, title: 'Rare-Earth Magnets', desc: 'Ultrasonic secure weld' },
+      { icon: Microscope, title: 'STEM Certified', desc: 'Spatial & logic growth' },
+      { icon: Sparkles, title: 'Food-Grade ABS', desc: 'Smooth rounded bevels' }
     ]
   },
   {
     id: 'stem-1',
-    navLabel: 'Solar Planetarium',
-    navEmoji: '🌌',
     badge: '29% OFF • STEM HERO',
     tag: 'Space & Astronomy',
     headline: 'Revolving Solar Planetarium Night Projector',
     story: 'Turn any child room into an awe-inspiring starry planetarium. Features motorized 360-degree orbital rotation for all 8 planets, optical glass clarity, and soothing starry night projections.',
     specs: [
-      { icon: '🌌', title: '360° Orbital Rotation', desc: 'Motorized planetary gears' },
-      { icon: '🪐', title: '8 Celestial Planets', desc: 'Accurate relative orbits' },
-      { icon: '🔭', title: 'Optical Glass Lens', desc: 'Crisp ceiling projection' },
-      { icon: '🎙️', title: 'Audio Guide Audio', desc: 'Interactive space facts' }
+      { icon: Orbit, title: '360° Orbital Rotation', desc: 'Motorized planetary gears' },
+      { icon: Globe, title: '8 Celestial Planets', desc: 'Accurate relative orbits' },
+      { icon: Telescope, title: 'Optical Glass Lens', desc: 'Crisp ceiling projection' },
+      { icon: Mic, title: 'Audio Guide Audio', desc: 'Interactive space facts' }
     ]
   }
 ];
@@ -205,8 +208,8 @@ export const HeroSpotlight = () => {
               <div className="grid grid-cols-2 gap-3 pt-2">
                 {activeSpotlight.specs.map((spec, i) => (
                   <div key={i} className="flex items-center gap-2.5 bg-rose-50/60 border border-rose-100 p-3 rounded-2xl">
-                    <div className="w-8 h-8 rounded-xl bg-white text-rose-600 flex items-center justify-center font-black text-sm shadow-2xs flex-shrink-0">
-                      {spec.icon}
+                    <div className="w-8 h-8 rounded-xl bg-white text-rose-600 flex items-center justify-center shadow-2xs flex-shrink-0">
+                      <spec.icon className="w-4 h-4" />
                     </div>
                     <div>
                       <h5 className="text-xs font-black text-slate-900">{spec.title}</h5>
@@ -251,12 +254,6 @@ export const HeroSpotlight = () => {
                     <ShoppingBag className="w-4 h-4" />
                     <span>Add to Cart</span>
                   </button>
-                </div>
-
-                {/* Free Delivery Promise */}
-                <div className="mt-3 flex items-center gap-2 text-xs font-semibold text-slate-500">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-                  <span>Eligible for Free Shipping Over ₹499 • 100% Certified Safe Delivery</span>
                 </div>
               </div>
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Truck, RotateCcw, Headphones, Sparkles } from 'lucide-react';
+import { ShieldCheck, Truck, RotateCcw, Headphones, Sparkles, Check } from 'lucide-react';
 
 export const Perks = () => {
   const perks = [
@@ -67,7 +67,7 @@ export const Perks = () => {
 
                 <div className="mt-4 pt-3 border-t border-rose-50 flex items-center justify-between text-[10px] font-bold text-rose-600">
                   <span>Verified Guarantee</span>
-                  <span>✓</span>
+                  <Check className="w-3 h-3" />
                 </div>
               </div>
             );

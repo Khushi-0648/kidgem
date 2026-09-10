@@ -97,7 +97,7 @@ export const CartDrawer = () => {
                 <Truck className="w-4 h-4 text-rose-600" />
                 <span>
                   {isFreeShipping
-                    ? '🎉 You have unlocked FREE Express Shipping!'
+                    ? 'You have unlocked FREE Express Shipping!'
                     : `Add ${formatPrice(remainingForFreeShipping)} more for FREE Shipping!`}
                 </span>
               </div>
@@ -122,7 +122,7 @@ export const CartDrawer = () => {
                   Your bag is empty!
                 </h4>
                 <p className="text-xs text-slate-500 mb-6 max-w-xs mx-auto">
-                  Looks like you haven't added any Bubble Guns, toys, or learning sets yet.
+                  Looks like you haven't added any toys, robots, or learning sets yet.
                 </p>
                 <button
                   onClick={() => setIsCartOpen(false)}
@@ -273,10 +273,6 @@ export const CartDrawer = () => {
                 <span>Direct Checkout — {formatPrice(totalAmount)}</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
-
-              <p className="text-[11px] text-center text-slate-400 font-medium">
-                🔒 Direct Guest Checkout • No Login Needed • Instant Confirmation
-              </p>
             </div>
           )}
 

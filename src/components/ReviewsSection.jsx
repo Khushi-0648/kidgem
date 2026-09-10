@@ -7,8 +7,8 @@ export const ReviewsSection = () => {
       name: 'Priya Sharma',
       role: 'Mother of 2 (Ages 4 & 7)',
       rating: 5,
-      product: 'KidzGem Multi-Hole Bubble Gun',
-      comment: 'The bubble gun was the star of our weekend garden party! Thousands of colorful bubbles every minute, no leaks, and rechargeable battery lasts long.',
+      product: 'KidzGem Vintage Clockwork Tin Robot',
+      comment: 'The tin robot was the star of our weekend get-together! Kids took turns winding it up and watching it march - no batteries, no fuss, just pure retro charm.',
       avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80',
       badge: 'Verified Indian Buyer'
     },

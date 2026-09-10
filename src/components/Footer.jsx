@@ -27,7 +27,7 @@ export const Footer = () => {
 
     setSubscribed(true);
     setNewsletterEmail('');
-    showToast('Subscribed to KidzGem Family! 20% coupon code KIDZ20 active 🎉');
+    showToast('Subscribed to KidzGem Family! 20% coupon code KIDZ20 active');
   };
 
   return (
@@ -101,9 +101,6 @@ export const Footer = () => {
                     <span>{isSubscribing ? 'Joining...' : subscribed ? 'Joined!' : 'Subscribe'}</span>
                   </button>
                 </form>
-                <span className="text-[11px] text-rose-100 mt-2 block font-medium">
-                  🛡️ Zero Spam • Instant 20% Discount with coupon <strong className="text-amber-200">KIDZ20</strong>
-                </span>
               </div>
             </div>
           </div>

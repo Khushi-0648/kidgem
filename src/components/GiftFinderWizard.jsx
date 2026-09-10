@@ -10,7 +10,11 @@ import {
   RotateCcw,
   CheckCircle2,
   ArrowRight,
-  Heart
+  Heart,
+  Baby,
+  Palette,
+  Microscope,
+  Gauge
 } from 'lucide-react';
 
 export const GiftFinderWizard = () => {
@@ -23,28 +27,28 @@ export const GiftFinderWizard = () => {
     {
       id: 'toddler',
       label: 'Toddler (1–3 yrs)',
-      icon: '🧸',
+      icon: Baby,
       tagline: 'Soft, sensory & motor play',
       category: 'toys'
     },
     {
       id: 'creator',
       label: 'Creative Kid (4–6 yrs)',
-      icon: '🎨',
-      tagline: 'Laughter, art & bubbles',
+      icon: Palette,
+      tagline: 'Laughter, art & imaginative play',
       category: 'toys'
     },
     {
       id: 'stem',
       label: 'STEM Pioneer (7–10 yrs)',
-      icon: '🔬',
+      icon: Microscope,
       tagline: 'Space, science & building',
       category: 'learning-sets'
     },
     {
       id: 'speed',
       label: 'Speed Lover (10+ yrs)',
-      icon: '🏎️',
+      icon: Gauge,
       tagline: 'RC cars, stunts & games',
       category: 'remote-car'
     }
@@ -153,7 +157,7 @@ export const GiftFinderWizard = () => {
                           : 'bg-white border-slate-200 hover:border-rose-300 hover:bg-rose-50/30'
                       }`}
                     >
-                      <div className="text-2xl mb-1">{persona.icon}</div>
+                      <persona.icon className="w-6 h-6 mb-1.5 text-rose-600" />
                       <div className="text-xs font-black text-slate-900 leading-snug">{persona.label}</div>
                       <div className="text-[10px] text-slate-500 font-medium truncate mt-0.5">{persona.tagline}</div>
                     </button>
@@ -199,11 +203,12 @@ export const GiftFinderWizard = () => {
               <div className="flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-rose-600 fill-rose-500" />
                 <h3 className="text-lg sm:text-xl font-black text-slate-900" style={{ fontFamily: 'Fredoka, sans-serif' }}>
-                  Recommended For You ({recommendations.length} curated picks)
+                  Recommended For You
                 </h3>
               </div>
-              <div className="text-xs font-bold text-slate-500 hidden sm:block">
-                ✨ 100% Non-Toxic • BIS Certified • Pan-India Free Delivery over ₹499
+              <div className="text-xs font-bold text-slate-500 hidden sm:flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-rose-500" />
+                <span>100% Non-Toxic • BIS Certified • Pan-India Free Delivery over ₹499</span>
               </div>
             </div>
 

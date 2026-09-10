@@ -25,11 +25,11 @@ const AGE_BRACKETS = [
     id: 'age-4-6',
     range: 'Ages 4 — 6',
     title: 'Little Creators & Playful Spark',
-    subtitle: 'Unleash laughter and creative imagination with active bubble blasters and washable art.',
+    subtitle: 'Unleash laughter and creative imagination with collectible wind-up toys and washable art.',
     category: 'toys',
     stage: 'Stage 2 • Creative Expression',
     icon: Palette,
-    popularItem: 'Viral 69-Hole Starlight Bubble Cannon',
+    popularItem: 'Vintage Clockwork Marching Tin Robot',
     colorClasses: {
       bg: 'bg-gradient-to-br from-amber-50/80 via-white to-amber-100/40',
       border: 'border-amber-200/80 hover:border-amber-400',
@@ -37,7 +37,7 @@ const AGE_BRACKETS = [
       accent: 'text-amber-600',
       ring: 'group-hover:ring-amber-200/50'
     },
-    image: 'https://kidzgem.com/wp-content/uploads/2025/11/bubble-gun.webp'
+    image: 'https://images.unsplash.com/photo-1546776310-eef45dd6d63c?auto=format&fit=crop&w=600&q=80'
   },
   {
     id: 'age-7-10',

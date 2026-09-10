@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useStore } from '../context/StoreContext';
 import { CATEGORIES, PRODUCTS } from '../data/products';
 import { ProductCard } from './ProductCard';
+import { getCategoryIcon } from '../utils/categoryIcons';
 import {
   Sparkles,
   ChevronRight,
@@ -16,7 +17,9 @@ import {
   Layers,
   HelpCircle,
   CheckCircle2,
-  Filter
+  Filter,
+  Star,
+  X
 } from 'lucide-react';
 
 const CATEGORY_DETAILS = {
@@ -24,7 +27,6 @@ const CATEGORY_DETAILS = {
     id: 'clothing',
     title: 'Kids Clothing & Daily Fashion',
     subtitle: '100% breathable organic cotton rompers, cozy dino fleece sets, UV50+ swimwear, and glowing astronaut pajamas.',
-    emoji: '👕',
     badge: '100% GOTS Organic Cotton',
     gradient: 'from-rose-600 via-pink-600 to-red-700',
     bannerImg: 'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=1920&q=85',
@@ -37,13 +39,12 @@ const CATEGORY_DETAILS = {
   toys: {
     id: 'toys',
     title: 'Toys & Action Universe',
-    subtitle: 'Viral bubble guns, interactive dancing robots, and fidget sensory creations for pure laughter.',
-    emoji: '🧸',
+    subtitle: 'Collectible wind-up tin robots, interactive gadgets, and fidget sensory creations for pure laughter.',
     badge: 'Trending Worldwide',
     gradient: 'from-amber-600 via-rose-600 to-red-700',
     bannerImg: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=1920&q=85',
     faqs: [
-      { q: 'Are all bubble fluids safe if touched by toddlers?', a: 'Yes! KidzGem bubble solution is certified 100% non-toxic, odorless, and gentle on sensitive skin with BIS approval.' },
+      { q: 'Is the tin robot toy safe for my child?', a: 'Yes! Our wind-up tin robot is certified lead-free with smooth rounded edges, recommended for ages 5+ under normal parental supervision.' },
       { q: 'Are the batteries included with battery-powered toys?', a: 'USB rechargeable models include the charging cables. Standard AA/AAA models clearly mention battery requirements in the specifications.' }
     ]
   },
@@ -51,7 +52,6 @@ const CATEGORY_DETAILS = {
     id: 'remote-car',
     title: 'High-Speed Remote Cars & Vehicles',
     subtitle: 'Conquer gravel, grass, and vertical walls with 25 km/h high-speed 4WD buggies and 360° stunt rollers.',
-    emoji: '🏎️',
     badge: '25 km/h Top Speeds',
     gradient: 'from-blue-700 via-indigo-700 to-slate-900',
     bannerImg: 'https://images.unsplash.com/photo-1594787318286-3d835c1d207f?auto=format&fit=crop&w=1920&q=85',
@@ -64,7 +64,6 @@ const CATEGORY_DETAILS = {
     id: 'stationery',
     title: 'Art, Drawing & School Stationery',
     subtitle: 'Deluxe metallic art suitcases, ergonomic handwriting pens, and crash-resistant 3D pencil cases.',
-    emoji: '✏️',
     badge: 'Creative Excellence',
     gradient: 'from-pink-600 via-rose-600 to-red-800',
     bannerImg: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=1920&q=85',
@@ -77,7 +76,6 @@ const CATEGORY_DETAILS = {
     id: 'learning-sets',
     title: 'STEM, Science & Learning Sets',
     subtitle: 'Inspire future astronomers, scientists, and engineers with motorized planetariums and 1200x student microscopes.',
-    emoji: '🔬',
     badge: 'STEM Certified Play',
     gradient: 'from-emerald-700 via-teal-800 to-slate-900',
     bannerImg: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1920&q=85',
@@ -90,7 +88,6 @@ const CATEGORY_DETAILS = {
     id: 'building-blocks',
     title: '3D Building Blocks & Architecture',
     subtitle: 'Ultrasonic neodymium magnetic tiles, mechanical technic cranes, and cascading marble run coaster tracks.',
-    emoji: '🧱',
     badge: 'Spatial & Logic Growth',
     gradient: 'from-purple-700 via-indigo-800 to-slate-900',
     bannerImg: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=1920&q=85',
@@ -103,7 +100,6 @@ const CATEGORY_DETAILS = {
     id: 'accessories',
     title: 'Kids Accessories & Daily Gear',
     subtitle: 'Ergonomic 3D dinosaur school backpacks, smart LED silicone watches, and insulated vacuum steel bottles.',
-    emoji: '🎒',
     badge: 'Daily Essentials',
     gradient: 'from-rose-600 via-amber-600 to-red-800',
     bannerImg: 'https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=1920&q=85',
@@ -116,7 +112,6 @@ const CATEGORY_DETAILS = {
     id: 'gift-items',
     title: 'Birthday & Festive Gift Hampers',
     subtitle: 'Ready-to-gift surprise gift boxes, nostalgic wooden carousel music boxes, and DIY glowing slime labs.',
-    emoji: '🎁',
     badge: 'Celebration Ready',
     gradient: 'from-amber-600 via-rose-600 to-yellow-600',
     bannerImg: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1920&q=85',
@@ -129,7 +124,6 @@ const CATEGORY_DETAILS = {
     id: 'indoor-games',
     title: 'Indoor Games & Family Arcade',
     subtitle: 'High-speed wooden sling puck battles, tabletop arcade pinball, and pattern flash cubes for screen-free family nights.',
-    emoji: '🎲',
     badge: '100% Screen-Free Fun',
     gradient: 'from-indigo-700 via-sky-700 to-slate-900',
     bannerImg: 'https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?auto=format&fit=crop&w=1920&q=85',
@@ -156,6 +150,7 @@ export const CategoryDetailPage = () => {
   const activeCatId = selectedCategory && selectedCategory !== 'all' ? selectedCategory : 'toys';
   const categoryMeta = CATEGORY_DETAILS[activeCatId] || CATEGORY_DETAILS.toys;
   const currentCategoryObj = CATEGORIES.find((c) => c.id === activeCatId) || CATEGORIES[1];
+  const CategoryIcon = getCategoryIcon(activeCatId);
 
   const categoriesList = CATEGORIES.filter((c) => c.id !== 'all');
 
@@ -233,7 +228,7 @@ export const CategoryDetailPage = () => {
             </button>
             <ChevronRight className="w-3.5 h-3.5 text-white/40" />
             <span className="text-amber-300 font-extrabold flex items-center gap-1">
-              <span>{categoryMeta.emoji}</span>
+              <CategoryIcon className="w-3.5 h-3.5" />
               <span>{currentCategoryObj.name}</span>
             </span>
           </nav>
@@ -244,13 +239,9 @@ export const CategoryDetailPage = () => {
           
           {/* Aesthetic Category Pill */}
           <div className="inline-flex items-center gap-2.5 bg-white/15 backdrop-blur-xl border border-white/25 px-5 py-2 rounded-full text-xs font-black tracking-wider uppercase text-white shadow-xl">
-            <span className="text-sm">{categoryMeta.emoji}</span>
+            <CategoryIcon className="w-4 h-4" />
             <span className="text-amber-300 font-black">•</span>
             <span>{categoryMeta.badge}</span>
-            <span className="text-amber-300 font-black">•</span>
-            <span className="bg-white/20 px-2 py-0.5 rounded-full text-[10px]">
-              {filteredCategoryProducts.length} Items
-            </span>
           </div>
 
           {/* Majestic Typography */}
@@ -306,8 +297,8 @@ export const CategoryDetailPage = () => {
 
           <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none snap-x">
             {categoriesList.map((cat) => {
-              const details = CATEGORY_DETAILS[cat.id];
               const isSelected = activeCatId === cat.id;
+              const TabIcon = getCategoryIcon(cat.id);
 
               return (
                 <button
@@ -319,9 +310,9 @@ export const CategoryDetailPage = () => {
                       : 'bg-white text-slate-700 hover:bg-rose-50 border border-rose-200/80 hover:border-rose-300'
                   }`}
                 >
-                  <span className="text-sm">{details?.emoji || '🧸'}</span>
+                  <TabIcon className="w-3.5 h-3.5" />
                   <span>{cat.name}</span>
-                  {isSelected && <span className="text-amber-300 text-xs">★</span>}
+                  {isSelected && <Star className="w-3 h-3 text-amber-300 fill-amber-300" />}
                 </button>
               );
             })}
@@ -345,9 +336,9 @@ export const CategoryDetailPage = () => {
               {searchFilter && (
                 <button
                   onClick={() => setSearchFilter('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-slate-600 font-bold"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
                 >
-                  ✕
+                  <X className="w-3.5 h-3.5" />
                 </button>
               )}
             </div>
@@ -362,11 +353,11 @@ export const CategoryDetailPage = () => {
                   onChange={(e) => setSortOption(e.target.value)}
                   className="bg-rose-50/50 border border-rose-200 text-xs font-bold text-slate-800 rounded-full px-3 py-1.5 focus:outline-hidden focus:ring-2 focus:ring-rose-400/20 cursor-pointer"
                 >
-                  <option value="featured">✨ Featured</option>
-                  <option value="price-low">💰 Price: Low to High</option>
-                  <option value="price-high">💎 Price: High to Low</option>
-                  <option value="rating">⭐ Highest Rated</option>
-                  <option value="popular">🔥 Most Popular</option>
+                  <option value="featured">Featured</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                  <option value="rating">Highest Rated</option>
+                  <option value="popular">Most Popular</option>
                 </select>
               </div>
 
@@ -385,10 +376,6 @@ export const CategoryDetailPage = () => {
                 />
               </div>
 
-              {/* Active Items Count */}
-              <span className="text-xs font-black text-rose-600 bg-rose-50 px-3 py-1.5 rounded-full border border-rose-200">
-                {filteredCategoryProducts.length} Items
-              </span>
             </div>
 
           </div>
@@ -403,8 +390,8 @@ export const CategoryDetailPage = () => {
           </div>
         ) : (
           <div className="bg-white rounded-3xl p-12 text-center border border-rose-100 shadow-sm space-y-4 max-w-md mx-auto">
-            <div className="w-16 h-16 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center mx-auto text-2xl">
-              🔍
+            <div className="w-16 h-16 rounded-full bg-rose-50 text-rose-500 flex items-center justify-center mx-auto">
+              <Search className="w-7 h-7" />
             </div>
             <h3 className="text-xl font-black text-slate-900" style={{ fontFamily: 'Fredoka, sans-serif' }}>
               No items match your filter

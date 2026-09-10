@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useStore } from '../context/StoreContext';
 import { PRODUCTS } from '../data/products';
+import { CATEGORY_ICONS } from '../utils/categoryIcons';
 import {
   Sparkles,
   ShoppingBag,
@@ -13,18 +14,6 @@ import {
   Eye,
   ArrowRight
 } from 'lucide-react';
-
-const CATEGORY_META = {
-  clothing: { emoji: '👕', label: 'Clothing', gradient: 'from-rose-500 to-pink-500' },
-  toys: { emoji: '🧸', label: 'Toys', gradient: 'from-amber-500 to-rose-500' },
-  'remote-car': { emoji: '🏎️', label: 'Remote Cars', gradient: 'from-blue-600 to-indigo-600' },
-  stationery: { emoji: '✏️', label: 'Stationery', gradient: 'from-pink-500 to-rose-500' },
-  'learning-sets': { emoji: '🔬', label: 'STEM Sets', gradient: 'from-emerald-500 to-teal-600' },
-  'building-blocks': { emoji: '🧱', label: 'Blocks', gradient: 'from-purple-600 to-pink-600' },
-  accessories: { emoji: '🎒', label: 'Accessories', gradient: 'from-rose-500 to-amber-500' },
-  'gift-items': { emoji: '🎁', label: 'Gift Items', gradient: 'from-yellow-500 to-amber-600' },
-  'indoor-games': { emoji: '🎲', label: 'Indoor Games', gradient: 'from-indigo-600 to-sky-600' }
-};
 
 export const ProductCategorySlider = () => {
   const { addToCart, buyNow, formatPrice, setQuickViewProduct, setSelectedCategory } = useStore();
@@ -172,7 +161,7 @@ export const ProductCategorySlider = () => {
           style={{ scrollBehavior: 'auto' }}
         >
           {loopProducts.map((product, idx) => {
-            const meta = CATEGORY_META[product.category] || { emoji: '✨', label: product.categoryLabel };
+            const MetaIcon = CATEGORY_ICONS[product.category] || Sparkles;
             const discount = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
 
             return (
@@ -195,7 +184,7 @@ export const ProductCategorySlider = () => {
 
                     {/* Category Pill on Image Top-Left */}
                     <span className="absolute top-2.5 left-2.5 bg-white/95 backdrop-blur-md text-slate-800 text-[10px] font-black px-2.5 py-0.5 rounded-full shadow-2xs flex items-center gap-1 border border-rose-100">
-                      <span>{meta.emoji}</span>
+                      <MetaIcon className="w-3 h-3 text-rose-600" />
                       <span>{product.categoryLabel}</span>
                     </span>
 

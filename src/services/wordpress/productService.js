@@ -12,6 +12,19 @@ function stripHtml(html = '') {
   return html.replace(/<[^>]*>?/gm, '').trim();
 }
 
+// Temporary exclusion list: names of live WooCommerce products that should
+// never surface in the storefront (e.g. discontinued/placeholder listings
+// still sitting in WP admin, like an old "Bubble Gun" entry with an
+// unfinished "Lorem Ipsum" description). Remove/edit the product directly
+// in WP Admin -> Products for a permanent fix - this is just a client-side
+// stopgap so it doesn't show up in the meantime.
+const BLOCKED_PRODUCT_NAMES = ['bubble gun'];
+
+function isBlockedProduct(product) {
+  const name = (product.name || '').toLowerCase();
+  return BLOCKED_PRODUCT_NAMES.some((blocked) => name.includes(blocked));
+}
+
 /**
  * Transforms a WooCommerce Store API product into KidzGem product format
  */
@@ -89,7 +102,7 @@ export const wpProductService = {
       const endpoint = `${WP_CONFIG.endpoints.storeProducts}?per_page=${perPage}`;
       const data = await wpClient.get(endpoint);
       if (Array.isArray(data)) {
-        return data.map(transformWcProduct);
+        return data.map(transformWcProduct).filter((p) => !isBlockedProduct(p));
       }
       return [];
     } catch (error) {

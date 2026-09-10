@@ -26,6 +26,7 @@ import { NotFoundPage } from './components/NotFoundPage';
 import { SEO } from './components/SEO';
 import { LEGAL_PAGES } from './utils/routes';
 import { Toast } from './components/Toast';
+import { Sparkles, ShieldCheck, Zap, Truck } from 'lucide-react';
 import './App.css';
 
 function MainApp() {
@@ -48,7 +49,7 @@ function MainApp() {
             {/* NEW: PRODUCT & CATEGORY AUTO-SCROLL SLIDER (LOW SPEED) */}
             <ProductCategorySlider />
 
-            {/* VIRAL PRODUCT SPOTLIGHT: KidzGem Multi-Hole Bubble Cannon Showcase (Moved Below) */}
+            {/* PRODUCT SPOTLIGHT: KidzGem Vintage Tin Robot Showcase (Moved Below) */}
             <HeroSpotlight />
 
             {/* UNIFIED MERGED SECTION: Shop by Category & Explore KidzGem Catalog */}
@@ -105,9 +106,9 @@ function MainApp() {
                 
                 {/* Super-Aesthetic Floating Pill Badge */}
                 <div className="inline-flex items-center gap-2.5 bg-white/10 backdrop-blur-xl border border-white/20 px-5 py-2 rounded-full text-xs font-black tracking-wider uppercase text-white shadow-2xl">
-                  <span className="text-amber-300">✨</span>
+                  <Sparkles className="w-3.5 h-3.5 text-amber-300" />
                   <span className="bg-gradient-to-r from-white via-rose-100 to-amber-200 bg-clip-text text-transparent">
-                    Official KidzGem Vault • 48 Certified Gems
+                    Official KidzGem Vault • Certified Safe Toys
                   </span>
                 </div>
 
@@ -130,15 +131,15 @@ function MainApp() {
                 {/* Micro Guarantee Badges Strip */}
                 <div className="pt-2 flex items-center justify-center flex-wrap gap-3 sm:gap-4 text-xs font-black">
                   <div className="flex items-center gap-2 bg-white/15 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20 text-white shadow-lg">
-                    <span className="text-emerald-300">🛡️</span>
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-300" />
                     <span>100% Non-Toxic &amp; BIS Tested</span>
                   </div>
                   <div className="flex items-center gap-2 bg-white/15 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20 text-white shadow-lg">
-                    <span className="text-amber-300">⚡</span>
+                    <Zap className="w-3.5 h-3.5 text-amber-300" />
                     <span>Direct Zero-Login Checkout</span>
                   </div>
                   <div className="flex items-center gap-2 bg-white/15 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20 text-white shadow-lg">
-                    <span className="text-rose-300">🚚</span>
+                    <Truck className="w-3.5 h-3.5 text-rose-300" />
                     <span>Free Shipping Over ₹499</span>
                   </div>
                 </div>

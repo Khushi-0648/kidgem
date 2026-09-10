@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 const SITE_URL = 'https://kidzgem.com';
-const DEFAULT_OG_IMAGE = 'https://kidzgem.com/wp-content/uploads/2025/11/bubble-gun.webp';
+const DEFAULT_OG_IMAGE = 'https://images.unsplash.com/photo-1546776310-eef45dd6d63c?auto=format&fit=crop&w=800&q=85';
 
 function upsertMeta(attr, key, content) {
   if (!content) return;

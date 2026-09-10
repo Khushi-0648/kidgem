@@ -57,9 +57,9 @@ const CATEGORY_SEO = {
     keywords: 'kids clothing online India, organic cotton kids wear, baby rompers online, kids pajamas online'
   },
   toys: {
-    name: 'Toys & Bubble Fun',
-    description: 'Shop trending non-toxic kids toys online at KidzGem, including the viral multi-hole bubble gun and wooden express trains.',
-    keywords: 'kids toys online, non-toxic toys India, bubble gun toy online, best toys for children'
+    name: 'Toys & Playtime Fun',
+    description: 'Shop trending non-toxic kids toys online at KidzGem, including the collectible wind-up tin robot and wooden express trains.',
+    keywords: 'kids toys online, non-toxic toys India, tin robot toy online, best toys for children'
   },
   'remote-car': {
     name: 'Remote Control Cars',

@@ -5,12 +5,12 @@ const MOMENTS = [
   {
     id: 1,
     image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=600&q=80',
-    title: 'Ayaan with his Bubble Gun',
+    title: 'Ayaan\'s Imaginative Play Time',
     parent: 'Pooja Sharma',
     city: 'Mumbai',
-    quote: 'Never seen him laugh this much in our garden! The lights and bubbles are pure magic.',
+    quote: 'He wound up his little tin robot a dozen times in a row! Screen-free and full of giggles.',
     likes: 342,
-    tag: '#KidzGemBubbleFun'
+    tag: '#KidzGemPlaytime'
   },
   {
     id: 2,

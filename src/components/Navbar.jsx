@@ -267,7 +267,7 @@ export const Navbar = () => {
                     navigateTo('shop');
                   }
                 }}
-                placeholder="Search Bubble Gun, Toys, RC Cars..."
+                placeholder="Search Tin Robot, Toys, RC Cars..."
                 className="w-full pl-10 pr-9 py-2.5 bg-rose-50/60 border border-rose-200 rounded-full text-xs font-medium placeholder-slate-400"
               />
             </div>

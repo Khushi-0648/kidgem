@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useStore } from '../context/StoreContext';
+import { getCategoryIcon } from '../utils/categoryIcons';
 import {
   Sparkles,
   ShieldCheck,
@@ -49,7 +50,6 @@ export const Hero = () => {
     {
       id: 0,
       badge: 'Cozy Apparel & Plush • 100% Organic',
-      badgeIcon: '🧸',
       title: 'Adorable Kids Fashion & Cozy Playtime Wear',
       tagline: 'Dress your little explorers in ultra-soft, breathable organic cotton outfits paired with cuddly bunny plushies made for everyday smiles.',
       featureTag: 'Gentle on Sensitive Skin • Hypoallergenic Pure Cotton',
@@ -61,19 +61,17 @@ export const Hero = () => {
     {
       id: 1,
       badge: 'Official KidzGem • Non-Toxic Toys',
-      badgeIcon: '✨',
       title: 'Give The Gift Of Your Children Everyday!',
-      tagline: 'Spark endless laughter with viral multi-hole bubble guns, solid beechwood railway express trains, and musical light wands crafted with child safety at heart.',
-      featureTag: 'Viral Bubble Gun • Certified Safe & Non-Toxic',
+      tagline: 'Spark endless laughter with nostalgic wind-up tin robots, solid beechwood railway express trains, and musical light wands crafted with child safety at heart.',
+      featureTag: 'Collectible Tin Robot • Certified Safe & Non-Toxic',
       ctaText: 'Shop Trending Toys',
       category: 'toys',
-      categoryName: 'Toys & Bubble Gun',
+      categoryName: 'Toys & Tin Robot',
       image: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=1920&q=85'
     },
     {
       id: 2,
       badge: 'Turbo Drift • 25 km/h High Torque',
-      badgeIcon: '🏎️',
       title: 'Unleash High-Speed Turbo Drift RC Thrills!',
       tagline: 'Tear across all terrains with heavy-duty shock absorbers, 360° acrobatic stunt flips, and dual rechargeable long-life batteries for unstoppable action.',
       featureTag: '2.4GHz Anti-Interference • Crash-Resistant Shell',
@@ -85,7 +83,6 @@ export const Hero = () => {
     {
       id: 3,
       badge: 'Award-Winning STEM • Safe & Magnetic',
-      badgeIcon: '🔬',
       title: 'Build Tall Castles & Explore Wonder Galaxies!',
       tagline: 'Empower curious young minds with 3D translucent MagnaTiles, revolving motorized planetarium projectors, and guided science experiment kits.',
       featureTag: 'Food-Grade BPA-Free ABS • Rare Earth Magnets',
@@ -97,7 +94,6 @@ export const Hero = () => {
     {
       id: 4,
       badge: 'Birthday Specials • Pure Magic & Surprise',
-      badgeIcon: '🎁',
       title: 'Unbox Pure Wonder & Celebration Magic!',
       tagline: 'Make every birthday and celebration unforgettable with rotating musical crystal snow globes, 360° astronaut galaxy night projectors, and surprise gift hampers.',
       featureTag: 'Luxury Satin Gift Box • Custom Wish Card',
@@ -107,6 +103,8 @@ export const Hero = () => {
       image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1920&q=85'
     }
   ];
+
+  const SlideBadgeIcon = getCategoryIcon(slides[currentSlide].category);
 
   // Smooth Auto-Timer Slide Transition (5 seconds) + Progress Bar
   useEffect(() => {
@@ -149,7 +147,7 @@ export const Hero = () => {
   const copyCouponCode = () => {
     navigator.clipboard.writeText('KIDZ20');
     setCopiedCoupon(true);
-    showToast('Coupon KIDZ20 copied! 20% OFF applied at checkout 🎉');
+    showToast('Coupon KIDZ20 copied! 20% OFF applied at checkout');
     setTimeout(() => setCopiedCoupon(false), 2500);
   };
 
@@ -270,7 +268,7 @@ export const Hero = () => {
             key={`badge-${currentSlide}`}
             className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-md border border-rose-200/90 text-rose-700 px-4 py-1.5 rounded-full text-xs font-black mb-4 shadow-sm animate-fadeIn"
           >
-            <span className="text-base">{slides[currentSlide].badgeIcon}</span>
+            <SlideBadgeIcon className="w-4 h-4" />
             <span>{slides[currentSlide].badge}</span>
           </div>
 
@@ -358,8 +356,8 @@ export const Hero = () => {
 
         {/* FLOATING TAGLINE STAMP DIRECTLY ON THE IMAGE (Right Side) */}
         <div className="hidden lg:flex absolute bottom-12 right-12 z-20 max-w-xs items-center gap-3 bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-white/80 shadow-2xl shadow-rose-950/15 pointer-events-none select-none animate-fadeIn">
-          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-red-600 to-rose-600 text-white flex items-center justify-center font-black text-xl shadow-md flex-shrink-0">
-            {slides[currentSlide].badgeIcon}
+          <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-red-600 to-rose-600 text-white flex items-center justify-center shadow-md flex-shrink-0">
+            <SlideBadgeIcon className="w-5 h-5" />
           </div>
           <div>
             <div className="flex items-center gap-1.5 text-rose-600 font-black text-[10px] uppercase tracking-wider">

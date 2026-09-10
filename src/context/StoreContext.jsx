@@ -145,6 +145,9 @@ export const StoreProvider = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('featured');
   const [priceRange, setPriceRange] = useState(2500);
+  const [selectedAgeGroup, setSelectedAgeGroup] = useState('all');
+  const [minRating, setMinRating] = useState(0);
+  const [inStockOnly, setInStockOnly] = useState(false);
 
   // Modals & Drawers
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -257,7 +260,7 @@ export const StoreProvider = ({ children }) => {
         showToast('Removed from Wishlist', 'info');
         return prev.filter((id) => id !== productId);
       } else {
-        showToast('Saved to Wishlist! ❤️', 'success');
+        showToast('Saved to Wishlist!', 'success');
         return [...prev, productId];
       }
     });
@@ -269,12 +272,12 @@ export const StoreProvider = ({ children }) => {
     if (clean === 'KIDZ20') {
       setCouponCode('KIDZ20');
       setDiscountPercent(20);
-      setCouponMessage({ valid: true, text: 'Awesome! 20% discount applied! 🎉' });
+      setCouponMessage({ valid: true, text: 'Awesome! 20% discount applied!' });
       showToast('20% coupon KIDZ20 applied!');
     } else if (clean === 'FREESHIP') {
       setCouponCode('FREESHIP');
       setDiscountPercent(10);
-      setCouponMessage({ valid: true, text: 'Free Shipping + 10% applied! 🚀' });
+      setCouponMessage({ valid: true, text: 'Free Shipping + 10% applied!' });
       showToast('Coupon FREESHIP applied!');
     } else if (clean === 'GEM10') {
       setCouponCode('GEM10');
@@ -358,6 +361,12 @@ export const StoreProvider = ({ children }) => {
         setSortBy,
         priceRange,
         setPriceRange,
+        selectedAgeGroup,
+        setSelectedAgeGroup,
+        minRating,
+        setMinRating,
+        inStockOnly,
+        setInStockOnly,
         currency,
         setCurrency,
         formatPrice,

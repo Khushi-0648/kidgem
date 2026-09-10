@@ -26,7 +26,8 @@ import {
   Globe,
   FileText,
   Clock,
-  ArrowLeft
+  ArrowLeft,
+  X
 } from 'lucide-react';
 
 export const BackendDataPage = () => {
@@ -786,7 +787,7 @@ export const BackendDataPage = () => {
                 onClick={() => setSelectedRawItem(null)}
                 className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
               >
-                ✕
+                <X className="w-4 h-4" />
               </button>
             </div>
 

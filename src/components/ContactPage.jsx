@@ -32,7 +32,7 @@ export const ContactPage = () => {
     }
     const dataToSend = { ...formData };
     setSubmitted(true);
-    showToast('Message sent successfully! Our team will reply shortly. 💌');
+    showToast('Message sent successfully! Our team will reply shortly.');
     setFormData({
       name: '',
       email: '',

@@ -69,7 +69,7 @@ export const AboutPage = () => {
               className="px-6 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-red-600 via-rose-600 to-red-600 hover:from-red-700 hover:to-rose-700 text-white font-black text-xs rounded-2xl shadow-xl shadow-rose-600/30 hover:shadow-2xl transition-all duration-200 transform hover:-translate-y-0.5 flex items-center gap-2 cursor-pointer active:scale-95"
             >
               <ShoppingBag className="w-4 h-4" />
-              <span>Explore All 48 Toys</span>
+              <span>Explore All Toys</span>
               <ArrowRight className="w-4 h-4" />
             </button>
 
@@ -173,7 +173,7 @@ export const AboutPage = () => {
               </h2>
 
               <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-medium">
-                We understand that choosing toys for your little ones is deeply personal. That’s why we test every product for real durability, non-toxic finishes, and educational value before it reaches your door. Whether it’s our viral multi-hole bubble gun, high-torque drift car, or sensory wooden express train, quality is never compromised.
+                We understand that choosing toys for your little ones is deeply personal. That’s why we test every product for real durability, non-toxic finishes, and educational value before it reaches your door. Whether it’s our nostalgic wind-up tin robot, high-torque drift car, or sensory wooden express train, quality is never compromised.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
@@ -225,8 +225,8 @@ export const AboutPage = () => {
 
                 {/* Floating Bottom Badge */}
                 <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 bg-white/95 backdrop-blur-md p-3 sm:p-3.5 rounded-2xl border border-rose-100/80 shadow-lg flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-600 to-rose-600 text-white flex items-center justify-center font-black text-lg shadow-xs flex-shrink-0">
-                    💖
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-600 to-rose-600 text-white flex items-center justify-center shadow-xs flex-shrink-0">
+                    <Heart className="w-5 h-5 fill-white" />
                   </div>
                   <div className="min-w-0">
                     <p className="text-[10px] font-black uppercase tracking-wider text-rose-600">Parent Approved</p>

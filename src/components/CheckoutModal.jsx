@@ -20,7 +20,9 @@ import {
   MapPin,
   User,
   Clock,
-  Package
+  Package,
+  PackageCheck,
+  Check
 } from 'lucide-react';
 
 export const CheckoutModal = () => {
@@ -189,7 +191,7 @@ export const CheckoutModal = () => {
             </div>
             <div>
               <h3 className="font-black text-lg sm:text-xl tracking-tight leading-tight" style={{ fontFamily: 'Fredoka, sans-serif' }}>
-                {orderConfirmed ? 'Order Confirmed! 🎉' : 'KidzGem Express Direct Payment'}
+                {orderConfirmed ? 'Order Confirmed!' : 'KidzGem Express Direct Payment'}
               </h3>
               <p className="text-xs text-rose-100 font-medium">
                 {orderConfirmed ? `Thank you for shopping at KidzGem! Order #${orderId}` : 'Instant guest checkout • Zero login or registration needed'}
@@ -262,7 +264,7 @@ export const CheckoutModal = () => {
                 Payment Successful
               </span>
               <h2 className="text-2xl sm:text-3xl font-black text-slate-900 mt-2" style={{ fontFamily: 'Fredoka, sans-serif' }}>
-                Woohoo! Your Toys & Gems Are On The Way! 🚀
+                Woohoo! Your Toys & Gems Are On The Way!
               </h2>
               <p className="text-sm text-slate-600 mt-2">
                 Order confirmation and tracking invoice sent to <strong className="text-slate-900">{formData.email}</strong>
@@ -370,7 +372,7 @@ export const CheckoutModal = () => {
               <div className="grid grid-cols-4 gap-2 text-center text-[11px]">
                 <div className="flex flex-col items-center">
                   <div className="w-8 h-8 rounded-full bg-rose-600 text-white flex items-center justify-center font-bold mb-1 shadow-xs">
-                    ✓
+                    <Check className="w-4 h-4" />
                   </div>
                   <span className="font-bold text-slate-900">Placed</span>
                   <span className="text-[10px] text-slate-400">Today</span>
@@ -391,7 +393,7 @@ export const CheckoutModal = () => {
                 </div>
                 <div className="flex flex-col items-center opacity-40">
                   <div className="w-8 h-8 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center font-bold mb-1">
-                    🎁
+                    <PackageCheck className="w-4 h-4" />
                   </div>
                   <span className="font-medium text-slate-600">Delivered</span>
                   <span className="text-[10px] text-slate-400">Doorstep</span>
@@ -785,14 +787,6 @@ export const CheckoutModal = () => {
                     <ShieldCheck className="w-5 h-5 text-rose-200" />
                     <span>Pay {formatPrice(finalTotal)} & Confirm Order</span>
                   </button>
-
-                  <div className="mt-3 flex items-center justify-center gap-3 text-[11px] text-slate-400 font-medium">
-                    <span>🔒 SSL 256-Bit</span>
-                    <span>•</span>
-                    <span>100% Non-Toxic Guarantee</span>
-                    <span>•</span>
-                    <span>Free Returns</span>
-                  </div>
                 </div>
 
               </div>

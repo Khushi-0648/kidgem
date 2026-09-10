@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useStore } from '../context/StoreContext';
-import { CATEGORIES, PRODUCTS } from '../data/products';
+import { CATEGORIES } from '../data/products';
+import { getCategoryIcon } from '../utils/categoryIcons';
 import {
   Sparkles,
   ArrowRight,
@@ -11,14 +12,14 @@ import {
   CheckCircle2,
   SlidersHorizontal,
   Flame,
-  Gift
+  Gift,
+  Smile
 } from 'lucide-react';
 
 const CATEGORY_SHOWCASES = {
   clothing: {
     id: 'clothing',
     name: 'Kids Clothing & Outfits',
-    emoji: '👕',
     badge: '100% Organic Cotton',
     gradient: 'from-rose-500 to-pink-600',
     bgLight: 'bg-rose-50/70',
@@ -31,20 +32,18 @@ const CATEGORY_SHOWCASES = {
   toys: {
     id: 'toys',
     name: 'Toys & Action Fun',
-    emoji: '🧸',
     badge: 'Trending Worldwide',
     gradient: 'from-amber-500 to-rose-600',
     bgLight: 'bg-amber-50/70',
     borderColor: 'border-amber-200',
     coverImage: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=800&q=80',
-    tagline: 'Viral bubble cannons, interactive dancing robots, and tactile sensory toys.',
+    tagline: 'Collectible wind-up tin robots, interactive gadgets, and tactile sensory toys.',
     idealAge: 'Ages 3 to 10',
-    highlights: ['69-Hole Bubble Cannon', 'Dancing RoboHero', 'Silicone Sensory Board']
+    highlights: ['Vintage Marching Tin Robot', 'Retro Wooden Railway Train', 'Silicone Sensory Board']
   },
   'remote-car': {
     id: 'remote-car',
     name: 'Remote Cars & High-Speed Vehicles',
-    emoji: '🏎️',
     badge: '25 km/h Top Speeds',
     gradient: 'from-blue-600 to-indigo-700',
     bgLight: 'bg-blue-50/70',
@@ -57,7 +56,6 @@ const CATEGORY_SHOWCASES = {
   stationery: {
     id: 'stationery',
     name: 'Art, Drawing & School Stationery',
-    emoji: '✏️',
     badge: 'Premium Creative Kit',
     gradient: 'from-pink-500 to-rose-600',
     bgLight: 'bg-pink-50/70',
@@ -70,7 +68,6 @@ const CATEGORY_SHOWCASES = {
   'learning-sets': {
     id: 'learning-sets',
     name: 'STEM, Science & Learning Sets',
-    emoji: '🔬',
     badge: 'STEM Certified Play',
     gradient: 'from-emerald-600 to-teal-700',
     bgLight: 'bg-emerald-50/70',
@@ -83,7 +80,6 @@ const CATEGORY_SHOWCASES = {
   'building-blocks': {
     id: 'building-blocks',
     name: '3D Building Blocks & Architecture',
-    emoji: '🧱',
     badge: 'Brain & Spatial Builder',
     gradient: 'from-purple-600 to-indigo-700',
     bgLight: 'bg-purple-50/70',
@@ -96,7 +92,6 @@ const CATEGORY_SHOWCASES = {
   accessories: {
     id: 'accessories',
     name: 'Kids Accessories & Daily Gear',
-    emoji: '🎒',
     badge: 'Daily Essentials',
     gradient: 'from-rose-500 to-orange-600',
     bgLight: 'bg-rose-50/70',
@@ -109,7 +104,6 @@ const CATEGORY_SHOWCASES = {
   'gift-items': {
     id: 'gift-items',
     name: 'Birthday & Festive Gift Hampers',
-    emoji: '🎁',
     badge: 'Celebration Ready',
     gradient: 'from-yellow-500 to-amber-600',
     bgLight: 'bg-amber-50/70',
@@ -122,7 +116,6 @@ const CATEGORY_SHOWCASES = {
   'indoor-games': {
     id: 'indoor-games',
     name: 'Indoor Games & Family Arcade',
-    emoji: '🎲',
     badge: '100% Screen-Free',
     gradient: 'from-indigo-600 to-sky-600',
     bgLight: 'bg-indigo-50/70',
@@ -196,8 +189,8 @@ export const CategoriesPage = () => {
           {/* Glassmorphic Trust Badges Strip */}
           <div className="pt-3 flex items-center justify-center flex-wrap gap-3 sm:gap-4 text-xs font-black">
             <div className="flex items-center gap-2 bg-white/15 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20 text-white shadow-lg">
-              <span className="text-base">🧸</span>
-              <span>9 Play Themes</span>
+              <Smile className="w-4 h-4 text-amber-300" />
+              <span>Curated Play Themes</span>
             </div>
             <div className="flex items-center gap-2 bg-white/15 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20 text-white shadow-lg">
               <ShieldCheck className="w-4 h-4 text-emerald-300" />
@@ -233,7 +226,7 @@ export const CategoriesPage = () => {
               onClick={() => navigateTo('shop')}
               className="text-xs font-black text-rose-600 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 px-4 py-2 rounded-full border border-rose-200 transition-all flex items-center gap-1 cursor-pointer"
             >
-              <span>View All 48 Gems in Shop</span>
+              <span>View All Gems in Shop</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
@@ -242,18 +235,19 @@ export const CategoriesPage = () => {
           <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none snap-x">
             <button
               onClick={() => setActiveTab('all')}
-              className={`px-4 py-2 rounded-2xl text-xs font-black transition-all cursor-pointer flex-shrink-0 select-none ${
+              className={`flex items-center gap-1.5 px-4 py-2 rounded-2xl text-xs font-black transition-all cursor-pointer flex-shrink-0 select-none ${
                 activeTab === 'all'
                   ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-md shadow-rose-600/30 scale-105'
                   : 'bg-white text-slate-700 hover:bg-rose-50 border border-rose-200/80'
               }`}
             >
-              <span>✨ All Universes (8)</span>
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>All Universes</span>
             </button>
 
             {categoriesList.map((cat) => {
-              const showcase = CATEGORY_SHOWCASES[cat.id];
               const isSelected = activeTab === cat.id;
+              const TabIcon = getCategoryIcon(cat.id);
 
               return (
                 <button
@@ -265,7 +259,7 @@ export const CategoriesPage = () => {
                       : 'bg-white text-slate-700 hover:bg-rose-50 border border-rose-200/80'
                   }`}
                 >
-                  <span>{showcase?.emoji || '🧸'}</span>
+                  <TabIcon className="w-3.5 h-3.5" />
                   <span>{cat.name}</span>
                 </button>
               );
@@ -278,7 +272,6 @@ export const CategoriesPage = () => {
           {filteredCategories.map((cat) => {
             const showcase = CATEGORY_SHOWCASES[cat.id] || {
               name: cat.name,
-              emoji: '🧸',
               badge: 'Exclusive',
               gradient: 'from-red-600 to-rose-600',
               coverImage: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=800&q=80',
@@ -286,8 +279,7 @@ export const CategoriesPage = () => {
               idealAge: 'All Ages',
               highlights: []
             };
-
-            const categoryProducts = PRODUCTS.filter((p) => p.category === cat.id);
+            const ShowcaseIcon = getCategoryIcon(cat.id);
 
             return (
               <div
@@ -310,15 +302,10 @@ export const CategoriesPage = () => {
                     <span>{showcase.badge}</span>
                   </span>
 
-                  {/* Item Count Pill */}
-                  <span className="absolute top-3.5 right-3.5 bg-black/40 backdrop-blur-md text-white text-[10px] font-black px-2.5 py-1 rounded-full border border-white/20">
-                    {categoryProducts.length} Items
-                  </span>
-
                   {/* Bottom Category Title Overlay */}
                   <div className="absolute bottom-3 left-3.5 right-3.5 flex items-end justify-between">
                     <div>
-                      <span className="text-2xl drop-shadow-md">{showcase.emoji}</span>
+                      <ShowcaseIcon className="w-6 h-6 text-white drop-shadow-md mb-1" />
                       <h3
                         className="text-lg font-black text-white leading-tight tracking-tight drop-shadow-md line-clamp-1"
                         style={{ fontFamily: 'Fredoka, sans-serif' }}

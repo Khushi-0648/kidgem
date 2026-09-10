@@ -54,7 +54,7 @@ export default async function handler(req, res) {
     await resend.emails.send({
       from: fromAddress,
       to: clean,
-      subject: 'Welcome to the KidzGem VIP Family! 🎉',
+      subject: 'Welcome to the KidzGem VIP Family!',
       text: `Hi there!\n\nThanks for joining the KidzGem VIP family. You'll be the first to hear about new toy drops, weekend VIP discounts, and safe play guides.\n\nUse code KIDZ20 for 20% off your first order!\n\nWith love,\nThe KidzGem Team`
     });
 
