@@ -67,7 +67,7 @@ const SPOTLIGHT_PRODUCTS = [
     ]
   },
   {
-    id: 'stem-1',
+    id: 'learn-1',
     badge: '29% OFF • STEM HERO',
     tag: 'Space & Astronomy',
     headline: 'Revolving Solar Planetarium Night Projector',
