@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useStore } from '../context/StoreContext';
 import {
   Search,
@@ -15,7 +15,8 @@ import {
   HelpCircle,
   ArrowRight,
   ShieldCheck,
-  Layers
+  Layers,
+  Eye
 } from 'lucide-react';
 
 export const Navbar = () => {
@@ -25,6 +26,10 @@ export const Navbar = () => {
     totalCartCount,
     setIsCartOpen,
     wishlist,
+    toggleWishlist,
+    products,
+    setQuickViewProduct,
+    addToCart,
     searchQuery,
     setSearchQuery,
     subtotal,
@@ -34,6 +39,23 @@ export const Navbar = () => {
   } = useStore();
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [wishlistOpen, setWishlistOpen] = useState(false);
+  const wishlistRef = useRef(null);
+
+  const wishlistItems = wishlist
+    .map((id) => products.find((p) => p.id === id))
+    .filter(Boolean);
+
+  useEffect(() => {
+    if (!wishlistOpen) return;
+    const handleClickOutside = (e) => {
+      if (wishlistRef.current && !wishlistRef.current.contains(e.target)) {
+        setWishlistOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [wishlistOpen]);
 
   return (
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-rose-100/90 shadow-xs transition-all">
@@ -214,17 +236,97 @@ export const Navbar = () => {
               )}
             </div>
 
-            {/* Wishlist Icon */}
-            <div
-              onClick={() => navigateTo('shop')}
-              title="Saved to Wishlist"
-              className="relative p-2.5 rounded-full hover:bg-rose-50 text-slate-700 hover:text-rose-600 cursor-pointer transition-colors border border-transparent hover:border-rose-200"
-            >
-              <Heart className={`w-5 h-5 ${wishlist.length > 0 ? 'fill-rose-500 text-rose-500' : ''}`} />
-              {wishlist.length > 0 && (
-                <span className="absolute -top-1 -right-1 bg-rose-600 text-white text-[10px] font-black rounded-full w-4 h-4 flex items-center justify-center shadow-xs">
-                  {wishlist.length}
-                </span>
+            {/* Wishlist Icon with dropdown list of liked items */}
+            <div className="relative" ref={wishlistRef}>
+              <button
+                onClick={() => setWishlistOpen((prev) => !prev)}
+                title="Saved to Wishlist"
+                className="relative p-2.5 rounded-full hover:bg-rose-50 text-slate-700 hover:text-rose-600 cursor-pointer transition-colors border border-transparent hover:border-rose-200"
+              >
+                <Heart className={`w-5 h-5 ${wishlist.length > 0 ? 'fill-rose-500 text-rose-500' : ''}`} />
+                {wishlist.length > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-rose-600 text-white text-[10px] font-black rounded-full w-4 h-4 flex items-center justify-center shadow-xs">
+                    {wishlist.length}
+                  </span>
+                )}
+              </button>
+
+              {wishlistOpen && (
+                <div className="absolute right-0 top-full mt-2.5 w-80 max-w-[90vw] bg-white rounded-3xl border border-rose-100 shadow-2xl overflow-hidden z-50 animate-fadeIn">
+                  <div className="flex items-center justify-between px-5 py-4 border-b border-rose-100">
+                    <h3 className="text-sm font-black text-slate-900" style={{ fontFamily: 'Fredoka, sans-serif' }}>
+                      My Wishlist {wishlistItems.length > 0 && `(${wishlistItems.length})`}
+                    </h3>
+                    <button
+                      onClick={() => setWishlistOpen(false)}
+                      className="p-1 rounded-full text-slate-400 hover:text-rose-600 hover:bg-rose-50 cursor-pointer"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  {wishlistItems.length === 0 ? (
+                    <div className="px-5 py-10 text-center">
+                      <Heart className="w-8 h-8 text-rose-200 mx-auto mb-2" />
+                      <p className="text-xs text-slate-500 font-medium">Nothing saved yet. Tap the heart on any product to add it here.</p>
+                    </div>
+                  ) : (
+                    <div className="max-h-80 overflow-y-auto divide-y divide-rose-50">
+                      {wishlistItems.map((product) => (
+                        <div key={product.id} className="flex items-center gap-3 px-5 py-3 hover:bg-rose-50/50 transition-colors">
+                          <div
+                            onClick={() => {
+                              setQuickViewProduct(product);
+                              setWishlistOpen(false);
+                            }}
+                            className="w-12 h-12 rounded-xl overflow-hidden border border-rose-100 flex-shrink-0 cursor-pointer"
+                          >
+                            <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+                          </div>
+                          <div
+                            onClick={() => {
+                              setQuickViewProduct(product);
+                              setWishlistOpen(false);
+                            }}
+                            className="flex-1 min-w-0 cursor-pointer"
+                          >
+                            <p className="text-xs font-bold text-slate-900 line-clamp-1">{product.name}</p>
+                            <p className="text-xs font-black text-rose-600">{formatPrice(product.price)}</p>
+                          </div>
+                          <button
+                            onClick={() => addToCart(product, 1)}
+                            title="Add to Cart"
+                            className="p-1.5 rounded-full bg-rose-50 hover:bg-rose-100 text-rose-600 cursor-pointer flex-shrink-0"
+                          >
+                            <ShoppingBag className="w-3.5 h-3.5" />
+                          </button>
+                          <button
+                            onClick={() => toggleWishlist(product.id)}
+                            title="Remove from Wishlist"
+                            className="p-1.5 rounded-full hover:bg-rose-50 text-slate-400 hover:text-rose-600 cursor-pointer flex-shrink-0"
+                          >
+                            <X className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {wishlistItems.length > 0 && (
+                    <div className="px-5 py-3.5 border-t border-rose-100">
+                      <button
+                        onClick={() => {
+                          setWishlistOpen(false);
+                          navigateTo('shop');
+                        }}
+                        className="w-full flex items-center justify-center gap-1.5 py-2.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-black rounded-xl transition-colors cursor-pointer"
+                      >
+                        <Eye className="w-3.5 h-3.5" />
+                        <span>Browse Shop</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
               )}
             </div>
 
