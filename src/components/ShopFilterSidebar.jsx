@@ -2,9 +2,17 @@ import React, { useState } from 'react';
 import { useStore } from '../context/StoreContext';
 import { CATEGORIES } from '../data/products';
 import { AGE_BUCKETS } from '../utils/ageRange';
-import { SlidersHorizontal, Star, RotateCcw, ChevronDown, CheckCircle2 } from 'lucide-react';
+import { getCategoryIcon } from '../utils/categoryIcons';
+import { SlidersHorizontal, Star, RotateCcw, ChevronDown, CheckCircle2, Tag, PiggyBank, Users2, Award } from 'lucide-react';
 
 const RATING_OPTIONS = [4.5, 4, 3];
+
+const SectionHeading = ({ icon: Icon, children }) => (
+  <h4 className="flex items-center gap-1.5 text-xs font-black uppercase tracking-wider text-slate-500 mb-3">
+    <Icon className="w-3.5 h-3.5 text-rose-500" />
+    <span>{children}</span>
+  </h4>
+);
 
 export const ShopFilterSidebar = () => {
   const {
@@ -32,6 +40,8 @@ export const ShopFilterSidebar = () => {
     (minRating > 0 ? 1 : 0) +
     (inStockOnly ? 1 : 0);
 
+  const priceFillPercent = ((priceRange - 199) / (2500 - 199)) * 100;
+
   const resetFilters = () => {
     setSelectedCategory('all');
     setPriceRange(2500);
@@ -46,28 +56,32 @@ export const ShopFilterSidebar = () => {
     <div className="space-y-7">
       {/* Category */}
       <div>
-        <h4 className="text-xs font-black uppercase tracking-wider text-slate-500 mb-3">Category</h4>
+        <SectionHeading icon={Tag}>Category</SectionHeading>
         <div className="space-y-1">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setSelectedCategory(cat.id)}
-              className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
-                selectedCategory === cat.id
-                  ? 'bg-rose-600 text-white shadow-sm'
-                  : 'text-slate-600 hover:bg-rose-50'
-              }`}
-            >
-              <span>{cat.name}</span>
-              <span className={selectedCategory === cat.id ? 'text-rose-100' : 'text-slate-400'}>{cat.count}</span>
-            </button>
-          ))}
+          {CATEGORIES.map((cat) => {
+            const CatIcon = getCategoryIcon(cat.id);
+            const isSelected = selectedCategory === cat.id;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
+                className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                  isSelected
+                    ? 'bg-rose-600 text-white shadow-md shadow-rose-600/25 scale-[1.02]'
+                    : 'text-slate-600 hover:bg-rose-50 hover:text-rose-600'
+                }`}
+              >
+                <CatIcon className={`w-3.5 h-3.5 flex-shrink-0 ${isSelected ? 'text-white' : 'text-rose-400'}`} />
+                <span className="text-left">{cat.name}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
       {/* Price Range */}
       <div>
-        <h4 className="text-xs font-black uppercase tracking-wider text-slate-500 mb-3">Price Range</h4>
+        <SectionHeading icon={PiggyBank}>Price Range</SectionHeading>
         <input
           type="range"
           min="199"
@@ -76,22 +90,29 @@ export const ShopFilterSidebar = () => {
           value={priceRange}
           onChange={(e) => setPriceRange(Number(e.target.value))}
           className="w-full accent-rose-600 cursor-pointer"
+          style={{
+            background: `linear-gradient(to right, #e11d48 ${priceFillPercent}%, #fecdd3 ${priceFillPercent}%)`,
+            height: '4px',
+            borderRadius: '9999px',
+            appearance: 'none',
+            WebkitAppearance: 'none'
+          }}
         />
-        <div className="flex items-center justify-between text-[11px] font-bold text-slate-500 mt-1.5">
+        <div className="flex items-center justify-between text-[11px] font-bold text-slate-500 mt-2">
           <span>₹199</span>
-          <span className="text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full">Up to {formatPrice(priceRange)}</span>
+          <span className="text-rose-700 bg-rose-50 border border-rose-100 px-2.5 py-1 rounded-full font-black">Up to {formatPrice(priceRange)}</span>
         </div>
       </div>
 
       {/* Age Group */}
       <div>
-        <h4 className="text-xs font-black uppercase tracking-wider text-slate-500 mb-3">Age Group</h4>
+        <SectionHeading icon={Users2}>Age Group</SectionHeading>
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setSelectedAgeGroup('all')}
-            className={`px-3 py-1.5 rounded-full text-[11px] font-bold border transition-colors cursor-pointer ${
+            className={`px-3 py-1.5 rounded-full text-[11px] font-bold border transition-all cursor-pointer ${
               selectedAgeGroup === 'all'
-                ? 'bg-rose-600 text-white border-rose-600'
+                ? 'bg-rose-600 text-white border-rose-600 shadow-sm scale-105'
                 : 'bg-white text-slate-600 border-rose-200 hover:bg-rose-50'
             }`}
           >
@@ -101,9 +122,9 @@ export const ShopFilterSidebar = () => {
             <button
               key={bucket.id}
               onClick={() => setSelectedAgeGroup(bucket.id)}
-              className={`px-3 py-1.5 rounded-full text-[11px] font-bold border transition-colors cursor-pointer ${
+              className={`px-3 py-1.5 rounded-full text-[11px] font-bold border transition-all cursor-pointer ${
                 selectedAgeGroup === bucket.id
-                  ? 'bg-rose-600 text-white border-rose-600'
+                  ? 'bg-rose-600 text-white border-rose-600 shadow-sm scale-105'
                   : 'bg-white text-slate-600 border-rose-200 hover:bg-rose-50'
               }`}
             >
@@ -115,11 +136,11 @@ export const ShopFilterSidebar = () => {
 
       {/* Customer Rating */}
       <div>
-        <h4 className="text-xs font-black uppercase tracking-wider text-slate-500 mb-3">Customer Rating</h4>
+        <SectionHeading icon={Award}>Customer Rating</SectionHeading>
         <div className="space-y-1">
           <button
             onClick={() => setMinRating(0)}
-            className={`w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
+            className={`w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               minRating === 0 ? 'bg-rose-600 text-white shadow-sm' : 'text-slate-600 hover:bg-rose-50'
             }`}
           >
@@ -129,8 +150,8 @@ export const ShopFilterSidebar = () => {
             <button
               key={r}
               onClick={() => setMinRating(minRating === r ? 0 : r)}
-              className={`w-full flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold transition-colors cursor-pointer ${
-                minRating === r ? 'bg-rose-600 text-white shadow-sm' : 'text-slate-600 hover:bg-rose-50'
+              className={`w-full flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                minRating === r ? 'bg-rose-600 text-white shadow-sm scale-[1.02]' : 'text-slate-600 hover:bg-rose-50'
               }`}
             >
               <Star className={`w-3.5 h-3.5 ${minRating === r ? 'fill-white text-white' : 'fill-amber-400 text-amber-400'}`} />
@@ -142,10 +163,12 @@ export const ShopFilterSidebar = () => {
 
       {/* Availability */}
       <div>
-        <h4 className="text-xs font-black uppercase tracking-wider text-slate-500 mb-3">Availability</h4>
+        <SectionHeading icon={CheckCircle2}>Availability</SectionHeading>
         <button
           onClick={() => setInStockOnly(!inStockOnly)}
-          className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl border border-rose-200 hover:bg-rose-50 transition-colors cursor-pointer"
+          className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl border transition-all cursor-pointer ${
+            inStockOnly ? 'border-rose-300 bg-rose-50' : 'border-rose-200 hover:bg-rose-50'
+          }`}
         >
           <span className={`w-5 h-5 rounded-md border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
             inStockOnly ? 'bg-rose-600 border-rose-600' : 'border-slate-300'
@@ -195,10 +218,19 @@ export const ShopFilterSidebar = () => {
 
       {/* Desktop Sidebar */}
       <aside className="hidden lg:block w-64 flex-shrink-0">
-        <div className="sticky top-24 bg-white border border-rose-100 rounded-3xl p-5 shadow-sm">
-          <div className="flex items-center gap-2 mb-5">
-            <SlidersHorizontal className="w-4 h-4 text-rose-600" />
-            <h3 className="text-sm font-black text-slate-900" style={{ fontFamily: 'Fredoka, sans-serif' }}>Filters</h3>
+        <div className="sticky top-24 bg-white border border-rose-100 rounded-3xl p-5 shadow-sm shadow-rose-950/5">
+          <div className="flex items-center justify-between gap-2 mb-5 pb-4 border-b border-rose-100">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center">
+                <SlidersHorizontal className="w-4 h-4" />
+              </div>
+              <h3 className="text-sm font-black text-slate-900" style={{ fontFamily: 'Fredoka, sans-serif' }}>Filters</h3>
+            </div>
+            {activeFilterCount > 0 && (
+              <span className="bg-rose-600 text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0">
+                {activeFilterCount}
+              </span>
+            )}
           </div>
           <FilterBody />
         </div>
