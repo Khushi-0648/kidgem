@@ -41,15 +41,22 @@ export const Navbar = () => {
       <div className="bg-gradient-to-r from-red-700 via-rose-600 to-red-700 text-white text-[11px] py-2 px-4 shadow-2xs">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center font-semibold">
           
-          {/* Announcement with deal code */}
-          <div className="flex items-center justify-center gap-2">
+          {/* Announcement with deal code - clickable Shop Now CTA */}
+          <button
+            onClick={() => navigateTo('shop')}
+            className="flex items-center justify-center gap-2 cursor-pointer hover:opacity-90 transition-opacity group"
+          >
             <span className="bg-white/20 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider flex items-center gap-1 shadow-2xs">
               <Percent className="w-3 h-3 text-amber-300" /> 20% OFF
             </span>
             <span className="text-rose-50">
               Free Express Shipping Over ₹499 • Use Code <strong className="text-amber-300 underline decoration-wavy">KIDZ20</strong>
             </span>
-          </div>
+            <span className="hidden sm:flex items-center gap-1 text-amber-300 font-black underline underline-offset-2 group-hover:text-white transition-colors">
+              Shop Now
+              <ArrowRight className="w-3 h-3" />
+            </span>
+          </button>
 
           {/* Quick contact & Currency toggle */}
           <div className="flex items-center flex-wrap justify-center gap-2 sm:gap-3 text-rose-100 text-xs">
