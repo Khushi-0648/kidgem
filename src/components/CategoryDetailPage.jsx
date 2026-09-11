@@ -29,7 +29,7 @@ const CATEGORY_DETAILS = {
     subtitle: '100% breathable organic cotton rompers, cozy dino fleece sets, UV50+ swimwear, and glowing astronaut pajamas.',
     badge: '100% GOTS Organic Cotton',
     gradient: 'from-rose-600 via-pink-600 to-red-700',
-    bannerImg: 'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=1920&q=85',
+    bannerImg: '/images/unsplash/1519238263530-99bdd11df2ea-w1920.jpg',
     faqs: [
       { q: 'What fabric is used in KidzGem kids clothing?', a: 'Our rompers and daytime sets are made from 100% GOTS-certified organic combed cotton that is hypoallergenic and free from harsh chemical dyes.' },
       { q: 'How do I choose the right size for my child?', a: 'All our clothes follow standard age-based sizing with room for active growth and stretch. If in doubt, we suggest sizing up for growing toddlers.' },
@@ -42,7 +42,7 @@ const CATEGORY_DETAILS = {
     subtitle: 'Collectible wind-up tin robots, interactive gadgets, and fidget sensory creations for pure laughter.',
     badge: 'Trending Worldwide',
     gradient: 'from-amber-600 via-rose-600 to-red-700',
-    bannerImg: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=1920&q=85',
+    bannerImg: '/images/unsplash/1515488042361-ee00e0ddd4e4-w1920.jpg',
     faqs: [
       { q: 'Is the tin robot toy safe for my child?', a: 'Yes! Our wind-up tin robot is certified lead-free with smooth rounded edges, recommended for ages 5+ under normal parental supervision.' },
       { q: 'Are the batteries included with battery-powered toys?', a: 'USB rechargeable models include the charging cables. Standard AA/AAA models clearly mention battery requirements in the specifications.' }
@@ -54,7 +54,7 @@ const CATEGORY_DETAILS = {
     subtitle: 'Conquer gravel, grass, and vertical walls with 25 km/h high-speed 4WD buggies and 360° stunt rollers.',
     badge: '25 km/h Top Speeds',
     gradient: 'from-blue-700 via-indigo-700 to-slate-900',
-    bannerImg: 'https://images.unsplash.com/photo-1594787318286-3d835c1d207f?auto=format&fit=crop&w=1920&q=85',
+    bannerImg: '/images/unsplash/1594787318286-3d835c1d207f-w1920.jpg',
     faqs: [
       { q: 'How far is the 2.4GHz remote control range?', a: 'Our high-grade 2.4GHz transmitters provide up to 50 meters of interference-free control radius, allowing multiple cars to race together without cross-talk.' },
       { q: 'Can the cars handle rough outdoor terrain?', a: 'Yes! Equipped with independent suspension springs and rubber grip tires, our buggies are designed for gravel, dirt, asphalt, and grass.' }
@@ -66,7 +66,7 @@ const CATEGORY_DETAILS = {
     subtitle: 'Deluxe metallic art suitcases, ergonomic handwriting pens, and crash-resistant 3D pencil cases.',
     badge: 'Creative Excellence',
     gradient: 'from-pink-600 via-rose-600 to-red-800',
-    bannerImg: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=1920&q=85',
+    bannerImg: '/images/unsplash/1583485088034-697b5bc54ccd-w1920.jpg',
     faqs: [
       { q: 'Are the colored markers and crayons washable?', a: 'All pigments in our stationery sets are water-washable and easily clean off cotton clothes, skin, and tabletops.' },
       { q: 'What is the pencil case made of?', a: 'Crafted from shock-absorbing high-density EVA material that is water-resistant, ultra-lightweight, and drop-proof.' }
@@ -78,7 +78,7 @@ const CATEGORY_DETAILS = {
     subtitle: 'Inspire future astronomers, scientists, and engineers with motorized planetariums and 1200x student microscopes.',
     badge: 'STEM Certified Play',
     gradient: 'from-emerald-700 via-teal-800 to-slate-900',
-    bannerImg: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1920&q=85',
+    bannerImg: '/images/unsplash/1581092160607-ee22621dd758-w1920.jpg',
     faqs: [
       { q: 'Are experiments safe for kids to conduct independently?', a: 'All STEM kits come with illustrated step-by-step experiment guides and use child-safe, low-voltage components without hazardous chemicals.' },
       { q: 'Does the microscope include prepared glass slides?', a: 'Yes, it comes with a starter pack of safe acrylic prepared specimen slides plus blank slides for collecting garden leaves and petals.' }
@@ -90,7 +90,7 @@ const CATEGORY_DETAILS = {
     subtitle: 'Ultrasonic neodymium magnetic tiles, mechanical technic cranes, and cascading marble run coaster tracks.',
     badge: 'Spatial & Logic Growth',
     gradient: 'from-purple-700 via-indigo-800 to-slate-900',
-    bannerImg: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=1920&q=85',
+    bannerImg: '/images/unsplash/1587654780291-39c9404d746b-w1920.jpg',
     faqs: [
       { q: 'Can the magnets fall out of the tiles?', a: 'Never. Our MagnaTiles feature ultrasonic welded seams with internal metal reinforcement rivets that prevent magnets from escaping even if dropped.' },
       { q: 'Are these tiles compatible with other magnetic tile brands?', a: 'Yes, our 3D magnetic tiles follow the standard 3-inch sizing and are 100% compatible with major global magnetic brands.' }
@@ -102,7 +102,7 @@ const CATEGORY_DETAILS = {
     subtitle: 'Ergonomic 3D dinosaur school backpacks, smart LED silicone watches, and insulated vacuum steel bottles.',
     badge: 'Daily Essentials',
     gradient: 'from-rose-600 via-amber-600 to-red-800',
-    bannerImg: 'https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=1920&q=85',
+    bannerImg: '/images/unsplash/1522771930-78848d9293e8-w1920.jpg',
     faqs: [
       { q: 'Is the backpack water-resistant for monsoon school days?', a: 'Yes! Fabricated from multi-layer water-repellent nylon with waterproof taped zippers to protect textbooks and artwork.' },
       { q: 'Does the water bottle keep drinks warm or cold?', a: 'Double-walled food-grade 316 stainless steel vacuum insulation keeps drinks cold for 12 hours and warm for 8 hours.' }
@@ -114,7 +114,7 @@ const CATEGORY_DETAILS = {
     subtitle: 'Ready-to-gift surprise gift boxes, nostalgic wooden carousel music boxes, and DIY glowing slime labs.',
     badge: 'Celebration Ready',
     gradient: 'from-amber-600 via-rose-600 to-yellow-600',
-    bannerImg: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1920&q=85',
+    bannerImg: '/images/unsplash/1513151233558-d860c5398176-w1920.jpg',
     faqs: [
       { q: 'Can I send this directly as a gift to someone?', a: 'Yes! During checkout, enter the recipient’s delivery address. All gift items ship in elegant gift packaging with price tags discreetly shielded upon request.' },
       { q: 'Does the carousel music box require batteries?', a: 'No, it uses a classic clockwork mechanical winding key that plays sweet soothing lullaby tunes naturally.' }
@@ -126,7 +126,7 @@ const CATEGORY_DETAILS = {
     subtitle: 'High-speed wooden sling puck battles, tabletop arcade pinball, and pattern flash cubes for screen-free family nights.',
     badge: '100% Screen-Free Fun',
     gradient: 'from-indigo-700 via-sky-700 to-slate-900',
-    bannerImg: 'https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?auto=format&fit=crop&w=1920&q=85',
+    bannerImg: '/images/unsplash/1610890716171-6b1bb98ffd09-w1920.jpg',
     faqs: [
       { q: 'What is the wooden sling puck board made from?', a: 'Crafted from solid sustainable pinewood with laser-smooth sanded edges and elastic cords built to withstand thousands of games.' },
       { q: 'How many players can participate?', a: 'Designed for 2-player head-to-head fast battles, with tournament modes for the whole family.' }

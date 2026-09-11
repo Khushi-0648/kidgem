@@ -19,7 +19,7 @@ const AGE_BRACKETS = [
       accent: 'text-rose-600',
       ring: 'group-hover:ring-rose-200/50'
     },
-    image: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=600&q=80'
+    image: '/images/unsplash/1515488042361-ee00e0ddd4e4-w600.jpg'
   },
   {
     id: 'age-4-6',
@@ -37,7 +37,7 @@ const AGE_BRACKETS = [
       accent: 'text-amber-600',
       ring: 'group-hover:ring-amber-200/50'
     },
-    image: 'https://images.unsplash.com/photo-1546776310-eef45dd6d63c?auto=format&fit=crop&w=600&q=80'
+    image: '/images/unsplash/1546776310-eef45dd6d63c-w600.jpg'
   },
   {
     id: 'age-7-10',
@@ -55,7 +55,7 @@ const AGE_BRACKETS = [
       accent: 'text-emerald-600',
       ring: 'group-hover:ring-emerald-200/50'
     },
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&q=80'
+    image: '/images/unsplash/1581092160607-ee22621dd758-w600.jpg'
   },
   {
     id: 'age-10-plus',
@@ -73,7 +73,7 @@ const AGE_BRACKETS = [
       accent: 'text-blue-600',
       ring: 'group-hover:ring-blue-200/50'
     },
-    image: 'https://images.unsplash.com/photo-1594787318286-3d835c1d207f?auto=format&fit=crop&w=600&q=80'
+    image: '/images/unsplash/1594787318286-3d835c1d207f-w600.jpg'
   }
 ];
 

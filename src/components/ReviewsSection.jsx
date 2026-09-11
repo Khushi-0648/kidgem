@@ -9,7 +9,7 @@ export const ReviewsSection = () => {
       rating: 5,
       product: 'KidzGem Vintage Clockwork Tin Robot',
       comment: 'The tin robot was the star of our weekend get-together! Kids took turns winding it up and watching it march - no batteries, no fuss, just pure retro charm.',
-      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80',
+      avatar: '/images/unsplash/1544005313-94ddf0286df2-w150.jpg',
       badge: 'Verified Indian Buyer'
     },
     {
@@ -18,7 +18,7 @@ export const ReviewsSection = () => {
       rating: 5,
       product: 'TurboDrift 4WD High-Speed Stunt Car',
       comment: 'This RC drift car is virtually indestructible! My son drove it over lawns, gravel, and doorsteps. 360° spins are super smooth.',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
+      avatar: '/images/unsplash/1507003211169-0a1dd7228f2d-w150.jpg',
       badge: 'Verified Indian Buyer'
     },
     {
@@ -27,7 +27,7 @@ export const ReviewsSection = () => {
       rating: 5,
       product: '3D Magnetic Castle Building Tiles (100 Pcs)',
       comment: 'The STEM magnetic tiles are top tier. Zero chemical odor, certified non-toxic food-grade ABS, and high magnetic strength. Screen-free bliss!',
-      avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80',
+      avatar: '/images/unsplash/1573496359142-b8d87734a5a2-w150.jpg',
       badge: 'Verified Educator'
     }
   ];

@@ -61,7 +61,7 @@ export const ContactPage = () => {
       <div className="relative w-full min-h-[72vh] sm:min-h-[82vh] flex items-center justify-center overflow-hidden mb-12 sm:mb-16">
         {/* Background Image: Friendly Customer Care & Happy Family Setting */}
         <img
-          src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=1920&q=85"
+          src="/images/unsplash/1543269865-cbf427effbad-w1920.jpg"
           alt="KidzGem Customer Care and Family Support"
           className="absolute inset-0 w-full h-full object-cover object-center scale-105 filter brightness-95"
         />

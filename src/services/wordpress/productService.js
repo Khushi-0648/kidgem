@@ -37,7 +37,7 @@ export function transformWcProduct(wcItem) {
   // Primary image
   const primaryImg = wcItem.images && wcItem.images.length > 0
     ? wcItem.images[0].src
-    : 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=800&q=80';
+    : '/images/unsplash/1515488042361-ee00e0ddd4e4-w800.jpg';
 
   const gallery = wcItem.images ? wcItem.images.map((img) => img.src) : [primaryImg];
 

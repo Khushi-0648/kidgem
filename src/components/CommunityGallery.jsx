@@ -4,7 +4,7 @@ import { Sparkles, Heart, Camera, Star, CheckCircle2 } from 'lucide-react';
 const MOMENTS = [
   {
     id: 1,
-    image: 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=600&q=80',
+    image: '/images/unsplash/1516627145497-ae6968895b74-w600.jpg',
     title: 'Ayaan\'s Imaginative Play Time',
     parent: 'Pooja Sharma',
     city: 'Mumbai',
@@ -14,7 +14,7 @@ const MOMENTS = [
   },
   {
     id: 2,
-    image: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=600&q=80',
+    image: '/images/unsplash/1596461404969-9ae70f2830c1-w600.jpg',
     title: 'Ananya & Her Wooden Express',
     parent: 'Kavita Iyer',
     city: 'Bangalore',
@@ -24,7 +24,7 @@ const MOMENTS = [
   },
   {
     id: 3,
-    image: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=600&q=80',
+    image: '/images/unsplash/1587654780291-39c9404d746b-w600.jpg',
     title: 'Rohan Racing The TurboDrift Buggy',
     parent: 'Vikram Joshi',
     city: 'Pune',
@@ -34,7 +34,7 @@ const MOMENTS = [
   },
   {
     id: 4,
-    image: 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=600&q=80',
+    image: '/images/unsplash/1502086223501-7ea6ecd79368-w600.jpg',
     title: 'Siya Building Her Magna Castle',
     parent: 'Neha Patel',
     city: 'Surat',

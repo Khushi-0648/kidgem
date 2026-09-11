@@ -24,7 +24,7 @@ export const AboutPage = () => {
       {/* FULL-SCREEN HERO BANNER */}
       <div className="relative w-full min-h-[72vh] sm:min-h-[82vh] flex items-center justify-center overflow-hidden mb-12 sm:mb-16">
         <img
-          src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=1920&q=85"
+          src="/images/unsplash/1596461404969-9ae70f2830c1-w1920.jpg"
           alt="Children Playing With Wooden Toys and Blocks"
           className="absolute inset-0 w-full h-full object-cover object-center scale-105 filter brightness-95"
         />
@@ -216,7 +216,7 @@ export const AboutPage = () => {
             <div className="lg:col-span-5 relative group">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-rose-950/15 border-2 border-white aspect-[4/3] sm:aspect-[16/11]">
                 <img
-                  src="https://images.unsplash.com/photo-1666888735928-68814027acbb?auto=format&fit=crop&w=1000&q=85"
+                  src="/images/unsplash/1666888735928-68814027acbb-w1000.jpg"
                   alt="Loving Parent and Happy Child Playing with Educational Toys"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   loading="lazy"

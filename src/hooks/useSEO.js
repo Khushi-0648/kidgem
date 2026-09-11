@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 const SITE_URL = 'https://kidzgem.com';
-const DEFAULT_OG_IMAGE = 'https://images.unsplash.com/photo-1546776310-eef45dd6d63c?auto=format&fit=crop&w=800&q=85';
+const DEFAULT_OG_IMAGE = '/images/unsplash/1546776310-eef45dd6d63c-w800.jpg';
 
 function upsertMeta(attr, key, content) {
   if (!content) return;

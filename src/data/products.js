@@ -73,9 +73,9 @@ export const PRODUCTS = [
     "reviewsCount": 142,
     "tag": "Official KidzGem",
     "ageGroup": "5+ yrs",
-    "image": "https://images.unsplash.com/photo-1546776310-eef45dd6d63c?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1546776310-eef45dd6d63c-w800.jpg",
     "gallery": [
-      "https://images.unsplash.com/photo-1546776310-eef45dd6d63c?auto=format&fit=crop&w=800&q=85"
+      "/images/unsplash/1546776310-eef45dd6d63c-w800.jpg"
     ],
     "description": "A nostalgic wind-up clockwork tin robot that marches forward with a satisfying whir of retro gears - no batteries, no charging, just wind the key and watch decades of sci-fi charm come alive.",
     "features": [
@@ -97,7 +97,7 @@ export const PRODUCTS = [
     "reviewsCount": 148,
     "tag": "Best Seller",
     "ageGroup": "1+ yrs",
-    "image": "https://images.unsplash.com/photo-1559454403-b8fb88521f11?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1559454403-b8fb88521f11-w800.jpg",
     "description": "Ultra-soft, huggable companion made with hypoallergenic certified cotton. Perfect for sweet dreams and daytime adventures.",
     "features": [
       "100% Organic Hypoallergenic Cotton",
@@ -118,7 +118,7 @@ export const PRODUCTS = [
     "reviewsCount": 96,
     "tag": "Staff Pick",
     "ageGroup": "3+ yrs",
-    "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1515488042361-ee00e0ddd4e4-w800.jpg",
     "description": "Handcrafted solid beech wood train set with magnetic connectors and 28-piece track layout.",
     "features": [
       "Solid Natural Beech Wood",
@@ -139,7 +139,7 @@ export const PRODUCTS = [
     "reviewsCount": 162,
     "tag": "Viral Hit",
     "ageGroup": "1-4 yrs",
-    "image": "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1516627145497-ae6968895b74-w800.jpg",
     "description": "Interactive dual-play musical floor mat with 8 instrument voices, 10 piano keys, and tap drum pads for joyous sensory toddler play.",
     "features": [
       "8 Musical Instrument Voices",
@@ -160,7 +160,7 @@ export const PRODUCTS = [
     "reviewsCount": 194,
     "tag": "Best Seller",
     "ageGroup": "6m–3 yrs",
-    "image": "https://images.unsplash.com/photo-1563089145-599997674d42?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1563089145-599997674d42-w800.jpg",
     "description": "Super-soft interactive elephant that flaps its plush ears and sings cheerful nursery rhymes at the touch of its foot pads.",
     "features": [
       "Animated Ear Flapping Action",
@@ -181,7 +181,7 @@ export const PRODUCTS = [
     "reviewsCount": 140,
     "tag": "Staff Pick",
     "ageGroup": "1-3 yrs",
-    "image": "https://images.unsplash.com/photo-1780975873513-541cde82e7b3?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1780975873513-541cde82e7b3-w800.jpg",
     "description": "All-in-one wooden sensory cube featuring latches, gears, shoelace practice, zipper, and clock dials for developing motor skills.",
     "features": [
       "Natural Solid Wood Build",
@@ -202,7 +202,7 @@ export const PRODUCTS = [
     "reviewsCount": 230,
     "tag": "Top Rated",
     "ageGroup": "6+ yrs",
-    "image": "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1594787318286-3d835c1d207f-w800.jpg",
     "description": "Blistering 25 km/h high-torque RC buggy with independent suspension springs and heavy-duty all-terrain tires.",
     "features": [
       "2.4GHz Anti-Interference Controller",
@@ -223,7 +223,7 @@ export const PRODUCTS = [
     "reviewsCount": 185,
     "tag": "Hot Deal",
     "ageGroup": "5+ yrs",
-    "image": "https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1581235720704-06d3acfcb36f-w800.jpg",
     "description": "Flips upside down, spins 360 degrees, and drifts on both sides with flashing LED headlights and wheel illuminations.",
     "features": [
       "Double-Sided Tumbling Action",
@@ -244,7 +244,7 @@ export const PRODUCTS = [
     "reviewsCount": 92,
     "tag": "Trending",
     "ageGroup": "6+ yrs",
-    "image": "https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1517524008697-84bbe3c3fd98-w800.jpg",
     "description": "Special vacuum suction system allows this slick red supercar to race across floors, up walls, and across ceilings smoothly.",
     "features": [
       "Wall & Ceiling Climber Mode",
@@ -265,7 +265,7 @@ export const PRODUCTS = [
     "reviewsCount": 115,
     "tag": "New Drop",
     "ageGroup": "6+ yrs",
-    "image": "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1558981806-ec527fa84c39-w800.jpg",
     "description": "Drives effortlessly across water, mud, grass, sand, and living room carpets with sealed waterproof dual propeller chassis.",
     "features": [
       "100% Waterproof IP68 Hull",
@@ -286,7 +286,7 @@ export const PRODUCTS = [
     "reviewsCount": 204,
     "tag": "Viral Hit",
     "ageGroup": "6+ yrs",
-    "image": "https://images.unsplash.com/photo-1508974239320-0a029497e820?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1508974239320-0a029497e820-w800.jpg",
     "description": "Control high-speed drift and sideways crab-walk maneuvers with a wave of your hand using the futuristic ergonomic wrist sensor.",
     "features": [
       "Smart Wrist Gesture Sensor",
@@ -307,7 +307,7 @@ export const PRODUCTS = [
     "reviewsCount": 88,
     "tag": "Top Rated",
     "ageGroup": "5+ yrs",
-    "image": "https://images.unsplash.com/photo-1565174408946-a7a8c16a3933?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1565174408946-a7a8c16a3933-w800.jpg",
     "description": "Realistic 1:14 scale motorized hydraulic arm excavator with 680-degree cab rotation, metal shovel, and authentic construction sound effects.",
     "features": [
       "Heavy Diecast Alloy Shovel",
@@ -328,7 +328,7 @@ export const PRODUCTS = [
     "reviewsCount": 112,
     "tag": "Best Seller",
     "ageGroup": "4+ yrs",
-    "image": "https://images.unsplash.com/photo-1574944558125-f8d12f23be89?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1574944558125-f8d12f23be89-w800.jpg",
     "description": "Hard-shell EVA embossed case with multiple compartments, pen slots, and high-capacity mesh pocket for school gear.",
     "features": [
       "Shockproof EVA Material",
@@ -349,7 +349,7 @@ export const PRODUCTS = [
     "reviewsCount": 164,
     "tag": "Trending",
     "ageGroup": "5+ yrs",
-    "image": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1513542789411-b6a5d4f31634-w800.jpg",
     "description": "Vibrant non-toxic alcohol markers with fine tip for sketching and brush tip for rich blending and coloring.",
     "features": [
       "Dual-Tip Versatility (Fine + Broad)",
@@ -370,7 +370,7 @@ export const PRODUCTS = [
     "reviewsCount": 78,
     "tag": "Staff Pick",
     "ageGroup": "All Ages",
-    "image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1618005182384-a83a8bd57fbe-w800.jpg",
     "description": "Smooth thermo-sensitive ink that erases cleanly without leaving paper tears or eraser shavings behind.",
     "features": [
       "Friction Eraser Tip",
@@ -391,7 +391,7 @@ export const PRODUCTS = [
     "reviewsCount": 228,
     "tag": "Best Seller",
     "ageGroup": "4+ yrs",
-    "image": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1583485088034-697b5bc54ccd-w800.jpg",
     "description": "Master art chest filled with crayons, oil pastels, watercolor cakes, colored pencils, sketch pads, and mixing palettes.",
     "features": [
       "Solid Wooden Carry Trunk Case",
@@ -412,7 +412,7 @@ export const PRODUCTS = [
     "reviewsCount": 97,
     "tag": "Staff Pick",
     "ageGroup": "All Ages",
-    "image": "https://images.unsplash.com/photo-1589998059171-988d887df646?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1589998059171-988d887df646-w800.jpg",
     "description": "Safety-lock fast motor sharpener that produces needle points in 3 seconds, paired with a cute mini desk crumb vacuum.",
     "features": [
       "Auto-Stop Safety Blade Mechanism",
@@ -433,7 +433,7 @@ export const PRODUCTS = [
     "reviewsCount": 84,
     "tag": "Viral Hit",
     "ageGroup": "3+ yrs",
-    "image": "https://images.unsplash.com/photo-1569683795645-b62e50fbf103?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1569683795645-b62e50fbf103-w800.jpg",
     "description": "Draw your art and apply gentle heat with a hairdryer to see lines magically puff up into textured 3D popcorn art!",
     "features": [
       "Heat-Activated 3D Puffy Effect",
@@ -454,7 +454,7 @@ export const PRODUCTS = [
     "reviewsCount": 198,
     "tag": "Best Seller",
     "ageGroup": "6-12 yrs",
-    "image": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1614728894747-a83421e2b9c9-w800.jpg",
     "description": "Motorized revolving solar system model with glowing sun projector, sound guide, and astronomy fact booklet.",
     "features": [
       "Motorized Planetary Orbits",
@@ -475,7 +475,7 @@ export const PRODUCTS = [
     "reviewsCount": 135,
     "tag": "Top Rated",
     "ageGroup": "8+ yrs",
-    "image": "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1532094349884-543bc11b234d-w800.jpg",
     "description": "Exciting erupting volcanoes, crystal growing, and color-changing reactions using safe household-friendly chemicals.",
     "features": [
       "Over 80 Safe Guided Experiments",
@@ -496,7 +496,7 @@ export const PRODUCTS = [
     "reviewsCount": 88,
     "tag": "Trending",
     "ageGroup": "2-5 yrs",
-    "image": "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1544717305-2782549b5136-w800.jpg",
     "description": "Teaches letters, words, animal sounds, spelling, and preschool songs with eye-friendly LCD and clear phonics.",
     "features": [
       "120+ Interactive Audio Flashcards",
@@ -517,7 +517,7 @@ export const PRODUCTS = [
     "reviewsCount": 168,
     "tag": "Best Seller",
     "ageGroup": "8-14 yrs",
-    "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1485827404703-89b55fcc595e-w800.jpg",
     "description": "Build walking, crawling, and swimming robots powered entirely by solar light and water hydraulics with zero batteries.",
     "features": [
       "12 Transformable Robot Designs",
@@ -538,7 +538,7 @@ export const PRODUCTS = [
     "reviewsCount": 112,
     "tag": "Top Rated",
     "ageGroup": "7+ yrs",
-    "image": "https://images.unsplash.com/photo-1518152006812-edab29b069ac?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1518152006812-edab29b069ac-w800.jpg",
     "description": "Real glass optics microscope with 3 magnification levels, built-in LED illumination, specimen slides, and phone camera adapter.",
     "features": [
       "100x, 400x, 1200x Magnification",
@@ -559,7 +559,7 @@ export const PRODUCTS = [
     "reviewsCount": 79,
     "tag": "Staff Pick",
     "ageGroup": "3-6 yrs",
-    "image": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1581092160607-ee22621dd758-w800.jpg",
     "description": "Preschool coding toy where arranging modular snap-together segments programs pathfinding directions, lights, and cheerful songs.",
     "features": [
       "Screen-Free Early Coding Fundamentals",
@@ -580,7 +580,7 @@ export const PRODUCTS = [
     "reviewsCount": 310,
     "tag": "Best Seller",
     "ageGroup": "3+ yrs",
-    "image": "https://images.unsplash.com/photo-1654932330535-7e07af04b685?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1654932330535-7e07af04b685-w800.jpg",
     "description": "Translucent diamond-facet magnetic blocks that click together easily to create castles, skyscrapers, and geometric forms.",
     "features": [
       "Rare Earth High-Strength Magnets",
@@ -601,7 +601,7 @@ export const PRODUCTS = [
     "reviewsCount": 142,
     "tag": "Staff Pick",
     "ageGroup": "8+ yrs",
-    "image": "https://images.unsplash.com/photo-1585366119957-e9730b6d0f60?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1585366119957-e9730b6d0f60-w800.jpg",
     "description": "Intricate 860-piece building brick kit compatible with leading brick brands, featuring detachable landing gears.",
     "features": [
       "860 Precision Injection Bricks",
@@ -622,7 +622,7 @@ export const PRODUCTS = [
     "reviewsCount": 119,
     "tag": "Hot Deal",
     "ageGroup": "4+ yrs",
-    "image": "https://images.unsplash.com/photo-1590333626353-98887fe31d2c?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1590333626353-98887fe31d2c-w800.jpg",
     "description": "Build looping rollercoasters and swirling vortex drops for glass marbles with 90 transparent colorful tubes.",
     "features": [
       "90 Sturdy Interlocking Segments",
@@ -643,7 +643,7 @@ export const PRODUCTS = [
     "reviewsCount": 141,
     "tag": "Trending",
     "ageGroup": "4+ yrs",
-    "image": "https://images.unsplash.com/photo-1607601191544-fd61c99dd3c9?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1607601191544-fd61c99dd3c9-w800.jpg",
     "description": "80-piece interlocking mechanical gear set with motor pack that spins carousels, seesaws, and gears in mesmerizing chain reactions.",
     "features": [
       "Electric Motor Drive Module",
@@ -664,7 +664,7 @@ export const PRODUCTS = [
     "reviewsCount": 174,
     "tag": "Best Seller",
     "ageGroup": "8+ yrs",
-    "image": "https://images.unsplash.com/photo-1591473512724-91d1d41b5da8?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1591473512724-91d1d41b5da8-w800.jpg",
     "description": "920-piece detailed architectural brick model complete with winding tree stairs, swing, balcony telescope, and leafy foliage.",
     "features": [
       "920 Precision Connecting Bricks",
@@ -685,7 +685,7 @@ export const PRODUCTS = [
     "reviewsCount": 95,
     "tag": "Staff Pick",
     "ageGroup": "5+ yrs",
-    "image": "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1563245372-f21724e3856d-w800.jpg",
     "description": "128-piece magnetic building system with luminescent rods and steel spheres for assembling glowing domes, rockets, and geometric cubes.",
     "features": [
       "Glow-in-the-Dark Luminescent Coating",
@@ -706,7 +706,7 @@ export const PRODUCTS = [
     "reviewsCount": 175,
     "tag": "Top Rated",
     "ageGroup": "5-12 yrs",
-    "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1523275335684-37898b6baf30-w800.jpg",
     "description": "Kid-friendly smartwatch with step tracking, fun games, flashlight, SOS button, and comfortable silicone strap.",
     "features": [
       "IP68 Water-Resistant",
@@ -727,7 +727,7 @@ export const PRODUCTS = [
     "reviewsCount": 94,
     "tag": "Trending",
     "ageGroup": "4-9 yrs",
-    "image": "https://images.unsplash.com/photo-1546938576-6e6a64f317cc?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1546938576-6e6a64f317cc-w800.jpg",
     "description": "Spine-protecting ergonomic padded backpack with reflective night safety strips and water-repellent coating.",
     "features": [
       "Spine-Relief Honeycomb Backing",
@@ -748,7 +748,7 @@ export const PRODUCTS = [
     "reviewsCount": 82,
     "tag": "Staff Pick",
     "ageGroup": "3-12 yrs",
-    "image": "https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1591076482161-42ce6da69f67-w800.jpg",
     "description": "Blocks 99% harmful blue light from tablets and laptops. Bendable rubber frames that cannot be broken.",
     "features": [
       "99% Blue Light Filtration",
@@ -769,7 +769,7 @@ export const PRODUCTS = [
     "reviewsCount": 220,
     "tag": "Best Seller",
     "ageGroup": "3-12 yrs",
-    "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1505740420928-5e560c06d30e-w800.jpg",
     "description": "Studio-quality wireless kids headphones capped at 85dB safe hearing level, with vibrant RGB cat-ear lights and 24-hr battery life.",
     "features": [
       "85dB Safe Volume Limiting",
@@ -790,7 +790,7 @@ export const PRODUCTS = [
     "reviewsCount": 152,
     "tag": "Top Rated",
     "ageGroup": "All Ages",
-    "image": "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1602143407151-7111542de6e8-w800.jpg",
     "description": "Keep water ice-cold for 24 hours or warm for 12 hours with this leakproof, drop-resistant 500ml steel bottle with silicone carry handle.",
     "features": [
       "Food-Grade 316 Stainless Steel",
@@ -811,7 +811,7 @@ export const PRODUCTS = [
     "reviewsCount": 88,
     "tag": "Staff Pick",
     "ageGroup": "5+ yrs",
-    "image": "https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1524805444758-089113d48a6d-w800.jpg",
     "description": "Fun and functional colorful digital sports watch with stopwatch, dual time, calendar, 50m water resistance, and rainbow night backlight.",
     "features": [
       "50-Meter Waterproof",
@@ -832,7 +832,7 @@ export const PRODUCTS = [
     "reviewsCount": 160,
     "tag": "Best Seller",
     "ageGroup": "All Ages",
-    "image": "https://images.unsplash.com/photo-1512909006721-3d6018887383?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1512909006721-3d6018887383-w800.jpg",
     "description": "Plays gentle melodies while glittering snow drifts automatically under soft warm ambient lighting.",
     "features": [
       "Automatic Snow Swirl Mechanism",
@@ -853,7 +853,7 @@ export const PRODUCTS = [
     "reviewsCount": 89,
     "tag": "Limited",
     "ageGroup": "4-10 yrs",
-    "image": "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1549465220-1a8b9238cd48-w800.jpg",
     "description": "Curated luxury surprise box featuring plushie, DIY greeting kit, sensory toy, stickers, and celebratory ribbon.",
     "features": [
       "Curated 7-in-1 Celebration Set",
@@ -874,7 +874,7 @@ export const PRODUCTS = [
     "reviewsCount": 215,
     "tag": "Top Rated",
     "ageGroup": "All Ages",
-    "image": "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1534447677768-be436bb09401-w800.jpg",
     "description": "Transform any bedroom ceiling into a dreamy cosmic galaxy with 8 nebular effects and twinkling green stars.",
     "features": [
       "360° Magnetic Rotating Head",
@@ -895,7 +895,7 @@ export const PRODUCTS = [
     "reviewsCount": 165,
     "tag": "Best Seller",
     "ageGroup": "All Ages",
-    "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1507473885765-e6ed057f782c-w800.jpg",
     "description": "Handcrafted natural wood nursery lamp custom-engraved with playful stars, clouds, and comforting amber ambient LED glow.",
     "features": [
       "Natural Pine Wood Crafting",
@@ -916,7 +916,7 @@ export const PRODUCTS = [
     "reviewsCount": 198,
     "tag": "Viral Hit",
     "ageGroup": "4-12 yrs",
-    "image": "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1526170375885-4d8ecf77b99f-w800.jpg",
     "description": "Kids can snap 1080p HD photos and instantly print zero-ink black & white photos on thermal paper rolls in seconds!",
     "features": [
       "Zero-Ink Instant Thermal Printing",
@@ -937,7 +937,7 @@ export const PRODUCTS = [
     "reviewsCount": 93,
     "tag": "Staff Pick",
     "ageGroup": "5-12 yrs",
-    "image": "https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1513151233558-d860c5398176-w800.jpg",
     "description": "Secret lockable diary with diamond gemstone stickers, scented gel pens, glitter tape rolls, and plush unicorn bookmark.",
     "features": [
       "Lock & Key Privacy Diary",
@@ -958,7 +958,7 @@ export const PRODUCTS = [
     "reviewsCount": 178,
     "tag": "Best Seller",
     "ageGroup": "5+ yrs",
-    "image": "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1511512578047-dfb367046420-w800.jpg",
     "description": "Real battery-powered motor pushes continuous air cushion across the smooth rink for intense high-speed puck battles.",
     "features": [
       "Motorized Air Cushion Flow",
@@ -979,7 +979,7 @@ export const PRODUCTS = [
     "reviewsCount": 110,
     "tag": "Trending",
     "ageGroup": "4+ yrs",
-    "image": "https://images.unsplash.com/photo-1606167668584-78701c57f13d?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1606167668584-78701c57f13d-w800.jpg",
     "description": "100% kid-safe magnetic darts that stick powerfully to the board without sharp points or damaging home walls.",
     "features": [
       "Double-Sided Play Field (Traditional + Target)",
@@ -1000,7 +1000,7 @@ export const PRODUCTS = [
     "reviewsCount": 153,
     "tag": "Staff Pick",
     "ageGroup": "5+ yrs",
-    "image": "https://images.unsplash.com/photo-1543585279-0cb57740ef40?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1543585279-0cb57740ef40-w800.jpg",
     "description": "Shatterproof backboard with spring-action breakaway rim, digital scoreboard, and enthusiastic crowd cheer sound effects.",
     "features": [
       "Electronic Score Tracking",
@@ -1021,7 +1021,7 @@ export const PRODUCTS = [
     "reviewsCount": 143,
     "tag": "Best Seller",
     "ageGroup": "5+ yrs",
-    "image": "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1529699211952-734e80c4d42b-w800.jpg",
     "description": "High-grade polished birchwood game table with fold-out drawer, handcrafted wooden pieces, and 4 timeless classic family games.",
     "features": [
       "4 Classic Family Games in One",
@@ -1042,7 +1042,7 @@ export const PRODUCTS = [
     "reviewsCount": 176,
     "tag": "Viral Hit",
     "ageGroup": "4+ yrs",
-    "image": "https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1610890716171-6b1bb98ffd09-w800.jpg",
     "description": "High-speed finger-flick puck game where players sling all pucks across the center gate to clear their side first. Non-stop laughter!",
     "features": [
       "High-Tension Elastic Bungee Sling",
@@ -1063,7 +1063,7 @@ export const PRODUCTS = [
     "reviewsCount": 120,
     "tag": "Staff Pick",
     "ageGroup": "All Ages",
-    "image": "https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1543269865-cbf427effbad-w800.jpg",
     "description": "Precision-cut solid pine blocks for building towering structures and taking turns removing blocks without toppling the stack.",
     "features": [
       "54 Smooth Sanded Pine Blocks",
@@ -1084,7 +1084,7 @@ export const PRODUCTS = [
     "reviewsCount": 188,
     "tag": "Best Seller",
     "ageGroup": "0-3 yrs",
-    "image": "https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1522771930-78848d9293e8-w800.jpg",
     "description": "Ultra-breathable 100% GOTS-certified organic cotton romper set with gentle flatlock seams, nickel-free snap buttons, and adorable safari animal prints.",
     "features": [
       "100% GOTS Certified Organic Cotton",
@@ -1105,7 +1105,7 @@ export const PRODUCTS = [
     "reviewsCount": 142,
     "tag": "Trending",
     "ageGroup": "3-8 yrs",
-    "image": "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1519238263530-99bdd11df2ea-w800.jpg",
     "description": "Cozy brushed fleece hoodie featuring 3D dinosaur spine ridges on the hood, deep front kangaroo pocket, and matching ribbed jogger pants.",
     "features": [
       "Ultra-Warm Brushed Interior Fleece",
@@ -1126,7 +1126,7 @@ export const PRODUCTS = [
     "reviewsCount": 176,
     "tag": "Viral Hit",
     "ageGroup": "3-9 yrs",
-    "image": "https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1622290291468-a28f7a7dc6a8-w800.jpg",
     "description": "Magical multi-layered rainbow tulle dress with a silky cotton lining, sparkly waistband, and airy twirl silhouette made for celebrations and birthdays.",
     "features": [
       "Multi-Layered Soft Rainbow Tulle",
@@ -1147,7 +1147,7 @@ export const PRODUCTS = [
     "reviewsCount": 154,
     "tag": "Top Rated",
     "ageGroup": "2-10 yrs",
-    "image": "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1503919545889-aef636e10ad4-w800.jpg",
     "description": "Supremely cozy 2-piece nightwear set featuring constellations and space rockets that glow gently in the dark, turning bedtime into an adventure.",
     "features": [
       "Non-Toxic Photoluminescent Glow Ink",
@@ -1168,7 +1168,7 @@ export const PRODUCTS = [
     "reviewsCount": 118,
     "tag": "New Drop",
     "ageGroup": "2-8 yrs",
-    "image": "https://images.unsplash.com/photo-1514090458221-65bb69cf63e6?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1514090458221-65bb69cf63e6-w800.jpg",
     "description": "Certified UPF 50+ quick-dry sunsuit and matching shorts designed to block 98% of harmful UV rays during poolside and beach adventures.",
     "features": [
       "Certified UPF 50+ Sun Protection",
@@ -1189,7 +1189,7 @@ export const PRODUCTS = [
     "reviewsCount": 129,
     "tag": "Staff Pick",
     "ageGroup": "1-5 yrs",
-    "image": "https://images.unsplash.com/photo-1627048044292-29646e5befb8?auto=format&fit=crop&w=800&q=85",
+    "image": "/images/unsplash/1627048044292-29646e5befb8-w800.jpg",
     "description": "Chunky cable-knit heirloom cardigan and matching pom-pom beanie crafted from whisper-soft merino wool for natural temperature regulation.",
     "features": [
       "100% Ultra-Fine Merino Wool",

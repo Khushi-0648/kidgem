@@ -24,7 +24,7 @@ const CATEGORY_SHOWCASES = {
     gradient: 'from-rose-500 to-pink-600',
     bgLight: 'bg-rose-50/70',
     borderColor: 'border-rose-200',
-    coverImage: 'https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?auto=format&fit=crop&w=800&q=80',
+    coverImage: '/images/unsplash/1519238263530-99bdd11df2ea-w800.jpg',
     tagline: 'Breathable organic cotton rompers, cozy dino fleece sets, and glowing astronaut pajamas.',
     idealAge: 'Ages 0 to 10',
     highlights: ['Organic Cotton Safari Romper', 'Dinosaur Explorer Fleece Set', 'Glow-in-the-Dark Pajamas']
@@ -36,7 +36,7 @@ const CATEGORY_SHOWCASES = {
     gradient: 'from-amber-500 to-rose-600',
     bgLight: 'bg-amber-50/70',
     borderColor: 'border-amber-200',
-    coverImage: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=800&q=80',
+    coverImage: '/images/unsplash/1515488042361-ee00e0ddd4e4-w800.jpg',
     tagline: 'Collectible wind-up tin robots, interactive gadgets, and tactile sensory toys.',
     idealAge: 'Ages 3 to 10',
     highlights: ['Vintage Marching Tin Robot', 'Retro Wooden Railway Train', 'Silicone Sensory Board']
@@ -48,7 +48,7 @@ const CATEGORY_SHOWCASES = {
     gradient: 'from-blue-600 to-indigo-700',
     bgLight: 'bg-blue-50/70',
     borderColor: 'border-blue-200',
-    coverImage: 'https://images.unsplash.com/photo-1594787318286-3d835c1d207f?auto=format&fit=crop&w=800&q=80',
+    coverImage: '/images/unsplash/1594787318286-3d835c1d207f-w800.jpg',
     tagline: 'Blistering all-terrain monster buggies, 360° acrobatic rollers, and wall racers.',
     idealAge: 'Ages 5 to 14',
     highlights: ['TurboDrift 4WD Buggy', '360° Tornado Stunt Car', 'Gravity Zero Climber']
@@ -60,7 +60,7 @@ const CATEGORY_SHOWCASES = {
     gradient: 'from-pink-500 to-rose-600',
     bgLight: 'bg-pink-50/70',
     borderColor: 'border-pink-200',
-    coverImage: 'https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=800&q=80',
+    coverImage: '/images/unsplash/1583485088034-697b5bc54ccd-w800.jpg',
     tagline: 'Deluxe metallic art suitcases, ergonomic handwriting pens, and 3D pencil cases.',
     idealAge: 'Ages 4 to 14',
     highlights: ['48-Pc Art Studio Suitcase', 'Ergonomic Fountain Pen', '3D Rocket EVA Pencil Case']
@@ -72,7 +72,7 @@ const CATEGORY_SHOWCASES = {
     gradient: 'from-emerald-600 to-teal-700',
     bgLight: 'bg-emerald-50/70',
     borderColor: 'border-emerald-200',
-    coverImage: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
+    coverImage: '/images/unsplash/1581092160607-ee22621dd758-w800.jpg',
     tagline: '360° revolving planetary projectors, 1200x student microscopes, and electronic kits.',
     idealAge: 'Ages 6 to 14',
     highlights: ['Solar Planetarium Projector', '1200x LED Microscope', 'Snap-Circuit Electronic Lab']
@@ -84,7 +84,7 @@ const CATEGORY_SHOWCASES = {
     gradient: 'from-purple-600 to-indigo-700',
     bgLight: 'bg-purple-50/70',
     borderColor: 'border-purple-200',
-    coverImage: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=800&q=80',
+    coverImage: '/images/unsplash/1587654780291-39c9404d746b-w800.jpg',
     tagline: 'Ultrasonic neodymium magnetic tiles, hydraulic technic cranes, and marble runs.',
     idealAge: 'Ages 3 to 12',
     highlights: ['100-Pc 3D MagnaTiles Castle', 'Hydraulic Technic Crane', 'Marble Run Roller Coaster']
@@ -96,7 +96,7 @@ const CATEGORY_SHOWCASES = {
     gradient: 'from-rose-500 to-orange-600',
     bgLight: 'bg-rose-50/70',
     borderColor: 'border-rose-200',
-    coverImage: 'https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=800&q=80',
+    coverImage: '/images/unsplash/1522771930-78848d9293e8-w800.jpg',
     tagline: 'Orthopedic 3D dinosaur backpacks, kid-safe LED smartwatches, and insulated flasks.',
     idealAge: 'Ages 3 to 12',
     highlights: ['3D Dino Waterproof Backpack', 'Waterproof LED Kids Watch', 'Astronaut Steel Sipper']
@@ -108,7 +108,7 @@ const CATEGORY_SHOWCASES = {
     gradient: 'from-yellow-500 to-amber-600',
     bgLight: 'bg-amber-50/70',
     borderColor: 'border-amber-200',
-    coverImage: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=800&q=80',
+    coverImage: '/images/unsplash/1513151233558-d860c5398176-w800.jpg',
     tagline: 'Curated joyful birthday gift boxes, musical carousel boxes, and DIY glow slime labs.',
     idealAge: 'All Ages',
     highlights: ['Deluxe Birthday Joy Hamper', 'Wooden Carousel Music Box', 'DIY Glow Slime Magic Lab']
@@ -120,7 +120,7 @@ const CATEGORY_SHOWCASES = {
     gradient: 'from-indigo-600 to-sky-600',
     bgLight: 'bg-indigo-50/70',
     borderColor: 'border-indigo-200',
-    coverImage: 'https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?auto=format&fit=crop&w=800&q=80',
+    coverImage: '/images/unsplash/1610890716171-6b1bb98ffd09-w800.jpg',
     tagline: 'High-speed wooden sling puck battles, tabletop arcade pinball, and memory cubes.',
     idealAge: 'Ages 4 to Adult',
     highlights: ['Fast Track Sling Puck Battle', 'Tabletop Arcade Pinball', 'Flash Memory Pattern Cube']
@@ -148,7 +148,7 @@ export const CategoriesPage = () => {
       {/* 1. FULL-SCREEN EDITORIAL HERO BANNER */}
       <div className="relative w-full min-h-[72vh] sm:min-h-[82vh] flex items-center justify-center overflow-hidden mb-12 sm:mb-16">
         <img
-          src="https://images.unsplash.com/photo-1647687663833-fcc91fd99792?auto=format&fit=crop&w=1920&q=85"
+          src="/images/unsplash/1647687663833-fcc91fd99792-w1920.jpg"
           alt="Children Playing With Vibrant Creative Toys"
           className="absolute inset-0 w-full h-full object-cover object-center scale-105 filter brightness-95"
         />
@@ -269,7 +269,7 @@ export const CategoriesPage = () => {
               name: cat.name,
               badge: 'Exclusive',
               gradient: 'from-red-600 to-rose-600',
-              coverImage: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=800&q=80',
+              coverImage: '/images/unsplash/1515488042361-ee00e0ddd4e4-w800.jpg',
               tagline: 'Curated toys certified child-safe.',
               idealAge: 'All Ages',
               highlights: []

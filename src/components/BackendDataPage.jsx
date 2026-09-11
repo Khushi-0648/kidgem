@@ -367,7 +367,7 @@ export const BackendDataPage = () => {
                       {/* Product Header */}
                       <div className="flex items-start gap-3">
                         <img
-                          src={item.images?.[0]?.src || 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=200&q=80'}
+                          src={item.images?.[0]?.src || '/images/unsplash/1515488042361-ee00e0ddd4e4-w200.jpg'}
                           alt={item.name}
                           className="w-16 h-16 rounded-2xl object-cover border border-slate-100 flex-shrink-0"
                         />

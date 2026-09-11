@@ -91,7 +91,7 @@ function MainApp() {
             {/* Full-Screen Shop Page Hero Banner with High-Aesthetic Typography */}
             <div className="relative w-full min-h-[70vh] sm:min-h-[80vh] flex items-center justify-center text-white py-16 px-4 text-center overflow-hidden mb-12 sm:mb-16">
               <img
-                src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=1920&q=85"
+                src="/images/unsplash/1515488042361-ee00e0ddd4e4-w1920.jpg"
                 alt="KidzGem Toys & Essentials Catalog"
                 className="absolute inset-0 w-full h-full object-cover object-center scale-105 filter brightness-95"
               />

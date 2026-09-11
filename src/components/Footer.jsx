@@ -36,7 +36,7 @@ export const Footer = () => {
       {/* Background photographic picture with soft white fading vignette */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <img
-          src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=1920&q=80"
+          src="/images/unsplash/1502086223501-7ea6ecd79368-w1920.jpg"
           alt="KidzGem Happy Play Background"
           className="w-full h-full object-cover object-center opacity-20"
           loading="lazy"
@@ -239,7 +239,7 @@ export const Footer = () => {
               </span>
               <div className="bg-white p-2 rounded-xl border border-rose-100 inline-block shadow-2xs">
                 <img
-                  src="https://kidzgem.com/wp-content/themes/kidzgem/assets/img/photos/payment1.png"
+                  src="/images/site/payment1.png"
                   alt="Accepted Payment Methods (UPI, Card, Net Banking, COD)"
                   className="h-6 object-contain"
                 />

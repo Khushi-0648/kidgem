@@ -56,7 +56,7 @@ export const Hero = () => {
       ctaText: 'Shop Kids Wear & Plush',
       category: 'toys',
       categoryName: 'Clothes & Plush',
-      image: 'https://images.unsplash.com/photo-1522771930-78848d9293e8?auto=format&fit=crop&w=1920&q=85'
+      image: '/images/unsplash/1522771930-78848d9293e8-w1920.jpg'
     },
     {
       id: 1,
@@ -67,7 +67,7 @@ export const Hero = () => {
       ctaText: 'Shop Trending Toys',
       category: 'toys',
       categoryName: 'Toys & Tin Robot',
-      image: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=1920&q=85'
+      image: '/images/unsplash/1515488042361-ee00e0ddd4e4-w1920.jpg'
     },
     {
       id: 2,
@@ -78,7 +78,7 @@ export const Hero = () => {
       ctaText: 'Shop Remote Drift Cars',
       category: 'remote-car',
       categoryName: 'Remote Cars',
-      image: 'https://images.unsplash.com/photo-1594787318286-3d835c1d207f?auto=format&fit=crop&w=1920&q=85'
+      image: '/images/unsplash/1594787318286-3d835c1d207f-w1920.jpg'
     },
     {
       id: 3,
@@ -89,7 +89,7 @@ export const Hero = () => {
       ctaText: 'Shop Learning & Blocks',
       category: 'learning-sets',
       categoryName: 'STEM & Blocks',
-      image: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=1920&q=85'
+      image: '/images/unsplash/1587654780291-39c9404d746b-w1920.jpg'
     },
     {
       id: 4,
@@ -100,7 +100,7 @@ export const Hero = () => {
       ctaText: 'Shop Gift Collections',
       category: 'gift-items',
       categoryName: 'Gifts & Hampers',
-      image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1920&q=85'
+      image: '/images/unsplash/1513151233558-d860c5398176-w1920.jpg'
     }
   ];
 
