@@ -16,7 +16,8 @@ import {
   ArrowRight,
   ShieldCheck,
   Layers,
-  Eye
+  Eye,
+  Zap
 } from 'lucide-react';
 
 export const Navbar = () => {
@@ -208,11 +209,11 @@ export const Navbar = () => {
             </button>
           </nav>
 
-          {/* RIGHT ACTIONS: Search pill, Wishlist & Cart Button */}
-          <div className="flex items-center gap-2.5 sm:gap-3.5">
-            
-            {/* Search Input (Hidden on mobile, expandable) */}
-            <div className="relative hidden md:block w-44 lg:w-56">
+          {/* RIGHT ACTIONS: Search pill (stretches to fill remaining space), Wishlist & Cart Button */}
+          <div className="flex items-center gap-2.5 sm:gap-3.5 flex-1 min-w-0 justify-end">
+
+            {/* Search Input (Hidden on mobile, stretches to fill blank space) */}
+            <div className="relative hidden md:block flex-1 max-w-md">
               <Search className="w-3.5 h-3.5 text-rose-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               <input
                 type="text"
@@ -333,20 +334,29 @@ export const Navbar = () => {
             {/* Luxury Shopping Cart Button (Direct Add to Cart to Payment) */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="flex items-center gap-2 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white px-4 py-2.5 rounded-full shadow-md shadow-rose-600/25 hover:shadow-lg hover:shadow-rose-600/35 transition-all duration-200 active:scale-95 group"
+              className="relative flex items-center gap-2.5 bg-gradient-to-r from-red-600 via-rose-600 to-red-600 hover:from-red-700 hover:via-rose-700 hover:to-red-700 text-white pl-2 pr-5 py-2.5 rounded-full shadow-lg shadow-rose-600/30 hover:shadow-xl hover:shadow-rose-600/40 transition-all duration-300 active:scale-95 group border border-white/10"
             >
-              <div className="relative">
+              <div className="relative w-9 h-9 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/25 transition-colors flex-shrink-0">
                 <ShoppingBag className="w-4 h-4 group-hover:-rotate-12 transition-transform" />
                 {totalCartCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-white text-rose-600 text-[10px] font-black rounded-full w-3.5 h-3.5 flex items-center justify-center shadow-xs">
+                  <span className="absolute -top-1.5 -right-1.5 bg-amber-400 text-rose-900 text-[10px] font-black rounded-full min-w-[18px] h-[18px] px-1 flex items-center justify-center shadow-md ring-2 ring-white animate-pulse-subtle">
                     {totalCartCount}
                   </span>
                 )}
               </div>
-              <div className="hidden sm:flex flex-col text-left leading-none pr-0.5">
-                <span className="text-[9px] uppercase font-bold text-rose-100 tracking-wider">Cart</span>
-                <span className="text-xs font-black">{formatPrice(subtotal)}</span>
+              <div className="hidden sm:flex flex-col text-left leading-none">
+                <span className="text-[9px] uppercase font-bold text-rose-100 tracking-wider">My Cart</span>
+                <span className="text-sm font-black">{formatPrice(subtotal)}</span>
               </div>
+            </button>
+
+            {/* Shop Now CTA */}
+            <button
+              onClick={() => navigateTo('shop')}
+              className="hidden md:flex items-center gap-2 bg-slate-900 hover:bg-black text-white px-6 py-3 rounded-full text-xs font-black transition-all active:scale-95 shadow-md cursor-pointer"
+            >
+              <Zap className="w-3.5 h-3.5 text-amber-300 fill-amber-300" />
+              <span>Shop Now</span>
             </button>
 
             {/* Mobile Hamburger Menu */}

@@ -216,7 +216,7 @@ export const AboutPage = () => {
             <div className="lg:col-span-5 relative group">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-rose-950/15 border-2 border-white aspect-[4/3] sm:aspect-[16/11]">
                 <img
-                  src="https://images.unsplash.com/photo-1543332164-6e82f355badc?auto=format&fit=crop&w=1000&q=85"
+                  src="https://images.unsplash.com/photo-1666888735928-68814027acbb?auto=format&fit=crop&w=1000&q=85"
                   alt="Loving Parent and Happy Child Playing with Educational Toys"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   loading="lazy"
