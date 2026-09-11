@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStore } from '../context/StoreContext';
-import { Heart, Star, ShoppingBag, Eye, Zap, ShieldCheck, Sparkles } from 'lucide-react';
+import { Heart, Star, ShoppingBag, Eye, Zap, Sparkles } from 'lucide-react';
 
 export const ProductCard = ({ product }) => {
   const {
@@ -147,12 +147,6 @@ export const ProductCard = ({ product }) => {
               <Zap className="w-3.5 h-3.5 fill-white text-white group-hover:scale-110 transition-transform" />
               <span>Buy Now</span>
             </button>
-          </div>
-
-          {/* Micro trust guarantee */}
-          <div className="mt-2.5 flex items-center justify-center gap-1.5 text-[10px] text-slate-400 font-semibold">
-            <ShieldCheck className="w-3 h-3 text-emerald-500" />
-            <span>100% Non-Toxic • Free Returns</span>
           </div>
         </div>
 

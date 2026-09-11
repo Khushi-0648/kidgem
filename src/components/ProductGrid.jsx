@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 
 const PRODUCTS_PER_PAGE = 20;
+const HOME_FEATURED_COUNT = 4;
 
 export const ProductGrid = () => {
   const {
@@ -111,26 +112,16 @@ export const ProductGrid = () => {
   };
 
   // Determine products to display:
-  // On Home page: showcase 9 diverse flagship products (1 from each of the 9 categories)
+  // On Home page: showcase 4 diverse flagship products
   // On Shop page: show the current page of products matching search/filters
   const displayedProducts = useMemo(() => {
     if (!isShopPage) {
-      const categoryOrder = [
-        'clothing',
-        'toys',
-        'remote-car',
-        'stationery',
-        'learning-sets',
-        'building-blocks',
-        'accessories',
-        'gift-items',
-        'indoor-games'
-      ];
+      const categoryOrder = ['toys', 'remote-car', 'learning-sets', 'gift-items'];
       const featured = categoryOrder
         .map((catId) => allProducts.find((p) => p.category === catId))
         .filter(Boolean);
 
-      return featured.length === 9 ? featured : allProducts.slice(0, 9);
+      return featured.length === HOME_FEATURED_COUNT ? featured : allProducts.slice(0, HOME_FEATURED_COUNT);
     }
     const start = (safePageNum - 1) * PRODUCTS_PER_PAGE;
     return filteredProducts.slice(start, start + PRODUCTS_PER_PAGE);
