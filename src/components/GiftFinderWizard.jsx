@@ -80,7 +80,9 @@ export const GiftFinderWizard = () => {
       return matchCat && matchPrice;
     });
 
-    // Expand if fewer than 6 in exact price range
+    // Expand if fewer than 6 in exact price range - stays within the same
+    // relevant categories for this persona, ignoring the budget cap, rather
+    // than ever padding with unrelated products just to hit a count of 6.
     if (matches.length < 6) {
       const categoryMatches = PRODUCTS.filter((p) => {
         const matchCat =
@@ -94,12 +96,6 @@ export const GiftFinderWizard = () => {
         return matchCat && !matches.some((m) => m.id === p.id);
       });
       matches = [...matches, ...categoryMatches];
-    }
-
-    // Ensure at least 6 recommendations from catalog
-    if (matches.length < 6) {
-      const remaining = PRODUCTS.filter((p) => !matches.some((m) => m.id === p.id));
-      matches = [...matches, ...remaining];
     }
 
     return matches.slice(0, 6);
