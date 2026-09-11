@@ -246,18 +246,13 @@ export const CategoriesPage = () => {
             </button>
 
             {categoriesList.map((cat) => {
-              const isSelected = activeTab === cat.id;
               const TabIcon = getCategoryIcon(cat.id);
 
               return (
                 <button
                   key={cat.id}
-                  onClick={() => setActiveTab(cat.id)}
-                  className={`flex items-center gap-1.5 px-4 py-2 rounded-2xl text-xs font-black transition-all cursor-pointer flex-shrink-0 select-none ${
-                    isSelected
-                      ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-md shadow-rose-600/30 scale-105'
-                      : 'bg-white text-slate-700 hover:bg-rose-50 border border-rose-200/80'
-                  }`}
+                  onClick={() => handleOpenCategory(cat.id)}
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-2xl text-xs font-black transition-all cursor-pointer flex-shrink-0 select-none bg-white text-slate-700 hover:bg-rose-50 hover:text-rose-600 border border-rose-200/80"
                 >
                   <TabIcon className="w-3.5 h-3.5" />
                   <span>{cat.name}</span>
