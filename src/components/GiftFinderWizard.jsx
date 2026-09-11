@@ -17,7 +17,7 @@ import {
   Gauge
 } from 'lucide-react';
 
-const RECOMMENDATION_COUNT = 4;
+const RECOMMENDATION_COUNT = 6;
 
 export const GiftFinderWizard = () => {
   const { addToCart, buyNow, formatPrice, setQuickViewProduct } = useStore();
@@ -208,7 +208,7 @@ export const GiftFinderWizard = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {recommendations.map((prod) => (
                 <div
                   key={prod.id}
