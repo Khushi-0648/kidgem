@@ -334,7 +334,7 @@ export const Navbar = () => {
             {/* Luxury Shopping Cart Button (Direct Add to Cart to Payment) */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative flex items-center gap-2.5 bg-gradient-to-r from-red-600 via-rose-600 to-red-600 hover:from-red-700 hover:via-rose-700 hover:to-red-700 text-white pl-2 pr-5 py-2.5 rounded-full shadow-lg shadow-rose-600/30 hover:shadow-xl hover:shadow-rose-600/40 transition-all duration-300 active:scale-95 group border border-white/10"
+              className="relative ml-2 flex items-center gap-2.5 h-12 bg-gradient-to-r from-red-600 via-rose-600 to-red-600 hover:from-red-700 hover:via-rose-700 hover:to-red-700 text-white pl-2 pr-5 rounded-full shadow-lg shadow-rose-600/30 hover:shadow-xl hover:shadow-rose-600/40 transition-all duration-300 active:scale-95 group border border-white/10"
             >
               <div className="relative w-9 h-9 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/25 transition-colors flex-shrink-0">
                 <ShoppingBag className="w-4 h-4 group-hover:-rotate-12 transition-transform" />
@@ -353,7 +353,7 @@ export const Navbar = () => {
             {/* Shop Now CTA */}
             <button
               onClick={() => navigateTo('shop')}
-              className="hidden md:flex items-center gap-2 bg-slate-900 hover:bg-black text-white px-6 py-3 rounded-full text-xs font-black transition-all active:scale-95 shadow-md cursor-pointer"
+              className="hidden md:flex items-center justify-center gap-2 h-12 bg-slate-900 hover:bg-black text-white px-6 rounded-full text-xs font-black transition-all active:scale-95 shadow-md cursor-pointer"
             >
               <Zap className="w-3.5 h-3.5 text-amber-300 fill-amber-300" />
               <span>Shop Now</span>
