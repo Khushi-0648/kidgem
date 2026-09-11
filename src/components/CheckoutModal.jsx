@@ -613,7 +613,7 @@ export const CheckoutModal = () => {
                       }`}
                     >
                       <Truck className="w-5 h-5 text-rose-600" />
-                      <span className="text-xs">Cash on Deliv</span>
+                      <span className="text-[11px] leading-tight">Cash on Delivery</span>
                     </button>
                   </div>
 

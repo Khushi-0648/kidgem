@@ -126,31 +126,32 @@ export const HeroSpotlight = () => {
 
         {/* Bento Product Spotlight Card */}
         <div className="bg-white rounded-3xl sm:rounded-[2.5rem] border border-rose-100/90 shadow-2xl shadow-rose-950/5 overflow-hidden p-6 sm:p-12 lg:p-16 relative">
-          
-          {/* Quick Chevrons on Sides */}
-          <button
-            onClick={handlePrev}
-            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/95 backdrop-blur-md border border-rose-200 shadow-xl flex items-center justify-center text-slate-700 hover:text-rose-600 hover:scale-110 active:scale-95 transition-all z-20 cursor-pointer"
-            title="Previous Star Product"
-            aria-label="Previous Star Product"
-          >
-            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
-          </button>
-
-          <button
-            onClick={handleNext}
-            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/95 backdrop-blur-md border border-rose-200 shadow-xl flex items-center justify-center text-slate-700 hover:text-rose-600 hover:scale-110 active:scale-95 transition-all z-20 cursor-pointer"
-            title="Next Star Product"
-            aria-label="Next Star Product"
-          >
-            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
-          </button>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            
+
             {/* Left: Product Visual Frame with Floating Badges */}
             <div className="lg:col-span-6 relative flex items-center justify-center">
-              
+
+              {/* Quick Chevrons on Sides - anchored to the image only, so
+                  they never overlap the text content when stacked on mobile */}
+              <button
+                onClick={handlePrev}
+                className="absolute -left-1 sm:left-0 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/95 backdrop-blur-md border border-rose-200 shadow-xl flex items-center justify-center text-slate-700 hover:text-rose-600 hover:scale-110 active:scale-95 transition-all z-20 cursor-pointer"
+                title="Previous Star Product"
+                aria-label="Previous Star Product"
+              >
+                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+
+              <button
+                onClick={handleNext}
+                className="absolute -right-1 sm:right-0 top-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/95 backdrop-blur-md border border-rose-200 shadow-xl flex items-center justify-center text-slate-700 hover:text-rose-600 hover:scale-110 active:scale-95 transition-all z-20 cursor-pointer"
+                title="Next Star Product"
+                aria-label="Next Star Product"
+              >
+                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+
               {/* Decorative Circular Glow */}
               <div className="absolute inset-0 bg-gradient-to-tr from-rose-200/50 to-red-100/30 rounded-full blur-2xl transform scale-90"></div>
 

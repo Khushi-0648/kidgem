@@ -181,7 +181,7 @@ export const PRODUCTS = [
     "reviewsCount": 140,
     "tag": "Staff Pick",
     "ageGroup": "1-3 yrs",
-    "image": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=800&q=85",
+    "image": "https://images.unsplash.com/photo-1780975873513-541cde82e7b3?auto=format&fit=crop&w=800&q=85",
     "description": "All-in-one wooden sensory cube featuring latches, gears, shoelace practice, zipper, and clock dials for developing motor skills.",
     "features": [
       "Natural Solid Wood Build",
@@ -307,7 +307,7 @@ export const PRODUCTS = [
     "reviewsCount": 88,
     "tag": "Top Rated",
     "ageGroup": "5+ yrs",
-    "image": "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=800&q=85",
+    "image": "https://images.unsplash.com/photo-1565174408946-a7a8c16a3933?auto=format&fit=crop&w=800&q=85",
     "description": "Realistic 1:14 scale motorized hydraulic arm excavator with 680-degree cab rotation, metal shovel, and authentic construction sound effects.",
     "features": [
       "Heavy Diecast Alloy Shovel",
@@ -580,7 +580,7 @@ export const PRODUCTS = [
     "reviewsCount": 310,
     "tag": "Best Seller",
     "ageGroup": "3+ yrs",
-    "image": "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=800&q=85",
+    "image": "https://images.unsplash.com/photo-1654932330535-7e07af04b685?auto=format&fit=crop&w=800&q=85",
     "description": "Translucent diamond-facet magnetic blocks that click together easily to create castles, skyscrapers, and geometric forms.",
     "features": [
       "Rare Earth High-Strength Magnets",
@@ -622,7 +622,7 @@ export const PRODUCTS = [
     "reviewsCount": 119,
     "tag": "Hot Deal",
     "ageGroup": "4+ yrs",
-    "image": "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=800&q=85",
+    "image": "https://images.unsplash.com/photo-1590333626353-98887fe31d2c?auto=format&fit=crop&w=800&q=85",
     "description": "Build looping rollercoasters and swirling vortex drops for glass marbles with 90 transparent colorful tubes.",
     "features": [
       "90 Sturdy Interlocking Segments",
@@ -664,7 +664,7 @@ export const PRODUCTS = [
     "reviewsCount": 174,
     "tag": "Best Seller",
     "ageGroup": "8+ yrs",
-    "image": "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=800&q=85",
+    "image": "https://images.unsplash.com/photo-1591473512724-91d1d41b5da8?auto=format&fit=crop&w=800&q=85",
     "description": "920-piece detailed architectural brick model complete with winding tree stairs, swing, balcony telescope, and leafy foliage.",
     "features": [
       "920 Precision Connecting Bricks",

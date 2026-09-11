@@ -253,7 +253,7 @@ export const Navbar = () => {
               </button>
 
               {wishlistOpen && (
-                <div className="absolute right-0 top-full mt-2.5 w-80 max-w-[90vw] bg-white rounded-3xl border border-rose-100 shadow-2xl overflow-hidden z-50 animate-fadeIn">
+                <div className="fixed inset-x-4 top-20 sm:absolute sm:inset-x-auto sm:left-auto sm:right-0 sm:top-full sm:mt-2.5 w-auto sm:w-80 max-w-full sm:max-w-[90vw] bg-white rounded-3xl border border-rose-100 shadow-2xl overflow-hidden z-50 animate-fadeIn">
                   <div className="flex items-center justify-between px-5 py-4 border-b border-rose-100">
                     <h3 className="text-sm font-black text-slate-900" style={{ fontFamily: 'Fredoka, sans-serif' }}>
                       My Wishlist {wishlistItems.length > 0 && `(${wishlistItems.length})`}
