@@ -17,6 +17,8 @@ import {
   Gauge
 } from 'lucide-react';
 
+const RECOMMENDATION_COUNT = 4;
+
 export const GiftFinderWizard = () => {
   const { addToCart, buyNow, formatPrice, setQuickViewProduct } = useStore();
 
@@ -61,9 +63,7 @@ export const GiftFinderWizard = () => {
   ];
 
   // Dynamically find top matches based on persona category + budget
-  // Dynamically find top matches based on persona category + budget (6 curated picks)
   const recommendations = useMemo(() => {
-    const personaObj = personas.find((p) => p.id === selectedPersona) || personas[0];
     const budgetObj = budgets.find((b) => b.id === selectedBudget) || budgets[1];
 
     let matches = PRODUCTS.filter((p) => {
@@ -80,10 +80,10 @@ export const GiftFinderWizard = () => {
       return matchCat && matchPrice;
     });
 
-    // Expand if fewer than 6 in exact price range - stays within the same
-    // relevant categories for this persona, ignoring the budget cap, rather
-    // than ever padding with unrelated products just to hit a count of 6.
-    if (matches.length < 6) {
+    // Expand if fewer than RECOMMENDATION_COUNT in exact price range - stays
+    // within the same relevant categories for this persona, ignoring the
+    // budget cap, rather than ever padding with unrelated products.
+    if (matches.length < RECOMMENDATION_COUNT) {
       const categoryMatches = PRODUCTS.filter((p) => {
         const matchCat =
           selectedPersona === 'toddler'
@@ -98,7 +98,7 @@ export const GiftFinderWizard = () => {
       matches = [...matches, ...categoryMatches];
     }
 
-    return matches.slice(0, 6);
+    return matches.slice(0, RECOMMENDATION_COUNT);
   }, [selectedPersona, selectedBudget]);
 
   return (
@@ -208,7 +208,7 @@ export const GiftFinderWizard = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {recommendations.map((prod) => (
                 <div
                   key={prod.id}
