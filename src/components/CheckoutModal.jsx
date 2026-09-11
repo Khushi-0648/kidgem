@@ -74,7 +74,7 @@ export const CheckoutModal = () => {
   });
 
   // Payment states
-  const [paymentMethod, setPaymentMethod] = useState('upi'); // 'upi' | 'card' | 'netbanking' | 'cod'
+  const [paymentMethod, setPaymentMethod] = useState('upi'); // 'upi' | 'card' | 'netbanking'
   const [cardData, setCardData] = useState({
     number: '',
     name: '',
@@ -563,7 +563,7 @@ export const CheckoutModal = () => {
                   </div>
 
                   {/* Options Pills */}
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4">
+                  <div className="grid grid-cols-3 gap-2 mb-4">
                     <button
                       type="button"
                       onClick={() => setPaymentMethod('upi')}
@@ -603,18 +603,6 @@ export const CheckoutModal = () => {
                       <span className="text-xs">Net Banking</span>
                     </button>
 
-                    <button
-                      type="button"
-                      onClick={() => setPaymentMethod('cod')}
-                      className={`p-3 rounded-2xl border text-center transition-all flex flex-col items-center gap-1.5 ${
-                        paymentMethod === 'cod'
-                          ? 'border-rose-600 bg-rose-50/80 text-rose-700 font-bold shadow-xs'
-                          : 'border-rose-100 hover:border-rose-300 text-slate-600'
-                      }`}
-                    >
-                      <Truck className="w-5 h-5 text-rose-600" />
-                      <span className="text-[11px] leading-tight">Cash on Delivery</span>
-                    </button>
                   </div>
 
                   {/* Payment Details */}
@@ -696,16 +684,6 @@ export const CheckoutModal = () => {
                         <option>Kotak Mahindra Bank</option>
                         <option>Punjab National Bank</option>
                       </select>
-                    </div>
-                  )}
-
-                  {paymentMethod === 'cod' && (
-                    <div className="bg-emerald-50 rounded-2xl p-4 border border-emerald-200 text-xs text-emerald-800 flex items-start gap-2.5">
-                      <Truck className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                      <div>
-                        <span className="font-bold block">Cash on Delivery Available</span>
-                        <span>Pay in cash or UPI QR scan when our delivery executive arrives at your doorstep.</span>
-                      </div>
                     </div>
                   )}
 
