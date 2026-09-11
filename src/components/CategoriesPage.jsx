@@ -148,7 +148,7 @@ export const CategoriesPage = () => {
       {/* 1. FULL-SCREEN EDITORIAL HERO BANNER */}
       <div className="relative w-full min-h-[72vh] sm:min-h-[82vh] flex items-center justify-center overflow-hidden mb-12 sm:mb-16">
         <img
-          src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&w=1920&q=85"
+          src="https://images.unsplash.com/photo-1647687663833-fcc91fd99792?auto=format&fit=crop&w=1920&q=85"
           alt="Children Playing With Vibrant Creative Toys"
           className="absolute inset-0 w-full h-full object-cover object-center scale-105 filter brightness-95"
         />

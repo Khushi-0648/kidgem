@@ -16,6 +16,8 @@ import {
 export const ContactPage = () => {
   const { showToast, submitContact } = useStore();
   const [submitted, setSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [company, setCompany] = useState(''); // honeypot, must stay empty
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,7 +32,16 @@ export const ContactPage = () => {
       showToast('Please fill in all required fields.', 'error');
       return;
     }
-    const dataToSend = { ...formData };
+
+    setIsSending(true);
+    const result = await submitContact({ ...formData }, company);
+    setIsSending(false);
+
+    if (!result?.success) {
+      showToast(result?.message || 'Could not send your message right now. Please try again.', 'error');
+      return;
+    }
+
     setSubmitted(true);
     showToast('Message sent successfully! Our team will reply shortly.');
     setFormData({
@@ -40,14 +51,6 @@ export const ContactPage = () => {
       subject: 'Order Inquiry',
       message: ''
     });
-
-    try {
-      if (submitContact) {
-        await submitContact(dataToSend);
-      }
-    } catch (err) {
-      console.warn('Contact form sync fallback:', err);
-    }
     setTimeout(() => setSubmitted(false), 5000);
   };
 
@@ -204,6 +207,18 @@ export const ContactPage = () => {
             )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Honeypot field - hidden from real users, catches bots */}
+              <input
+                type="text"
+                name="company"
+                value={company}
+                onChange={(e) => setCompany(e.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+                className="absolute -left-[9999px] w-px h-px opacity-0"
+                aria-hidden="true"
+              />
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <label className="text-xs font-bold text-slate-700">Your Full Name *</label>
@@ -272,10 +287,11 @@ export const ContactPage = () => {
 
               <button
                 type="submit"
-                className="w-full py-4 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white font-black text-sm rounded-2xl shadow-lg shadow-rose-600/30 transition-all hover:scale-[1.01] active:scale-98 flex items-center justify-center gap-2"
+                disabled={isSending}
+                className="w-full py-4 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 text-white font-black text-sm rounded-2xl shadow-lg shadow-rose-600/30 transition-all hover:scale-[1.01] active:scale-98 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                <Send className="w-4 h-4" />
-                <span>Submit Message</span>
+                <Send className={`w-4 h-4 ${isSending ? 'animate-pulse' : ''}`} />
+                <span>{isSending ? 'Sending...' : 'Submit Message'}</span>
               </button>
             </form>
           </div>
